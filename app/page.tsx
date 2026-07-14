@@ -61,21 +61,29 @@ const skillGroups = [
     title: "Security",
     text: "Web Security · System Security · AI Security",
     caption: "웹·시스템 보안 · AI 보안 학습 중",
+    detail: "웹과 시스템의 기본적인 공격 표면을 이해하고, 그 위에 AI를 활용한 탐지 관점을 확장하고 있습니다.",
+    points: ["Web Security 취약점과 방어 흐름", "System Security 운영 관점", "AI Security 이상행위 탐지 학습"],
   },
   {
     title: "AI · Data",
     text: "Python · ML · Random Forest · KNN · SVM · PCA",
     caption: "머신러닝 · DL/LLM 학습 중",
+    detail: "데이터를 목적에 맞게 정의하고, 누수를 막은 검증 구조 안에서 모델의 결과를 해석하는 데 집중합니다.",
+    points: ["Python 기반 데이터 전처리", "Random Forest·KNN·SVM 모델 실습", "PCA와 DL/LLM 학습 확장"],
   },
   {
     title: "Programming",
     text: "C · Python · Java · Spring MVC · HTML/CSS",
     caption: "프로젝트 기반 구현 경험",
+    detail: "문제를 작은 기능으로 나누고, 실제 서비스로 연결될 수 있는 구조를 직접 구현합니다.",
+    points: ["C·Python·Java 기초 구현", "Spring MVC 웹 서비스 개발", "HTML/CSS 화면 구조와 인터랙션"],
   },
   {
     title: "Infrastructure",
     text: "Network · Linux · Windows Server · Virtualization",
     caption: "네트워크·Linux 운영 경험",
+    detail: "서비스가 안정적으로 실행되는 환경을 이해하기 위해 네트워크, 서버, 가상화 환경을 함께 다룹니다.",
+    points: ["Network 구조와 트러블슈팅", "Linux·Windows Server 운영", "VMware·Docker 기반 가상화"],
   },
 ];
 
@@ -117,7 +125,6 @@ const credentials = [
   ["네트워크관리사 2급", "ICQA · 2021.12"],
   ["컴퓨터활용능력 2급", "대한상공회의소 · 2021.12"],
   ["정보기기운용기능사", "HRD · 2022.12"],
-  ["신임경비교육", "경찰청 · 2023.10"],
   ["Google AI Essentials", "Google · 2025.10"],
   ["Agents and Workflows", "OpenAI · 2026.07"],
 ];
@@ -151,13 +158,18 @@ const archiveProjects = [
 
 export default function Home() {
   const [openProject, setOpenProject] = useState<number | null>(null);
+  const [openSkill, setOpenSkill] = useState<number | null>(null);
   const selectedProject = openProject === null ? null : projects[openProject];
+  const selectedSkill = openSkill === null ? null : skillGroups[openSkill];
 
   useEffect(() => {
-    if (openProject === null) return;
+    if (openProject === null && openSkill === null) return;
     const previousOverflow = document.body.style.overflow;
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpenProject(null);
+      if (event.key === "Escape") {
+        setOpenProject(null);
+        setOpenSkill(null);
+      }
     };
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", handleKeyDown);
@@ -165,7 +177,7 @@ export default function Home() {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [openProject]);
+  }, [openProject, openSkill]);
 
   return (
     <main id="top">
@@ -323,9 +335,42 @@ export default function Home() {
                 <p>{skill.caption}</p>
                 <h3>{skill.title}</h3>
                 <span>{skill.text}</span>
+                <button
+                  type="button"
+                  className="skill-open"
+                  aria-haspopup="dialog"
+                  aria-controls={`skill-modal-${index}`}
+                  onClick={() => setOpenSkill(index)}
+                >
+                  간단히 보기 <span aria-hidden="true">↗</span>
+                </button>
               </article>
             ))}
           </div>
+
+          {selectedSkill && openSkill !== null && (
+            <div className="project-modal-backdrop" role="presentation" onMouseDown={() => setOpenSkill(null)}>
+              <section
+                className="project-modal skill-modal"
+                id={`skill-modal-${openSkill}`}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby={`skill-modal-title-${openSkill}`}
+                onMouseDown={(event) => event.stopPropagation()}
+              >
+                <div className="project-modal-topline">
+                  <p>SKILL FOCUS</p>
+                  <button type="button" className="project-modal-close" aria-label="스킬 설명 닫기" onClick={() => setOpenSkill(null)}>×</button>
+                </div>
+                <p className="project-modal-eyebrow">{selectedSkill.caption}</p>
+                <h3 id={`skill-modal-title-${openSkill}`}>{selectedSkill.title}</h3>
+                <p className="project-modal-summary">{selectedSkill.detail}</p>
+                <ul className="skill-points">
+                  {selectedSkill.points.map((point) => <li key={point}>{point}</li>)}
+                </ul>
+              </section>
+            </div>
+          )}
 
           <div className="toolbox">
             <div>
