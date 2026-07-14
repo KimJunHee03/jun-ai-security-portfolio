@@ -16,7 +16,7 @@ const projects = [
       "10개 원본 공격 유형을 3개 범주로 재설계했습니다. 단순 정확도에 머물지 않고 SQL Injection과 GET Flooding의 낮은 재현율을 확인해, 실무 적용 전 보완해야 할 한계까지 분석했습니다.",
   },
   {
-    eyebrow: "Machine Learning",
+    eyebrow: "Artificial Intelligence",
     title: "데이터 누수 없이\n폐업 위험을 예측하다.",
     description:
       "서울시 상권 데이터를 상권 단위로 재구성하고, 데이터 누수를 차단한 검증 구조로 폐업 위험을 예측했습니다.",
@@ -150,7 +150,7 @@ export default function Home() {
 
       <section className="hero">
         <div className="hero-copy page-width">
-          <p className="hero-kicker">Information Security × Machine Learning</p>
+          <p className="hero-kicker">Information Security × Artificial Intelligence</p>
           <h1>
             보안을 더<br />
             <span>지능적으로.</span>
@@ -165,26 +165,14 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="hero-stage page-width" aria-label="AI 보안 관심 분야 시각화">
-          <div className="stage-glow" aria-hidden="true" />
-          <div className="security-display">
-            <div className="display-bar">
-              <span className="display-dot" />
-              <p>AI Security Intelligence</p>
-              <span>2026</span>
-            </div>
-            <div className="display-content">
-              <div className="signal-core" aria-hidden="true">
-                <div className="signal-ring ring-a" />
-                <div className="signal-ring ring-b" />
-                <div className="signal-orb">AI</div>
-              </div>
-              <div className="signal-copy">
-                <p>Current Focus</p>
-                <strong>로그 분석.<br />이상 탐지.<br />보안 자동화.</strong>
-              </div>
-            </div>
-          </div>
+        <div className="hero-stage page-width">
+          <img
+            src="/images/hero-ai-security.webp"
+            alt="투명한 유리 소재로 표현한 인공지능 보안 조형물"
+            fetchPriority="high"
+            decoding="async"
+          />
+          <p className="hero-caption">AI SECURITY · RESEARCH DIRECTION · 2026</p>
         </div>
       </section>
 
@@ -223,34 +211,21 @@ export default function Home() {
                   <p className="project-result">{project.result}</p>
                 </div>
 
-                <div className={`project-art art-${index + 1}`} aria-hidden="true">
-                  {index === 0 && (
-                    <>
-                      <div className="log-window">
-                        <div className="log-header"><span /><span /><span /></div>
-                        <div className="log-line line-long" /><div className="log-line line-mid" />
-                        <div className="log-line line-alert" /><div className="log-line line-short" />
-                        <div className="log-score">89.3<small>%</small></div>
-                      </div>
-                    </>
-                  )}
-                  {index === 1 && (
-                    <div className="chart-visual">
-                      <div className="chart-label"><span>Risk model</span><strong>0.616</strong></div>
-                      <div className="chart-bars">
-                        {[42, 56, 48, 72, 64, 88, 76].map((height, barIndex) => (
-                          <i key={barIndex} style={{ height: `${height}%` }} />
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                  {index === 2 && (
-                    <div className="star-system">
-                      <span className="star-orbit orbit-one" /><span className="star-orbit orbit-two" />
-                      <div className="star-main">뭇별</div>
-                      <i className="star-small one" /><i className="star-small two" /><i className="star-small three" />
-                    </div>
-                  )}
+                <div className={`project-art art-${index + 1}`}>
+                  <img
+                    src={[
+                      "/images/project-security.webp",
+                      "/images/project-ai.webp",
+                      "/images/project-mutbyeol.webp",
+                    ][index]}
+                    alt={[
+                      "보안 로그의 위협 신호를 표현한 푸른 유리 조형물",
+                      "인공지능 예측 모델을 표현한 투명한 데이터 조형물",
+                      "사람과 일정을 연결하는 뭇별 서비스를 표현한 별자리 조형물",
+                    ][index]}
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
 
                 <div className="project-footer">

@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Jun | AI Security Portfolio",
-  description: "정보보안과 머신러닝을 연결하는 Jun의 프로젝트 포트폴리오입니다.",
+  description: "정보보안과 인공지능을 연결하는 Jun의 프로젝트 포트폴리오입니다.",
   other: {
     "codex-preview": "development",
   },
