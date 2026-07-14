@@ -1,8 +1,6 @@
-const stats = [
-  { value: "4.17", label: "최근 학기 평점", unit: "/ 4.5" },
-  { value: "0.893", label: "보안 로그 분류", unit: "Accuracy" },
-  { value: "18", label: "프로젝트·활동 기록", unit: "Archive" },
-];
+"use client";
+
+import { useEffect, useState } from "react";
 
 const projects = [
   {
@@ -10,39 +8,51 @@ const projects = [
     title: "보안 로그에서\n공격의 흔적을 찾다.",
     description:
       "KISA 방화벽 로그를 운영 관점의 3개 클래스로 재구성하고 Random Forest로 공격 유형을 분류했습니다.",
-    result: "Accuracy 0.893",
     evidenceLabel: "Model Accuracy",
     evidenceValue: "0.893",
     evidenceNote: "3-class firewall log classification",
     tags: ["Python", "Random Forest", "Log Analysis"],
     detail:
       "10개 원본 공격 유형을 3개 범주로 재설계했습니다. 단순 정확도에 머물지 않고 SQL Injection과 GET Flooding의 낮은 재현율을 확인해, 실무 적용 전 보완해야 할 한계까지 분석했습니다.",
+    steps: [
+      { label: "01", title: "로그 구조 재설계", text: "KISA 방화벽 로그의 10개 공격 유형을 운영 관점의 3개 클래스로 다시 정의했습니다." },
+      { label: "02", title: "분류 모델 학습", text: "전처리한 로그를 Random Forest에 학습시키고 클래스별 성능을 비교했습니다." },
+      { label: "03", title: "오류와 한계 검증", text: "전체 정확도뿐 아니라 SQL Injection과 GET Flooding의 재현율을 따로 확인했습니다." },
+    ],
   },
   {
     eyebrow: "Artificial Intelligence",
     title: "데이터 누수 없이\n폐업 위험을 예측하다.",
     description:
       "서울시 상권 데이터를 상권 단위로 재구성하고, 데이터 누수를 차단한 검증 구조로 폐업 위험을 예측했습니다.",
-    result: "Test F1 0.616",
     evidenceLabel: "Test F1",
     evidenceValue: "0.616",
     evidenceNote: "Group-aware cross validation",
     tags: ["GroupKFold", "Feature Engineering", "Clustering"],
     detail:
       "점포·매출·유동인구 등 대규모 원천 데이터를 통합했습니다. 상권 기준 GroupKFold를 적용하고 타깃 정의를 다시 설계해 과대평가를 줄였으며, 선별형 모델로서의 활용 가능성과 재현율 한계를 함께 제시했습니다.",
+    steps: [
+      { label: "01", title: "상권 단위 통합", text: "점포·매출·유동인구 데이터를 상권 기준으로 결합하고 예측 대상의 범위를 정리했습니다." },
+      { label: "02", title: "누수 방지 검증", text: "같은 상권의 데이터가 학습과 테스트에 섞이지 않도록 GroupKFold를 적용했습니다." },
+      { label: "03", title: "타깃과 결과 점검", text: "피처를 정제한 뒤 Test F1과 재현율을 확인해 선별형 모델로서의 한계를 기록했습니다." },
+    ],
   },
   {
     eyebrow: "Web · Security",
     title: "사람과 일정을\n하나의 별로 연결하다.",
     description:
       "그룹 일정 조율과 관계 기록을 우주 콘셉트로 연결한 Spring MVC 기반 웹 서비스를 설계하고 배포했습니다.",
-    result: "Live Service",
     evidenceLabel: "Deployment",
     evidenceValue: "LIVE",
     evidenceNote: "Oracle Cloud · Nginx · HTTPS",
     tags: ["Spring MVC", "Tomcat", "Nginx · HTTPS"],
     detail:
       "JSP·JSTL·JdbcTemplate으로 기능을 구현하고 Oracle Cloud에 배포했습니다. BCrypt 비밀번호 해시, 세션 만료, 객체별 권한 검증, HTTPS와 방화벽 설정 등 운영 단계의 보안을 직접 점검했습니다.",
+    steps: [
+      { label: "01", title: "서비스 구조 설계", text: "그룹 일정 조율과 관계 기록을 하나의 우주 콘셉트로 묶고 Spring MVC 구조를 설계했습니다." },
+      { label: "02", title: "기능과 권한 구현", text: "JSP·JSTL·JdbcTemplate으로 기능을 만들고 BCrypt, 세션 만료, 객체별 권한 검증을 적용했습니다." },
+      { label: "03", title: "서버 배포와 보안 점검", text: "Oracle Cloud에 배포한 뒤 Nginx·HTTPS·방화벽 설정을 확인하며 운영 상태를 점검했습니다." },
+    ],
   },
 ];
 
@@ -135,12 +145,28 @@ const archiveProjects = [
   ["2025.12", "SNS 콘텐츠 제작", "SNS 콘텐츠 제작 최종 과제"],
   ["2025.12", "윈도우 프로그래밍", "Windows Programming 최종 과제"],
   ["2025.12", "지식iN · 바람신", "질문 답변 기반 지식 공유 활동"],
-  ["2025.12", "청운대", "1~2학년 대학 생활과 전공 활동 정리"],
   ["2026.04", "뭇별", "웹 서비스 구현부터 서버 운영·배포·보안까지"],
   ["2026.06", "ML 프로젝트", "기계학습 강의를 통한 3주 팀 프로젝트"],
 ];
 
 export default function Home() {
+  const [openProject, setOpenProject] = useState<number | null>(null);
+  const selectedProject = openProject === null ? null : projects[openProject];
+
+  useEffect(() => {
+    if (openProject === null) return;
+    const previousOverflow = document.body.style.overflow;
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpenProject(null);
+    };
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [openProject]);
+
   return (
     <main id="top">
       <header className="global-nav">
@@ -176,20 +202,6 @@ export default function Home() {
 
       </section>
 
-      <section className="numbers" aria-label="주요 성과">
-        <div className="page-width numbers-inner">
-          <p className="numbers-heading">결과로 확인한 성장.</p>
-          <div className="numbers-grid">
-            {stats.map((stat) => (
-              <article key={stat.label}>
-                <p><strong>{stat.value}</strong><span>{stat.unit}</span></p>
-                <small>{stat.label}</small>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <section className="projects-section section-space" id="projects">
         <div className="page-width">
           <header className="section-header">
@@ -220,14 +232,51 @@ export default function Home() {
                   <ul aria-label={`${project.eyebrow} 사용 기술`}>
                     {project.tags.map((tag) => <li key={tag}>{tag}</li>)}
                   </ul>
-                  <details>
-                    <summary aria-label={`${project.eyebrow} 상세 설명 열기`}>자세히 보기 <span aria-hidden="true">+</span></summary>
-                    <p>{project.detail}</p>
-                  </details>
+                  <button
+                    type="button"
+                    className="project-open"
+                    aria-haspopup="dialog"
+                    aria-controls={`project-modal-${index}`}
+                    onClick={() => setOpenProject(index)}
+                  >
+                    진행 과정 보기 <span aria-hidden="true">↗</span>
+                  </button>
                 </div>
               </article>
             ))}
           </div>
+
+          {selectedProject && openProject !== null && (
+            <div className="project-modal-backdrop" role="presentation" onMouseDown={() => setOpenProject(null)}>
+              <section
+                className="project-modal"
+                id={`project-modal-${openProject}`}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby={`project-modal-title-${openProject}`}
+                onMouseDown={(event) => event.stopPropagation()}
+              >
+                <div className="project-modal-topline">
+                  <p>PROJECT PROCESS</p>
+                  <button type="button" className="project-modal-close" aria-label="프로젝트 과정 닫기" onClick={() => setOpenProject(null)}>×</button>
+                </div>
+                <p className="project-modal-eyebrow">{selectedProject.eyebrow}</p>
+                <h3 id={`project-modal-title-${openProject}`}>{selectedProject.title.split("\n").join(" ")}</h3>
+                <p className="project-modal-summary">{selectedProject.detail}</p>
+                <ol className="project-steps">
+                  {selectedProject.steps.map((step) => (
+                    <li key={step.label}>
+                      <span>{step.label}</span>
+                      <div>
+                        <h4>{step.title}</h4>
+                        <p>{step.text}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </section>
+            </div>
+          )}
 
           <div className="archive-header">
             <div>
@@ -258,9 +307,9 @@ export default function Home() {
           </h2>
           <div className="about-grid">
             <p>
-              한경국립대학교에서 정보보안을 전공하고 있습니다. 관심 분야는
-              <strong> AI 보안, 이상행위 탐지, 침입 탐지</strong>입니다. 디지털 환경의
-              비정상 행위와 알려지지 않은 공격을 탐지·분석하는 보안 인재를 목표로 합니다.
+              한경국립대학교에서 정보보안을 전공하고 있습니다.<br />
+              관심 분야는 <strong>AI 보안, 이상행위 탐지, 침입 탐지</strong>입니다.<br />
+              디지털 환경의 비정상 행위와 알려지지 않은 공격을 탐지·분석하는 보안 인재를 목표로 합니다.
             </p>
             <p>
               현재는 Python과 머신러닝 기초를 실제 데이터에 적용하며,
