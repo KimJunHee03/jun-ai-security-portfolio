@@ -161,11 +161,11 @@ export default function Home() {
         <div className="hero-copy page-width">
           <p className="hero-kicker">Information Security × Artificial Intelligence</p>
           <h1>
-            보안을 더<br />
+            보안을<br />
             <span>지능적으로.</span>
           </h1>
           <p className="hero-intro">
-            네트워크·서버·보안 지식에 AI를 더해,<br className="desktop-break" />
+            보안 지식에 AI를 더해,<br className="desktop-break" />
             비정상 행위와 알려지지 않은 공격을 탐지하고 분석합니다.
           </p>
           <div className="hero-links">
