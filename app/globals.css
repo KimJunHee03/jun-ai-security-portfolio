@@ -269,8 +269,9 @@ nav a:hover, nav a:focus-visible { color: #000; }
   display: block;
   width: 100%;
   aspect-ratio: 1.28;
-  object-fit: contain;
-  background: #fff;
+  object-fit: cover;
+  object-position: center;
+  background: transparent;
 }
 .archive-preview span {
   position: absolute;
