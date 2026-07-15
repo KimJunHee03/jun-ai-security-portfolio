@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, type MouseEvent, type PointerEvent as ReactPointerEvent } from "react";
+import { useEffect, useState, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import Image from "next/image";
+import { notionArchiveDetails } from "./notion-archive-data";
 
 type ThemeMode = "light" | "system" | "dark";
 
@@ -420,6 +421,69 @@ const archivePreviewImages = [
   "/archive/archive-17.png",
 ];
 
+function renderNotionInline(value: string, keyPrefix: string): ReactNode {
+  const cleanValue = value.replace(/<\/?span[^>]*>/g, "").replace(/<\/?c[^>]*>/g, "");
+  const tokens = cleanValue.split(/(\*\*[^*]+\*\*|\[[^\]]+\]\([^)]+\))/g);
+
+  return tokens.map((token, index) => {
+    if (!token) return null;
+    const key = keyPrefix + "-" + index;
+    if (token.startsWith("**") && token.endsWith("**")) {
+      return <strong key={key}>{token.slice(2, -2)}</strong>;
+    }
+    if (token.startsWith("[") && token.includes("](") && token.endsWith(")")) {
+      const match = token.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+      if (match) {
+        return <a key={key} href={match[2]} target="_blank" rel="noreferrer">{match[1]}</a>;
+      }
+    }
+    return <span key={key}>{token}</span>;
+  });
+}
+
+function getNotionFileLabel(line: string) {
+  try {
+    const decoded = decodeURIComponent(line);
+    const matches = [...decoded.matchAll(/([^"\\/]+\.(?:pdf|hwp|ipynb|docx|pptx|xlsx))/gi)];
+    return matches.at(-1)?.[1] ?? "첨부 파일";
+  } catch {
+    return "첨부 파일";
+  }
+}
+
+function renderNotionContent(content: string, pageNo: string) {
+  return content.split(/\r?\n/).map((rawLine, index) => {
+    const line = rawLine.trim();
+    const key = "notion-" + pageNo + "-" + index;
+    if (!line || /^(?:<empty-block\/>|<\/?(?:columns|column)>|<\/?content>)$/.test(line)) return null;
+    if (line === "---") return <hr key={key} />;
+
+    const image = line.match(/^!\[([^\]]*)\]\((\/archive\/notion\/[^)]+)\)$/);
+    if (image) {
+      return (
+        <figure className="notion-image-block" key={key}>
+          <img src={image[2]} alt={image[1] || ("Notion 원문 이미지 " + (index + 1))} loading="lazy" />
+          {image[1] && <figcaption>{image[1]}</figcaption>}
+        </figure>
+      );
+    }
+
+    if (line.startsWith("<file ")) {
+      return <p className="notion-file-block" key={key}>첨부 파일 · {getNotionFileLabel(line)}</p>;
+    }
+    if (line.startsWith("- ")) {
+      return <li className="notion-list-item" key={key}>{renderNotionInline(line.slice(2), key)}</li>;
+    }
+    if (/^\d+\.\s/.test(line)) {
+      return <li className="notion-list-item" key={key}>{renderNotionInline(line.replace(/^\d+\.\s/, ""), key)}</li>;
+    }
+    if (/^\*\*[^*]+\*\*$/.test(line)) {
+      return <h4 key={key}>{renderNotionInline(line, key)}</h4>;
+    }
+    return <p key={key}>{renderNotionInline(line, key)}</p>;
+  });
+}
+
 export default function Home() {
   const [openProject, setOpenProject] = useState<number | null>(null);
   const [openSkill, setOpenSkill] = useState<number | null>(null);
@@ -435,6 +499,7 @@ export default function Home() {
   const selectedArchive = openArchive === null ? null : archiveProjects[openArchive];
   const selectedArchiveDetail = openArchive === null ? null : archiveDetails[openArchive];
   const selectedArchiveImage = openArchive === null ? null : archivePreviewImages[openArchive];
+  const selectedArchiveNotion = openArchive === null ? null : notionArchiveDetails[openArchive];
 
   useEffect(() => {
     try {
@@ -732,6 +797,11 @@ export default function Home() {
                 </div>
                 <p className="project-modal-eyebrow">{selectedArchive[0]}</p>
                 <h3 id={`archive-modal-title-${openArchive}`}>{selectedArchive[1]}</h3>
+                {selectedArchiveNotion && (
+                  <div className="notion-archive-content">
+                    {renderNotionContent(selectedArchiveNotion.content, selectedArchiveNotion.no)}
+                  </div>
+                )}
                 {selectedArchiveImage && (
                   <figure className="archive-detail-image-wrap">
                     <Image
@@ -864,7 +934,7 @@ export default function Home() {
             </section>
             <section className="background-grid-section experience-list reveal-on-scroll">
               <p className="background-label">Experience</p>
-              <h2 className="background-title">현장에서 익힌 기준.</h2>
+              <h2 className="background-title">경험으로 넓힌 시야.</h2>
               {experiences.map(([place, role, date]) => (
                 <article className="background-entry reveal-on-scroll" key={`${place}-${date}`}>
                   <div><h3>{place}</h3><p>{role}</p></div>
