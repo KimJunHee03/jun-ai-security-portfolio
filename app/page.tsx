@@ -62,29 +62,51 @@ const skillGroups = [
     title: "Security",
     text: "Web Security · System Security · AI Security",
     caption: "웹·시스템 보안 · AI 보안 학습 중",
-    detail: "웹과 시스템의 기본적인 공격 표면을 이해하고, 그 위에 AI를 활용한 탐지 관점을 확장하고 있습니다.",
-    points: ["Web Security 취약점과 방어 흐름", "System Security 운영 관점", "AI Security 이상행위 탐지 학습"],
+    detail: "웹 서비스의 입력값·세션·권한 흐름을 점검하고, Linux·Windows Server 환경의 운영 관점까지 연결해 보안 문제를 바라봅니다. 최근에는 보안 로그와 이상행위 탐지에 머신러닝을 적용하는 방향을 공부하고 있습니다.",
+    points: [
+      "WebGoat 기반 SQL Injection·XSS·CSRF 취약점 실습",
+      "로그인·세션·관리자 페이지의 권한 검증과 접근 제어 점검",
+      "Linux·Windows Server의 계정·권한·서비스 설정 보안 실습",
+      "보안 로그 분석·이상행위 탐지·침입 탐지 분야 학습",
+    ],
   },
   {
     title: "AI · Data",
     text: "Python · ML · Random Forest · KNN · SVM · PCA",
     caption: "머신러닝 · DL/LLM 학습 중",
-    detail: "데이터를 목적에 맞게 정의하고, 누수를 막은 검증 구조 안에서 모델의 결과를 해석하는 데 집중합니다.",
-    points: ["Python 기반 데이터 전처리", "Random Forest·KNN·SVM 모델 실습", "PCA와 DL/LLM 학습 확장"],
+    detail: "데이터를 목적에 맞게 정의하고, 전처리·타깃 설계·검증 구조를 함께 점검합니다. 모델 성능을 높이는 것보다 결과가 실제로 신뢰할 수 있는지 설명하는 데 집중합니다.",
+    points: [
+      "Python·scikit-learn 기반 데이터 전처리와 모델 학습",
+      "Random Forest·KNN·SVM·PCA 알고리즘 실습",
+      "정확도·정밀도·재현율·F1-score를 통한 모델 평가",
+      "GroupKFold로 데이터 누수를 통제한 폐업 위험 예측",
+      "DL·LLM 기반 보안 자동화와 분석 보조 방향 학습",
+    ],
   },
   {
     title: "Programming",
     text: "C · Python · Java · Spring MVC · HTML/CSS",
     caption: "프로젝트 기반 구현 경험",
-    detail: "문제를 작은 기능으로 나누고, 실제 서비스로 연결될 수 있는 구조를 직접 구현합니다.",
-    points: ["C·Python·Java 기초 구현", "Spring MVC 웹 서비스 개발", "HTML/CSS 화면 구조와 인터랙션"],
+    detail: "배운 기술을 개별 문법으로 남겨두지 않고, 화면·서버·데이터 흐름이 이어지는 작은 서비스로 구현합니다. 기능을 만든 뒤에는 인증과 권한, 배포 환경까지 함께 확인합니다.",
+    points: [
+      "C·Python·Java를 활용한 프로그래밍 기초와 응용",
+      "Spring MVC·JSP·JSTL·JdbcTemplate 기반 웹 서비스 구현",
+      "HTML/CSS로 웹 페이지 구조와 기본 인터랙션 구성",
+      "기능 단위 설계부터 서버 배포까지 프로젝트 흐름 경험",
+    ],
   },
   {
     title: "Infrastructure",
     text: "Network · Linux · Windows Server · Virtualization",
     caption: "네트워크·Linux 운영 경험",
-    detail: "서비스가 안정적으로 실행되는 환경을 이해하기 위해 네트워크, 서버, 가상화 환경을 함께 다룹니다.",
-    points: ["Network 구조와 트러블슈팅", "Linux·Windows Server 운영", "VMware·Docker 기반 가상화"],
+    detail: "서비스가 안정적으로 실행되는 조건을 이해하기 위해 네트워크와 서버 운영을 함께 학습했습니다. 로컬 가상화 환경에서 설정을 재현하고, 실제 서비스 배포 과정에서 운영과 보안을 연결해 확인합니다.",
+    points: [
+      "Switching·Routing, IP·Port·NAT·DNS 네트워크 기초",
+      "CentOS·Ubuntu 환경에서 Apache·Nginx·SSH·FTP·DNS 구성",
+      "Windows Server 2012·2012 R2·2016 계정·권한 관리 실습",
+      "VMware·Docker 기반 Linux·Windows Server 실습 환경 구성",
+      "서비스 장애와 설정 문제를 원인부터 좁혀가는 운영 관점",
+    ],
   },
 ];
 
@@ -581,9 +603,6 @@ export default function Home() {
                 <ul className="archive-detail-points">
                   {selectedArchiveDetail.points.map((point) => <li key={point}>{point}</li>)}
                 </ul>
-                <a className="archive-detail-source" href={selectedArchiveDetail.sourceUrl} target="_blank" rel="noreferrer">
-                  Notion에서 원문 보기 <span aria-hidden="true">↗</span>
-                </a>
               </section>
             </div>
           )}
@@ -674,6 +693,7 @@ export default function Home() {
           <div className="background-grid">
             <section>
               <p className="background-label">Education</p>
+              <h2 className="background-title">배운 것을 쌓아온 시간.</h2>
               {education.map(([school, major, date]) => (
                 <article key={school}>
                   <div><h3>{school}</h3><p>{major}</p></div>
@@ -683,6 +703,7 @@ export default function Home() {
             </section>
             <section>
               <p className="background-label">Experience</p>
+              <h2 className="background-title">현장에서 익힌 기준.</h2>
               {experiences.map(([place, role, date]) => (
                 <article key={`${place}-${date}`}>
                   <div><h3>{place}</h3><p>{role}</p></div>

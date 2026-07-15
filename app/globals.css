@@ -636,7 +636,8 @@ nav a:hover, nav a:focus-visible { color: #000; }
 
 .background-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 110px; }
 .background-grid > section { padding: 40px; border-radius: 32px; background: #fff; }
-.background-label { margin: 0 0 22px; color: var(--blue); font-size: 17px; font-weight: 600; }
+.background-label { margin: 0 0 11px; color: var(--blue); font-size: 17px; font-weight: 600; }
+.background-title { margin: 0 0 28px; max-width: 420px; font-size: clamp(28px, 3vw, 40px); line-height: 1.06; letter-spacing: -.055em; }
 .background-grid article { display: flex; justify-content: space-between; gap: 20px; padding: 20px 0; border-top: 1px solid #e5e5e7; }
 .background-grid article h3 { margin: 0 0 6px; font-size: 17px; letter-spacing: -.025em; }
 .background-grid article p { margin: 0; color: var(--gray); font-size: 13px; }
