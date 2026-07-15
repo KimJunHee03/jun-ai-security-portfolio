@@ -483,7 +483,6 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .contact-inner { position: relative; z-index: 1; text-align: center; }
 .contact-inner > p { margin: 0 0 17px; color: #2997ff; font-size: 21px; font-weight: 600; }
 .contact-inner h2 { margin: 0; font-size: clamp(52px, 7vw, 88px); line-height: 1; letter-spacing: -.065em; }
-.contact-inner > span { display: block; max-width: 620px; margin: 32px auto 0; color: #a1a1a6; font-size: 20px; line-height: 1.55; word-break: keep-all; }
 .contact-links { display: flex; align-items: center; justify-content: center; gap: 13px; margin-top: 45px; }
 .contact-links a { min-height: 44px; display: inline-flex; align-items: center; padding: 0 21px; border-radius: 980px; background: var(--blue); color: #fff; font-size: 14px; transition: transform .2s ease, background .2s ease; }
 .contact-links a:last-child { border: 1px solid rgba(255,255,255,.25); background: transparent; }
