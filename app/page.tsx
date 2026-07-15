@@ -163,11 +163,19 @@ const archiveProjects = [
   ["2026.06", "ML 프로젝트", "기계학습 강의를 통한 3주 팀 프로젝트"],
 ];
 
+const archivePreviewImages = [
+  "/projects/firewall-logs.svg",
+  "/projects/market-risk.svg",
+  "/projects/mootbyeol.svg",
+];
+
 export default function Home() {
   const [openProject, setOpenProject] = useState<number | null>(null);
   const [openSkill, setOpenSkill] = useState<number | null>(null);
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
+  const [hoveredArchive, setHoveredArchive] = useState<number | null>(null);
   const [previewPosition, setPreviewPosition] = useState({ x: 24, y: 24 });
+  const [archivePreviewPosition, setArchivePreviewPosition] = useState({ x: 24, y: 24 });
   const [isPageTransitioning, setIsPageTransitioning] = useState(false);
   const cursorRef = useRef<HTMLDivElement>(null);
   const selectedProject = openProject === null ? null : projects[openProject];
@@ -177,6 +185,15 @@ export default function Home() {
     const previewWidth = 236;
     const previewHeight = 188;
     setPreviewPosition({
+      x: Math.min(Math.max(event.clientX + 18, 16), window.innerWidth - previewWidth),
+      y: Math.min(Math.max(event.clientY + 18, 16), window.innerHeight - previewHeight),
+    });
+  };
+
+  const updateArchivePreviewPosition = (event: ReactPointerEvent<HTMLElement>) => {
+    const previewWidth = 236;
+    const previewHeight = 188;
+    setArchivePreviewPosition({
       x: Math.min(Math.max(event.clientX + 18, 16), window.innerWidth - previewWidth),
       y: Math.min(Math.max(event.clientY + 18, 16), window.innerHeight - previewHeight),
     });
@@ -375,7 +392,15 @@ export default function Home() {
           </div>
           <div className="archive-list">
             {archiveProjects.map(([date, title, description], index) => (
-              <article key={`${date}-${title}`}>
+              <article
+                key={`${date}-${title}`}
+                onPointerEnter={(event) => {
+                  setHoveredArchive(index);
+                  updateArchivePreviewPosition(event);
+                }}
+                onPointerMove={updateArchivePreviewPosition}
+                onPointerLeave={() => setHoveredArchive(null)}
+              >
                 <span>{String(index + 1).padStart(2, "0")}</span>
                 <time>{date}</time>
                 <h4>{title}</h4>
@@ -471,7 +496,7 @@ export default function Home() {
           <div className="journey-grid">
             <header>
               <p className="section-kicker">Journey</p>
-              <h2>경험이 만든<br />지금의 방향.</h2>
+              <h2>운영을 경험하고,<br />AI 보안을 연구합니다.</h2>
             </header>
             <div className="timeline">
               {timeline.map((item) => (
@@ -540,7 +565,7 @@ export default function Home() {
           <h2>같이 풀어볼<br />보안 문제가 있나요?</h2>
           <span>AI 보안 연구, 데이터 분석 프로젝트, 서비스 개발에 관한 대화를 환영합니다.</span>
           <div className="contact-links">
-            <a className="micro-action" href="mailto:boo2525@naver.com" data-cursor="interactive">이메일 보내기</a>
+            <a className="micro-action" href="mailto:boo2525@naver.com?subject=AI%20%EB%B3%B4%EC%95%88%20%EC%97%B0%EA%B5%AC%20%EC%9D%B4%EC%95%BC%EA%B8%B0" data-cursor="interactive">연구 이야기 나누기</a>
             <a className="micro-action" href="https://www.instagram.com/junheekim__" target="_blank" rel="noreferrer" data-cursor="interactive">Instagram <span aria-hidden="true" data-arrow>↗</span></a>
           </div>
         </div>
@@ -562,6 +587,19 @@ export default function Home() {
           <div className="project-preview-frame">
             <Image src={projects[hoveredProject].previewImage} width={220} height={172} alt="" />
             <span>{projects[hoveredProject].eyebrow}</span>
+          </div>
+        </div>
+      )}
+
+      {hoveredArchive !== null && (
+        <div
+          className="archive-preview"
+          style={{ left: archivePreviewPosition.x, top: archivePreviewPosition.y }}
+          aria-hidden="true"
+        >
+          <div className="archive-preview-frame">
+            <Image src={archivePreviewImages[hoveredArchive % archivePreviewImages.length]} width={220} height={172} alt="" />
+            <span>{archiveProjects[hoveredArchive][1]}</span>
           </div>
         </div>
       )}

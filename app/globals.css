@@ -181,12 +181,16 @@ nav a { color:currentColor; font-size:10px; font-weight:800; letter-spacing:.14e
 .site-footer { padding:28px 0; background:var(--ink); color:rgba(244,241,235,.68); font-size:12px; }
 .site-footer .page-width { display:flex; align-items:center; justify-content:space-between; }
 .site-footer a { color:var(--acid); }
+.archive-preview { position:fixed; z-index:150; width:220px; pointer-events:none; animation:preview-in .38s var(--ease) both; filter:drop-shadow(0 18px 34px rgba(0,0,0,.2)); }
+.archive-preview-frame { position:relative; overflow:hidden; border:1px solid #fff; background:var(--ink); }
+.archive-preview img { display:block; width:100%; aspect-ratio:1.28; object-fit:cover; }
+.archive-preview span { position:absolute; right:10px; bottom:9px; left:10px; color:#fff; font-size:10px; font-weight:800; letter-spacing:.1em; text-transform:uppercase; }
 
 @keyframes page-wipe { 0%{opacity:1;transform:translateY(100%)} 32%,62%{opacity:1;transform:translateY(0)} 100%{opacity:0;transform:translateY(-100%)} }
 @keyframes preview-in { from{opacity:0;transform:translateY(10px) scale(.94) rotate(-2deg)} to{opacity:1;transform:translateY(0) scale(1) rotate(0)} }
 @keyframes scroll-nudge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(6px)} }
 @media (prefers-reduced-motion:reduce) { html{scroll-behavior:auto} .hero-scroll-note span:last-child,.project-preview,.page-transition.is-active{animation:none} .page-transition.is-active{opacity:0} }
-@media (hover:none),(pointer:coarse) { .site-cursor,.project-preview{display:none} }
+@media (hover:none),(pointer:coarse) { .site-cursor,.project-preview,.archive-preview{display:none} }
 @media (max-width:900px) {
   .page-width,.hero-copy{width:min(680px,calc(100% - 40px));} .nav-inner{width:calc(100% - 40px);}
   .hero{min-height:820px;} .project-card{flex-basis:min(82vw,660px);}
