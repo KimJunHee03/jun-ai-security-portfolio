@@ -167,9 +167,23 @@ const archiveProjects = [
 ];
 
 const archivePreviewImages = [
-  "/projects/firewall-logs.svg",
-  "/projects/market-risk.svg",
-  "/projects/mootbyeol.svg",
+  "/archive/archive-01.png",
+  "/archive/archive-02.png",
+  "/archive/archive-03.png",
+  "/archive/archive-04.png",
+  "/archive/archive-05.png",
+  "/archive/archive-06.png",
+  "/archive/archive-07.png",
+  "/archive/archive-08.png",
+  "/archive/archive-09.png",
+  "/archive/archive-10.png",
+  "/archive/archive-11.png",
+  "/archive/archive-12.png",
+  "/archive/archive-13.jpg",
+  "/archive/archive-14.svg",
+  "/archive/archive-15.png",
+  "/archive/archive-16.png",
+  "/archive/archive-17.png",
 ];
 
 export default function Home() {
