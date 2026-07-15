@@ -434,6 +434,7 @@ export default function Home() {
   const selectedSkill = openSkill === null ? null : skillGroups[openSkill];
   const selectedArchive = openArchive === null ? null : archiveProjects[openArchive];
   const selectedArchiveDetail = openArchive === null ? null : archiveDetails[openArchive];
+  const selectedArchiveImage = openArchive === null ? null : archivePreviewImages[openArchive];
 
   useEffect(() => {
     try {
@@ -731,6 +732,18 @@ export default function Home() {
                 </div>
                 <p className="project-modal-eyebrow">{selectedArchive[0]}</p>
                 <h3 id={`archive-modal-title-${openArchive}`}>{selectedArchive[1]}</h3>
+                {selectedArchiveImage && (
+                  <figure className="archive-detail-image-wrap">
+                    <Image
+                      src={selectedArchiveImage}
+                      alt={`${selectedArchive[1]} 대표 이미지`}
+                      width={1200}
+                      height={760}
+                      className="archive-detail-image"
+                    />
+                    <figcaption>프로젝트·활동 대표 이미지</figcaption>
+                  </figure>
+                )}
                 <p className="project-modal-summary">{selectedArchiveDetail.summary}</p>
                 <div className="archive-detail-meta">
                   {selectedArchiveDetail.role && (
@@ -892,7 +905,7 @@ export default function Home() {
       <section className="contact-section" id="contact">
         <div className="contact-glow" aria-hidden="true" />
         <div className="page-width contact-inner reveal-on-scroll">
-          <p>다음 문제를 함께.</p>
+          <p>더 깊이, 더 정확하게.</p>
           <h2>AI 보안을 향해<br />계속 성장하겠습니다.</h2>
           <div className="contact-links">
             <a href="mailto:boo2525@naver.com?subject=AI%20%EB%B3%B4%EC%95%88%20%EC%97%B0%EA%B5%AC%20%EC%9D%B4%EC%95%BC%EA%B8%B0">이메일 보내기</a>
