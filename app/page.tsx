@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type PointerEvent as ReactPointerEvent } from "react";
+import { useEffect, useState, type MouseEvent, type PointerEvent as ReactPointerEvent } from "react";
 import Image from "next/image";
 
 const projects = [
@@ -168,6 +168,7 @@ export default function Home() {
   const [openSkill, setOpenSkill] = useState<number | null>(null);
   const [hoveredArchive, setHoveredArchive] = useState<number | null>(null);
   const [archivePreviewPosition, setArchivePreviewPosition] = useState({ x: 24, y: 24 });
+  const [isNavTransitioning, setIsNavTransitioning] = useState(false);
   const selectedProject = openProject === null ? null : projects[openProject];
   const selectedSkill = openSkill === null ? null : skillGroups[openSkill];
 
@@ -178,6 +179,22 @@ export default function Home() {
       x: Math.min(Math.max(event.clientX + 18, 16), window.innerWidth - previewWidth),
       y: Math.min(Math.max(event.clientY + 18, 16), window.innerHeight - previewHeight),
     });
+  };
+
+  const handleNavLink = (event: MouseEvent<HTMLAnchorElement>) => {
+    const href = event.currentTarget.getAttribute("href");
+    if (!href?.startsWith("#")) return;
+
+    const target = document.querySelector(href);
+    if (!target) return;
+
+    event.preventDefault();
+    setIsNavTransitioning(true);
+    window.setTimeout(() => {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.history.replaceState(null, "", href);
+    }, 140);
+    window.setTimeout(() => setIsNavTransitioning(false), 720);
   };
 
   useEffect(() => {
@@ -199,16 +216,17 @@ export default function Home() {
 
   return (
     <main id="top">
+      <div className={`nav-page-transition ${isNavTransitioning ? "is-active" : ""}`} aria-hidden="true" />
       <header className="global-nav">
         <div className="nav-inner">
           <a className="wordmark" href="#top" aria-label="포트폴리오 첫 화면으로 이동">
             J.
           </a>
           <nav aria-label="주요 메뉴">
-            <a href="#projects">프로젝트</a>
-            <a href="#about">소개</a>
-            <a href="#journey">경험</a>
-            <a href="#contact">연락</a>
+            <a href="#projects" onClick={handleNavLink}>프로젝트</a>
+            <a href="#about" onClick={handleNavLink}>소개</a>
+            <a href="#journey" onClick={handleNavLink}>경험</a>
+            <a href="#contact" onClick={handleNavLink}>연락</a>
           </nav>
         </div>
       </header>

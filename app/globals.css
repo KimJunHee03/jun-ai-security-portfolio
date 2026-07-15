@@ -63,6 +63,17 @@ nav a {
 }
 nav a:hover, nav a:focus-visible { color: #000; }
 
+.nav-page-transition {
+  position: fixed;
+  z-index: 900;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(105deg, #0071e3, #5e5ce6 54%, #af52de);
+  opacity: 0;
+  transform: translateX(100%);
+}
+.nav-page-transition.is-active { animation: nav-wipe-horizontal .72s cubic-bezier(.22, 1, .36, 1) both; }
+
 .hero {
   position: relative;
   padding: 112px 0 122px;
@@ -512,9 +523,16 @@ nav a:hover, nav a:focus-visible { color: #000; }
   to { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
 }
 
+@keyframes nav-wipe-horizontal {
+  0% { opacity: 1; transform: translateX(100%); }
+  32%, 62% { opacity: 1; transform: translateX(0); }
+  100% { opacity: 0; transform: translateX(-100%); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .skill-card:hover::before, .skill-card:hover::after, .archive-preview { animation: none; }
+  .skill-card:hover::before, .skill-card:hover::after, .archive-preview, .nav-page-transition.is-active { animation: none; }
+  .nav-page-transition.is-active { opacity: 0; }
 }
 
 @media (hover: none), (pointer: coarse) {
