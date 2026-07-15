@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type MouseEvent, type PointerEvent as ReactPointerEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent, type PointerEvent as ReactPointerEvent } from "react";
 import Image from "next/image";
 
 const projects = [
@@ -13,6 +13,8 @@ const projects = [
     evidenceValue: "0.893",
     evidenceNote: "3-class firewall log classification",
     tags: ["Python", "Random Forest", "Log Analysis"],
+    previewImage: "/projects/firewall-logs.svg",
+    previewAlt: "방화벽 로그와 모델 정확도를 보여주는 보안 분석 화면",
     detail:
       "10개 원본 공격 유형을 3개 범주로 재설계했습니다. 단순 정확도에 머물지 않고 SQL Injection과 GET Flooding의 낮은 재현율을 확인해, 실무 적용 전 보완해야 할 한계까지 분석했습니다.",
     steps: [
@@ -30,6 +32,8 @@ const projects = [
     evidenceValue: "0.616",
     evidenceNote: "Group-aware cross validation",
     tags: ["GroupKFold", "Feature Engineering", "Clustering"],
+    previewImage: "/projects/market-risk.svg",
+    previewAlt: "상권 데이터를 그룹별로 분석하는 예측 모델 화면",
     detail:
       "점포·매출·유동인구 등 대규모 원천 데이터를 통합했습니다. 상권 기준 GroupKFold를 적용하고 타깃 정의를 다시 설계해 과대평가를 줄였으며, 선별형 모델로서의 활용 가능성과 재현율 한계를 함께 제시했습니다.",
     steps: [
@@ -47,6 +51,8 @@ const projects = [
     evidenceValue: "LIVE",
     evidenceNote: "Oracle Cloud · Nginx · HTTPS",
     tags: ["Spring MVC", "Tomcat", "Nginx · HTTPS"],
+    previewImage: "/projects/mootbyeol.svg",
+    previewAlt: "별과 궤도로 표현한 웹 서비스 배포 화면",
     detail:
       "JSP·JSTL·JdbcTemplate으로 기능을 구현하고 Oracle Cloud에 배포했습니다. BCrypt 비밀번호 해시, 세션 만료, 객체별 권한 검증, HTTPS와 방화벽 설정 등 운영 단계의 보안을 직접 점검했습니다.",
     steps: [
@@ -169,11 +175,23 @@ const archivePreviewImages = [
 export default function Home() {
   const [openProject, setOpenProject] = useState<number | null>(null);
   const [openSkill, setOpenSkill] = useState<number | null>(null);
+  const [hoveredProject, setHoveredProject] = useState<number | null>(null);
   const [hoveredArchive, setHoveredArchive] = useState<number | null>(null);
+  const [previewPosition, setPreviewPosition] = useState({ x: 24, y: 24 });
   const [archivePreviewPosition, setArchivePreviewPosition] = useState({ x: 24, y: 24 });
-  const [isNavTransitioning, setIsNavTransitioning] = useState(false);
+  const [isPageTransitioning, setIsPageTransitioning] = useState(false);
+  const cursorRef = useRef<HTMLDivElement>(null);
   const selectedProject = openProject === null ? null : projects[openProject];
   const selectedSkill = openSkill === null ? null : skillGroups[openSkill];
+
+  const updatePreviewPosition = (event: ReactPointerEvent<HTMLElement>) => {
+    const previewWidth = 236;
+    const previewHeight = 188;
+    setPreviewPosition({
+      x: Math.min(Math.max(event.clientX + 18, 16), window.innerWidth - previewWidth),
+      y: Math.min(Math.max(event.clientY + 18, 16), window.innerHeight - previewHeight),
+    });
+  };
 
   const updateArchivePreviewPosition = (event: ReactPointerEvent<HTMLElement>) => {
     const previewWidth = 236;
@@ -184,7 +202,7 @@ export default function Home() {
     });
   };
 
-  const handleNavLink = (event: MouseEvent<HTMLAnchorElement>) => {
+  const handleInternalLink = (event: MouseEvent<HTMLAnchorElement>) => {
     const href = event.currentTarget.getAttribute("href");
     if (!href?.startsWith("#")) return;
 
@@ -192,13 +210,33 @@ export default function Home() {
     if (!target) return;
 
     event.preventDefault();
-    setIsNavTransitioning(true);
+    setIsPageTransitioning(true);
     window.setTimeout(() => {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
       window.history.replaceState(null, "", href);
     }, 140);
-    window.setTimeout(() => setIsNavTransitioning(false), 720);
+    window.setTimeout(() => setIsPageTransitioning(false), 720);
   };
+
+  useEffect(() => {
+    const cursor = cursorRef.current;
+    if (!cursor) return;
+
+    const handlePointerMove = (event: PointerEvent) => {
+      cursor.style.transform = `translate3d(${event.clientX}px, ${event.clientY}px, 0) translate(-50%, -50%)`;
+      cursor.classList.add("is-visible");
+      const target = event.target instanceof Element ? event.target.closest("a, button, [data-cursor='interactive']") : null;
+      cursor.classList.toggle("is-active", Boolean(target));
+    };
+    const handlePointerLeave = () => cursor.classList.remove("is-visible");
+
+    window.addEventListener("pointermove", handlePointerMove, { passive: true });
+    document.documentElement.addEventListener("mouseleave", handlePointerLeave);
+    return () => {
+      window.removeEventListener("pointermove", handlePointerMove);
+      document.documentElement.removeEventListener("mouseleave", handlePointerLeave);
+    };
+  }, []);
 
   useEffect(() => {
     if (openProject === null && openSkill === null) return;
@@ -219,17 +257,18 @@ export default function Home() {
 
   return (
     <main id="top">
-      <div className={`nav-page-transition ${isNavTransitioning ? "is-active" : ""}`} aria-hidden="true" />
+      <div className={`page-transition ${isPageTransitioning ? "is-active" : ""}`} aria-hidden="true" />
+      <div className="site-cursor" ref={cursorRef} aria-hidden="true"><span /></div>
       <header className="global-nav">
         <div className="nav-inner">
-          <a className="wordmark" href="#top" aria-label="포트폴리오 첫 화면으로 이동">
-            J.
+          <a className="wordmark micro-action" href="#top" aria-label="포트폴리오 첫 화면으로 이동" onClick={handleInternalLink} data-cursor="interactive">
+            JUNHEE KIM
           </a>
           <nav aria-label="주요 메뉴">
-            <a href="#projects" onClick={handleNavLink}>프로젝트</a>
-            <a href="#about" onClick={handleNavLink}>소개</a>
-            <a href="#journey" onClick={handleNavLink}>경험</a>
-            <a href="#contact" onClick={handleNavLink}>연락</a>
+            <a className="micro-action" href="#projects" onClick={handleInternalLink} data-cursor="interactive">WORK</a>
+            <a className="micro-action" href="#about" onClick={handleInternalLink} data-cursor="interactive">ABOUT</a>
+            <a className="micro-action" href="#journey" onClick={handleInternalLink} data-cursor="interactive">JOURNEY</a>
+            <a className="micro-action" href="#contact" onClick={handleInternalLink} data-cursor="interactive">SAY HI</a>
           </nav>
         </div>
       </header>
@@ -246,9 +285,16 @@ export default function Home() {
             비정상 행위와 알려지지 않은 공격을 탐지하고 분석합니다.
           </p>
           <div className="hero-links">
-            <a className="primary-link" href="#projects">프로젝트 보기</a>
-            <a className="text-link" href="#about">더 알아보기 <span aria-hidden="true">›</span></a>
+            <a className="primary-link micro-action" href="#projects" onClick={handleInternalLink} data-cursor="interactive">프로젝트 보기</a>
+            <a className="text-link micro-action" href="#about" onClick={handleInternalLink} data-cursor="interactive">더 알아보기 <span aria-hidden="true" data-arrow>›</span></a>
           </div>
+          <p className="hero-scroll-note"><span>SCROLL TO EXPLORE</span><span aria-hidden="true">↓</span></p>
+        </div>
+
+        <div className="hero-orbit" aria-hidden="true">
+          <span className="hero-orbit-label">AI × SECURITY</span>
+          <span className="hero-orbit-index">01 / 06</span>
+          <span className="hero-orbit-core">J</span>
         </div>
 
       </section>
@@ -266,7 +312,17 @@ export default function Home() {
 
           <div className="project-bento">
             {projects.map((project, index) => (
-              <article className={`project-card project-${index + 1}`} key={project.title}>
+              <article
+                className={`project-card project-${index + 1} ${hoveredProject === index ? "is-previewing" : ""}`}
+                key={project.title}
+                data-cursor="interactive"
+                onPointerEnter={(event) => {
+                  setHoveredProject(index);
+                  updatePreviewPosition(event);
+                }}
+                onPointerMove={updatePreviewPosition}
+                onPointerLeave={() => setHoveredProject(null)}
+              >
                 <div className="project-copy">
                   <p className="card-eyebrow">{project.eyebrow}</p>
                   <h3>{project.title.split("\n").map((line) => <span key={line}>{line}</span>)}</h3>
@@ -285,12 +341,13 @@ export default function Home() {
                   </ul>
                   <button
                     type="button"
-                    className="project-open"
+                    className="project-open micro-action"
                     aria-haspopup="dialog"
                     aria-controls={`project-modal-${index}`}
                     onClick={() => setOpenProject(index)}
+                    data-cursor="interactive"
                   >
-                    진행 과정 보기 <span aria-hidden="true">↗</span>
+                    진행 과정 보기 <span aria-hidden="true" data-arrow>↗</span>
                   </button>
                 </div>
               </article>
@@ -309,7 +366,7 @@ export default function Home() {
               >
                 <div className="project-modal-topline">
                   <p>PROJECT PROCESS</p>
-                  <button type="button" className="project-modal-close" aria-label="프로젝트 과정 닫기" onClick={() => setOpenProject(null)}>×</button>
+                  <button type="button" className="project-modal-close micro-action" aria-label="프로젝트 과정 닫기" onClick={() => setOpenProject(null)} data-cursor="interactive">×</button>
                 </div>
                 <p className="project-modal-eyebrow">{selectedProject.eyebrow}</p>
                 <h3 id={`project-modal-title-${openProject}`}>{selectedProject.title.split("\n").join(" ")}</h3>
@@ -384,12 +441,13 @@ export default function Home() {
                 <span>{skill.text}</span>
                 <button
                   type="button"
-                  className="skill-open"
+                  className="skill-open micro-action"
                   aria-haspopup="dialog"
                   aria-controls={`skill-modal-${index}`}
                   onClick={() => setOpenSkill(index)}
+                  data-cursor="interactive"
                 >
-                  간단히 보기 <span aria-hidden="true">↗</span>
+                  간단히 보기 <span aria-hidden="true" data-arrow>↗</span>
                 </button>
               </article>
             ))}
@@ -407,7 +465,7 @@ export default function Home() {
               >
                 <div className="project-modal-topline">
                   <p>SKILL FOCUS</p>
-                  <button type="button" className="project-modal-close" aria-label="스킬 설명 닫기" onClick={() => setOpenSkill(null)}>×</button>
+                  <button type="button" className="project-modal-close micro-action" aria-label="스킬 설명 닫기" onClick={() => setOpenSkill(null)} data-cursor="interactive">×</button>
                 </div>
                 <p className="project-modal-eyebrow">{selectedSkill.caption}</p>
                 <h3 id={`skill-modal-title-${openSkill}`}>{selectedSkill.title}</h3>
@@ -440,16 +498,16 @@ export default function Home() {
         <div className="page-width">
           <div className="journey-grid">
             <header>
-              <p className="section-kicker">How I Got Here</p>
-              <h2>운영에서 배운 보안,<br />데이터로 확장합니다.</h2>
+                <p className="section-kicker">How I Got Here</p>
+                <h2>운영에서 배운 보안,<br />데이터로 확장합니다.</h2>
             </header>
             <div className="timeline">
               {timeline.map((item) => (
                 <article key={item.year}>
                   <p>{item.year}</p>
-                  <h3>{item.title}</h3>
-                  <span>{item.text}</span>
-                  <small>{item.takeaway}</small>
+                    <h3>{item.title}</h3>
+                    <span>{item.text}</span>
+                    <small>{item.takeaway}</small>
                 </article>
               ))}
             </div>
@@ -509,9 +567,10 @@ export default function Home() {
         <div className="page-width contact-inner">
           <p>다음 문제를 함께.</p>
           <h2>같이 풀어볼<br />보안 문제가 있나요?</h2>
+          <span>AI 보안 연구, 데이터 분석 프로젝트, 서비스 개발에 관한 대화를 환영합니다.</span>
           <div className="contact-links">
-            <a href="mailto:boo2525@naver.com?subject=AI%20%EB%B3%B4%EC%95%88%20%EC%97%B0%EA%B5%AC%20%EC%9D%B4%EC%95%BC%EA%B8%B0">이메일</a>
-            <a href="https://www.instagram.com/junheekim__" target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">↗</span></a>
+            <a className="micro-action" href="mailto:boo2525@naver.com?subject=AI%20%EB%B3%B4%EC%95%88%20%EC%97%B0%EA%B5%AC%20%EC%9D%B4%EC%95%BC%EA%B8%B0" data-cursor="interactive">이메일 보내기</a>
+            <a className="micro-action" href="https://www.instagram.com/junheekim__" target="_blank" rel="noreferrer" data-cursor="interactive">Instagram <span aria-hidden="true" data-arrow>↗</span></a>
           </div>
         </div>
       </section>
@@ -519,9 +578,22 @@ export default function Home() {
       <footer className="site-footer">
         <div className="page-width">
           <span>© 2026 Jun. All rights reserved.</span>
-          <a href="#top">맨 위로 ↑</a>
+          <a className="micro-action" href="#top" onClick={handleInternalLink} data-cursor="interactive">맨 위로 ↑</a>
         </div>
       </footer>
+
+      {hoveredProject !== null && (
+        <div
+          className="project-preview"
+          style={{ left: previewPosition.x, top: previewPosition.y }}
+          aria-hidden="true"
+        >
+          <div className="project-preview-frame">
+            <Image src={projects[hoveredProject].previewImage} width={220} height={172} alt="" />
+            <span>{projects[hoveredProject].eyebrow}</span>
+          </div>
+        </div>
+      )}
 
       {hoveredArchive !== null && (
         <div
