@@ -1178,7 +1178,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
 }
 .skill-open span { width: 25px; height: 25px; display: grid; place-items: center; color: inherit; font-size: 16px; line-height: 1; }
 .skill-open:hover { color: var(--blue-hover); }
-.skill-2 .skill-open, .skill-4 .skill-open { border-color: rgba(255,255,255,.22); color: #7eb2ff; }
+.skill-2 .skill-open, .skill-4 .skill-open { border-color: var(--line-soft); color: var(--blue); }
 .skill-points { margin: 30px 0 0; padding: 0; list-style: none; border-top: 1px solid #d2d2d7; }
 .skill-points li { padding: 17px 0; border-bottom: 1px solid #d2d2d7; color: var(--gray); font-size: 14px; line-height: 1.5; }
 .skill-points li::before { content: "↗"; display: inline-block; margin-right: 10px; color: var(--blue); font-weight: 700; }
