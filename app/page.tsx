@@ -97,18 +97,21 @@ const skillGroups = [
 const timeline = [
   {
     year: "2022 — 2023",
-    title: "정보체계 운용·유지보수",
-    text: "군 정보체계의 안정적인 운용을 지원하며 시스템과 네트워크를 실제 운영 관점에서 익혔습니다.",
+    title: "운영의 기준을 배웠습니다",
+    text: "군 정보체계 운용·유지보수를 맡아 시스템과 네트워크 상태를 확인하고, 문제가 생겼을 때 원인을 좁혀 복구하는 과정을 반복했습니다.",
+    takeaway: "배운 것 · 정상 상태를 알아야 이상을 발견할 수 있다는 것",
   },
   {
     year: "2026.05 — 06",
-    title: "머신러닝 프로젝트 2건",
-    text: "보안 로그 분류와 폐업 위험 예측을 수행하며 타깃 설계, 누수 방지, 모델 평가를 경험했습니다.",
+    title: "검증할 수 있는 분석을 만들었습니다",
+    text: "보안 로그 분류와 폐업 위험 예측을 수행하며 타깃을 다시 정의하고, 상권 기준 GroupKFold로 데이터 누수를 막았습니다.",
+    takeaway: "배운 것 · 좋은 모델보다 신뢰할 수 있는 검증이 먼저라는 것",
   },
   {
     year: "2026 — 현재",
-    title: "정보보안 전공 3학년",
-    text: "기계학습과 보안 과목을 연결하며 AI for Security 연구 방향을 구체화하고 있습니다.",
+    title: "AI 보안 연구의 기반을 쌓고 있습니다",
+    text: "정보보안 전공과 머신러닝 경험을 연결해 이상행위 탐지와 AI for Security를 공부하고 있습니다. 모델 성능뿐 아니라 실제 운영에서 쓸 수 있는 탐지 기준까지 고민합니다.",
+    takeaway: "다음 방향 · 오탐과 누락을 줄이는 실용적인 보안 연구",
   },
 ];
 
@@ -495,15 +498,16 @@ export default function Home() {
         <div className="page-width">
           <div className="journey-grid">
             <header>
-              <p className="section-kicker">Journey</p>
-              <h2>운영을 경험하고,<br />AI 보안을 연구합니다.</h2>
+                <p className="section-kicker">How I Got Here</p>
+                <h2>운영에서 배운 보안,<br />데이터로 확장합니다.</h2>
             </header>
             <div className="timeline">
               {timeline.map((item) => (
                 <article key={item.year}>
                   <p>{item.year}</p>
-                  <h3>{item.title}</h3>
-                  <span>{item.text}</span>
+                    <h3>{item.title}</h3>
+                    <span>{item.text}</span>
+                    <small>{item.takeaway}</small>
                 </article>
               ))}
             </div>
