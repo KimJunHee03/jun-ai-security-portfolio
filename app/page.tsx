@@ -344,6 +344,28 @@ export default function Home() {
   const selectedArchive = openArchive === null ? null : archiveProjects[openArchive];
   const selectedArchiveDetail = openArchive === null ? null : archiveDetails[openArchive];
 
+  useEffect(() => {
+    const revealTargets = document.querySelectorAll<HTMLElement>(".reveal-on-scroll");
+    if (!("IntersectionObserver" in window)) {
+      revealTargets.forEach((target) => target.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -8% 0px" },
+    );
+
+    revealTargets.forEach((target) => observer.observe(target));
+    return () => observer.disconnect();
+  }, []);
+
   const updateArchivePreviewPosition = (event: ReactPointerEvent<HTMLElement>) => {
     const previewWidth = 236;
     const previewHeight = 188;
@@ -444,7 +466,7 @@ export default function Home() {
 
       <section className="projects-section section-space" id="projects">
         <div className="page-width">
-          <header className="section-header">
+          <header className="section-header reveal-on-scroll">
             <p>선택한 프로젝트</p>
             <h2>문제를 정의하고.<br /><span>끝까지 검증하고.</span></h2>
             <p className="section-description">
@@ -455,7 +477,7 @@ export default function Home() {
 
           <div className="project-bento">
             {projects.map((project, index) => (
-              <article className={`project-card project-${index + 1}`} key={project.title}>
+              <article className={`project-card project-${index + 1} reveal-on-scroll`} key={project.title}>
                 <div className="project-copy">
                   <p className="card-eyebrow">{project.eyebrow}</p>
                   <h3>{project.title.split("\n").map((line) => <span key={line}>{line}</span>)}</h3>
@@ -518,7 +540,7 @@ export default function Home() {
             </div>
           )}
 
-          <div className="archive-header">
+          <div className="archive-header reveal-on-scroll">
             <div>
               <p className="section-kicker">Full Archive</p>
               <h3>프로젝트와 활동.<br /><span>처음부터 지금까지.</span></h3>
@@ -528,6 +550,7 @@ export default function Home() {
           <div className="archive-list">
             {archiveProjects.map(([date, title, description], index) => (
               <article
+                className="reveal-on-scroll"
                 key={`${date}-${title}`}
                 onPointerEnter={(event) => {
                   setHoveredArchive(index);
@@ -611,26 +634,22 @@ export default function Home() {
 
       <section className="about-section section-space" id="about">
         <div className="page-width">
-          <p className="section-kicker">About Jun</p>
-          <h2>
-            보안을 이해하고,<br />
-            <span>AI로 확장합니다.</span>
-          </h2>
-          <div className="about-grid">
+          <p className="section-kicker reveal-on-scroll">About Jun</p>
+          <div className="about-grid reveal-on-scroll">
+            <h2>
+              보안을 이해하고,<br />
+              <span>AI로 확장합니다.</span>
+            </h2>
             <p>
               한경국립대학교에서 정보보안을 전공하고 있습니다.<br />
               관심 분야는 <strong>AI 보안, 이상행위 탐지, 침입 탐지</strong>입니다.<br />
               디지털 환경의 비정상 행위와 알려지지 않은 공격을 탐지·분석하는 보안 인재를 목표로 합니다.
             </p>
-            <p>
-              현재는 Python과 머신러닝 기초를 실제 데이터에 적용하며,
-              평가 점수보다 데이터 정의와 검증 구조를 먼저 보는 습관을 만들고 있습니다.
-            </p>
           </div>
 
           <div className="skills-grid">
             {skillGroups.map((skill, index) => (
-              <article className={`skill-card skill-${index + 1}`} key={skill.title}>
+              <article className={`skill-card skill-${index + 1} reveal-on-scroll`} key={skill.title}>
                 <p>{skill.caption}</p>
                 <h3>{skill.title}</h3>
                 <span>{skill.text}</span>
@@ -671,7 +690,7 @@ export default function Home() {
             </div>
           )}
 
-          <div className="toolbox">
+          <div className="toolbox reveal-on-scroll">
             <div>
               <p>Tools &amp; Documentation</p>
               <span>VMware · Docker · Notion · PowerPoint · Word · Excel</span>
@@ -691,7 +710,7 @@ export default function Home() {
       <section className="journey-section section-space" id="journey">
         <div className="page-width">
           <div className="background-grid">
-            <section>
+            <section className="reveal-on-scroll">
               <p className="background-label">Education</p>
               <h2 className="background-title">배운 것을 쌓아온 시간.</h2>
               {education.map(([school, major, date]) => (
@@ -701,7 +720,7 @@ export default function Home() {
                 </article>
               ))}
             </section>
-            <section>
+            <section className="reveal-on-scroll">
               <p className="background-label">Experience</p>
               <h2 className="background-title">현장에서 익힌 기준.</h2>
               {experiences.map(([place, role, date]) => (
@@ -714,13 +733,13 @@ export default function Home() {
           </div>
 
           <div className="credentials-section">
-            <header>
+            <header className="reveal-on-scroll">
               <p className="section-kicker">Credentials</p>
               <h2>배움을 증명한 기록.</h2>
             </header>
             <div className="credential-grid">
               {credentials.map(([title, issuer]) => (
-                <article key={title}>
+                <article className="reveal-on-scroll" key={title}>
                   <span aria-hidden="true">✓</span>
                   <h3>{title}</h3>
                   <p>{issuer}</p>
@@ -730,11 +749,11 @@ export default function Home() {
           </div>
 
           <div className="values-section">
-            <p className="section-kicker">How I Work</p>
-            <h2>일을 대하는 기준.</h2>
+            <p className="section-kicker reveal-on-scroll">How I Work</p>
+            <h2 className="reveal-on-scroll">일을 대하는 기준.</h2>
             <div>
               {values.map((value, index) => (
-                <article key={value}><span>0{index + 1}</span><p>{value}</p></article>
+                <article className="reveal-on-scroll" key={value}><span>0{index + 1}</span><p>{value}</p></article>
               ))}
             </div>
           </div>
@@ -743,7 +762,7 @@ export default function Home() {
 
       <section className="contact-section" id="contact">
         <div className="contact-glow" aria-hidden="true" />
-        <div className="page-width contact-inner">
+        <div className="page-width contact-inner reveal-on-scroll">
           <p>다음 문제를 함께.</p>
           <h2>AI 보안에 대해<br />이야기를 나눠볼까요?</h2>
           <div className="contact-links">
