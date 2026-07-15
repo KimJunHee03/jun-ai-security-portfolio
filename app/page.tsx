@@ -139,6 +139,156 @@ const archiveProjects = [
   ["2026.06", "ML 프로젝트", "기계학습 강의를 통한 3주 팀 프로젝트"],
 ];
 
+const archiveDetails = [
+  {
+    role: "19기 국장 겸 엔지니어",
+    period: "2019.04",
+    result: "방송 운영·행사 협업 경험",
+    summary: "부원 모집과 홍보 자료 제작부터 방송 송출과 타종 시스템 운영까지 맡았습니다.",
+    points: [
+      "부원 모집 및 홍보 자료 제작",
+      "페이스북 관리",
+      "전교 부회장 홍보 영상 편집: 오디오 노이즈 제거, 화면 안정화, 더빙 싱크 조정",
+      "학생회·동아리·행정실 등과 각종 행사 협업",
+      "아침·점심 방송 송출과 교내 타종 시스템 운영",
+    ],
+    sourceUrl: "https://app.notion.com/p/a788068656124c7692dc8b42658f7e48",
+  },
+  {
+    role: "개인 프로젝트",
+    period: "2020.07 — 08",
+    summary: "자가검진 애플리케이션의 UI/UX를 개인 프로젝트로 설계했습니다.",
+    points: ["자가검진 애플리케이션 UI/UX 디자인"],
+    sourceUrl: "https://app.notion.com/p/259647d7900a80e9aebfe550d2d13b27",
+  },
+  {
+    role: "기획 및 디자인",
+    period: "2024.05.17",
+    result: "398명 참가 · 우수상 수상",
+    summary: "정보를 소개하고 쉽게 이해할 수 있도록 내용을 구상해 카드뉴스로 제작했습니다.",
+    points: ["디지털 지식 대중화를 위한 카드뉴스 공모전", "카드뉴스 기획 및 디자인"],
+    sourceUrl: "https://app.notion.com/p/64bc09e7fe8747b1a0f4e0ebdc42e847",
+  },
+  {
+    role: "개인 진행",
+    period: "2024.05",
+    result: "A+",
+    summary: "사용하지 않는 교내 공간을 개선하는 프로젝트를 진행했습니다.",
+    points: ["사용하지 않는 공간의 문제를 파악하고 개선안 제안"],
+    sourceUrl: "https://app.notion.com/p/479563bc71434eb692b5c9d59a67757d",
+  },
+  {
+    role: "팀원",
+    period: "2024.03 — 06",
+    summary: "동일한 주제와 관심 분야를 학습하고자 하는 학생들과 학습공동체를 형성했습니다.",
+    points: ["공동체 기반 전공 학습 활동"],
+    sourceUrl: "https://app.notion.com/p/170647d7900a8038a316f0695804f37e",
+  },
+  {
+    role: "개인 진행 · 기획 및 디자인",
+    period: "2024.06.04",
+    result: "최우수상",
+    summary: "‘나는 지금 무엇에 빠져 있는가?’를 주제로, 빛나는 미래를 위해 몰입하고 있는 것과 진로 탐색을 위한 다양한 경험을 글로 정리했습니다.",
+    points: ["청운 글쓰기 공모전 출품", "진로 탐색을 위한 다양한 경험을 글로 표현"],
+    sourceUrl: "https://app.notion.com/p/35dbba84da424343b623a76b687373e9",
+  },
+  {
+    role: "팀원",
+    period: "2024.09 — 12",
+    summary: "동일한 주제와 관심 분야를 학습하고자 하는 학생들과 학습공동체를 형성했습니다.",
+    points: ["공동체 기반 전공 학습 활동"],
+    sourceUrl: "https://app.notion.com/p/1c5647d7900a8005bdfaf34a2826e6b2",
+  },
+  {
+    period: "2024.11",
+    result: "A+",
+    summary: "호치민 관련 영상을 시청한 후 1페이지 분량의 감평문을 작성했습니다.",
+    points: ["호치민의 독립전쟁과 리더십에 관한 영상 감상 및 감평문 작성"],
+    sourceUrl: "https://app.notion.com/p/1c5647d7900a80b98133e073c3b43d2e",
+  },
+  {
+    period: "2024.09 — 12",
+    result: "A+",
+    summary: "개인의 관심사를 바탕으로 자유 주제의 글을 5페이지 이상 작성했습니다.",
+    points: ["자유 주제 글쓰기"],
+    sourceUrl: "https://app.notion.com/p/1edb5379897c4f80acebf439e189920f",
+  },
+  {
+    role: "PPT·UI/UX·최종 제안서",
+    period: "2024.03 — 06 / 2025.05",
+    result: "장려상",
+    summary: "청운대학교 애플리케이션의 불편함을 개선하기 위한 UI/UX를 제안했습니다.",
+    points: ["PPT 자료 제작", "UI/UX 개선안 설계", "최종 제안서 작성"],
+    sourceUrl: "https://app.notion.com/p/f36f32cc114143ce8fede10a250b7995",
+  },
+  {
+    period: "2025.05",
+    result: "장려상",
+    summary: "서버 구축 및 관리에 대한 학습 내용을 포트폴리오로 정리했습니다.",
+    points: ["서버 구축·관리 학습 기록 작성"],
+    sourceUrl: "https://app.notion.com/p/231647d7900a80f7a904da46f67542ad",
+  },
+  {
+    role: "개인 프로젝트",
+    period: "2025.06",
+    result: "웹클라이언트 프로그래밍 최종 과제",
+    summary: "웹 클라이언트 프로그래밍에서 배운 내용을 바탕으로 개인 페이지를 제작하고 GitHub에 게시했습니다.",
+    points: ["자유 주제 개인 홈페이지 제작", "GitHub를 통한 웹사이트 게시"],
+    sourceUrl: "https://app.notion.com/p/231647d7900a80b48b6ed55405d699a1",
+  },
+  {
+    role: "개인 프로젝트",
+    period: "2025.12",
+    result: "A+",
+    summary: "홍성 또는 인천에 위치한 지역 기업·제품을 선정해 로컬 콘텐츠 카드뉴스를 기획하고 제작했습니다.",
+    points: ["지역 기반 기업 또는 제품 선정", "카드뉴스 기획 및 제작"],
+    sourceUrl: "https://app.notion.com/p/2f4647d7900a8027a31bd8beb451c274",
+  },
+  {
+    role: "개인 프로젝트",
+    period: "2025.12",
+    result: "A+",
+    summary: "윈도우 프로그래밍 최종 과제를 제출했습니다.",
+    points: ["윈도우 프로그래밍 최종 과제 수행"],
+    sourceUrl: "https://app.notion.com/p/2f4647d7900a80c8a329e526bda04a85",
+  },
+  {
+    period: "2025.12.31 활동 중단",
+    result: "컴퓨터 본체 9위 · 컴퓨터 부품·조립 40위",
+    summary: "컴퓨터 본체와 컴퓨터 부품·조립 분야의 질문에 답하며 지식을 공유했습니다.",
+    points: ["지식iN 바람신 활동", "컴퓨터 본체 분야 9위", "컴퓨터 부품·조립 분야 40위"],
+    sourceUrl: "https://app.notion.com/p/be9bb75de1eb410fbd9c602b4cda89f5",
+  },
+  {
+    role: "서비스 개발·서버 운영·보안 점검",
+    period: "1차 2026.04.01 — 06.14 / 2차 여름방학 예정",
+    result: "서비스 운영",
+    summary: "일정 조율 및 기록 기반 웹서비스를 개발하며 구현부터 서버 운영·배포·보안까지 직접 경험했습니다.",
+    points: [
+      "기술 스택: Spring MVC, JSP, Tomcat, Nginx, Ubuntu, Supabase",
+      "CSRF 방어와 보안 헤더 적용",
+      "BCrypt 비밀번호 해시, 세션 타임아웃, 로그인·요청 감사 로그 구현",
+      "관리자 권한과 접근 제어 점검",
+      "SQL Injection, XSS, 파일 업로드, 경로 조작 대응",
+    ],
+    sourceUrl: "https://app.notion.com/p/364647d7900a8029a4d6ca160212532d",
+  },
+  {
+    role: "2인 1조",
+    period: "2026.06.18",
+    result: "Random Forest 기본 F1 0.84",
+    summary: "서울시 카페 상권 데이터를 활용해 폐업 위험 요인을 분석하는 3주 팀 프로젝트를 진행했습니다.",
+    points: [
+      "점포·매출·유동인구·상주인구·직장인구·상권변화지표 데이터 활용",
+      "최근 2년 폐업률 증가폭 상위 30% 상권을 위험 상권으로 정의",
+      "프랜차이즈 비율, 객단가, 점포당 매출·유동인구, 경쟁강도 파생변수 생성",
+      "Random Forest 기본 성능: Accuracy 0.80 · Precision 0.91 · Recall 0.78 · F1 0.84",
+      "같은 상권의 분기 데이터가 학습·테스트에 함께 들어가는 데이터 누수 문제 확인",
+    ],
+    sourceUrl: "https://app.notion.com/p/384647d7900a80258671fcc9629722a9",
+  },
+];
+
 const archivePreviewImages = [
   "/archive/archive-01.png",
   "/archive/archive-02.png",
@@ -170,6 +320,7 @@ export default function Home() {
   const selectedProject = openProject === null ? null : projects[openProject];
   const selectedSkill = openSkill === null ? null : skillGroups[openSkill];
   const selectedArchive = openArchive === null ? null : archiveProjects[openArchive];
+  const selectedArchiveDetail = openArchive === null ? null : archiveDetails[openArchive];
 
   const updateArchivePreviewPosition = (event: ReactPointerEvent<HTMLElement>) => {
     const previewWidth = 236;
@@ -225,7 +376,7 @@ export default function Home() {
       <header className="global-nav">
         <div className="nav-inner">
           <a className="wordmark" href="#top" aria-label="포트폴리오 첫 화면으로 이동">
-            J.
+            KIMJUNHEE
           </a>
           <nav aria-label="주요 메뉴">
             <a href="#projects" onClick={handleNavLink}>프로젝트</a>
@@ -369,7 +520,7 @@ export default function Home() {
             ))}
           </div>
 
-          {selectedArchive && openArchive !== null && (
+          {selectedArchive && selectedArchiveDetail && openArchive !== null && (
             <div className="project-modal-backdrop" role="presentation" onMouseDown={() => setOpenArchive(null)}>
               <section
                 className="project-modal archive-modal"
@@ -380,7 +531,7 @@ export default function Home() {
                 onMouseDown={(event) => event.stopPropagation()}
               >
                 <div className="project-modal-topline">
-                  <p>ARCHIVE DETAIL</p>
+                  <p>ARCHIVE DETAIL · KIMJUNHEE</p>
                   <button
                     type="button"
                     className="project-modal-close"
@@ -392,7 +543,33 @@ export default function Home() {
                 </div>
                 <p className="project-modal-eyebrow">{selectedArchive[0]}</p>
                 <h3 id={`archive-modal-title-${openArchive}`}>{selectedArchive[1]}</h3>
-                <p className="project-modal-summary">{selectedArchive[2]}</p>
+                <p className="project-modal-summary">{selectedArchiveDetail.summary}</p>
+                <div className="archive-detail-meta">
+                  {selectedArchiveDetail.role && (
+                    <div>
+                      <span>역할</span>
+                      <strong>{selectedArchiveDetail.role}</strong>
+                    </div>
+                  )}
+                  {selectedArchiveDetail.period && (
+                    <div>
+                      <span>시기</span>
+                      <strong>{selectedArchiveDetail.period}</strong>
+                    </div>
+                  )}
+                  {selectedArchiveDetail.result && (
+                    <div>
+                      <span>성과</span>
+                      <strong>{selectedArchiveDetail.result}</strong>
+                    </div>
+                  )}
+                </div>
+                <ul className="archive-detail-points">
+                  {selectedArchiveDetail.points.map((point) => <li key={point}>{point}</li>)}
+                </ul>
+                <a className="archive-detail-source" href={selectedArchiveDetail.sourceUrl} target="_blank" rel="noreferrer">
+                  Notion에서 원문 보기 <span aria-hidden="true">↗</span>
+                </a>
               </section>
             </div>
           )}
