@@ -672,6 +672,26 @@ export default function Home() {
           <div className="project-bento">
             {projects.map((project, index) => (
               <article className={`project-card project-${index + 1} reveal-on-scroll`} key={project.title}>
+                {index === 2 && (
+                  <svg className="project-network" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                    <g className="network-links">
+                      <line className="network-line line-a" x1="13" y1="23" x2="52" y2="48" />
+                      <line className="network-line line-b" x1="30" y1="73" x2="52" y2="48" />
+                      <line className="network-line line-c" x1="51" y1="18" x2="52" y2="48" />
+                      <line className="network-line line-d" x1="82" y1="28" x2="52" y2="48" />
+                      <line className="network-line line-e" x1="86" y1="76" x2="52" y2="48" />
+                    </g>
+                    <g className="network-nodes">
+                      <circle className="network-node node-a" cx="13" cy="23" r="1.6" />
+                      <circle className="network-node node-b" cx="30" cy="73" r="1.6" />
+                      <circle className="network-node node-c" cx="51" cy="18" r="1.6" />
+                      <circle className="network-node node-d" cx="82" cy="28" r="1.6" />
+                      <circle className="network-node node-e" cx="86" cy="76" r="1.6" />
+                      <circle className="network-hub-pulse" cx="52" cy="48" r="5" />
+                      <circle className="network-hub" cx="52" cy="48" r="2.8" />
+                    </g>
+                  </svg>
+                )}
                 <div className="project-copy">
                   <p className="card-eyebrow">{project.eyebrow}</p>
                   <h3>{project.title.split("\n").map((line) => <span key={line}>{line}</span>)}</h3>

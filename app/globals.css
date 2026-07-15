@@ -505,6 +505,39 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .project-card:hover::before { opacity: 1; animation: project-border-scan 1.1s linear both; }
 .project-card:hover::after { opacity: .7; animation: project-scanline .9s ease-out both; }
 
+/* The first project searches a log field and locks onto an attack signal. */
+.project-1::before {
+  inset: 7%;
+  padding: 0;
+  border: 0;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 68% 39%, rgba(255, 59, 48, .95) 0 3px, rgba(255, 59, 48, .24) 4px 10px, transparent 11px),
+    radial-gradient(circle at 68% 39%, transparent 0 24px, rgba(255, 59, 48, .3) 25px 26px, transparent 27px),
+    repeating-linear-gradient(0deg, transparent 0 20px, rgba(41, 151, 255, .16) 21px 22px),
+    linear-gradient(90deg, transparent 0 67%, rgba(255, 59, 48, .32) 67.2% 67.6%, transparent 67.9%);
+  -webkit-mask: none;
+  mask: none;
+  opacity: 0;
+  transform: scale(.96);
+}
+.project-1::after {
+  top: 24%;
+  right: auto;
+  bottom: auto;
+  left: 7%;
+  width: 86%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(41, 151, 255, .9) 38%, rgba(255, 59, 48, .98) 68%, transparent);
+  box-shadow: 0 0 14px rgba(41, 151, 255, .76), 0 0 25px rgba(255, 59, 48, .42);
+  transform: translateY(-110px);
+}
+.project-1:hover { box-shadow: 0 0 0 1px rgba(255, 59, 48, .38), 0 25px 75px rgba(41, 151, 255, .16); }
+.project-1:hover::before { opacity: .84; animation: project-log-detect 1.3s cubic-bezier(.22, 1, .36, 1) both; }
+.project-1:hover::after { opacity: .98; animation: project-log-sweep 1.05s cubic-bezier(.22, 1, .36, 1) both; }
+.project-1:hover h3 { animation: project-log-heading .72s ease-out both; }
+.project-1:hover .project-evidence strong { animation: project-log-lock-on .78s cubic-bezier(.22, 1, .36, 1) both; }
+
 /* The second project turns its evidence into a live prediction field. */
 .project-2::before {
   inset: 5%;
@@ -544,40 +577,91 @@ nav a:hover, nav a:focus-visible { color: #000; }
 
 /* The third project draws a network that connects its nodes into one service. */
 .project-3::before {
-  inset: 8%;
+  inset: 10%;
   padding: 0;
   border-radius: 20px;
   background:
-    radial-gradient(circle at 15% 27%, #4aa3ff 0 3px, transparent 4px),
-    radial-gradient(circle at 33% 48%, #4aa3ff 0 3px, transparent 4px),
-    radial-gradient(circle at 54% 31%, #90b4ff 0 3px, transparent 4px),
-    radial-gradient(circle at 72% 55%, #4aa3ff 0 3px, transparent 4px),
-    radial-gradient(circle at 86% 28%, #e04863 0 3px, transparent 4px),
-    linear-gradient(31deg, transparent 0 27%, rgba(74, 163, 255, .56) 27.2% 27.7%, transparent 28%),
-    linear-gradient(-23deg, transparent 0 48%, rgba(144, 180, 255, .5) 48.2% 48.7%, transparent 49%),
-    linear-gradient(19deg, transparent 0 68%, rgba(224, 72, 99, .46) 68.2% 68.7%, transparent 69%);
+    radial-gradient(circle at 52% 48%, rgba(74, 163, 255, .28), transparent 13%),
+    radial-gradient(circle at 52% 48%, transparent 0 18%, rgba(74, 163, 255, .1) 18.5% 19%, transparent 19.5%);
   -webkit-mask: none;
   mask: none;
-  transform: scale(.98);
+  transform: scale(.94);
 }
 .project-3::after {
-  top: 43%;
+  top: 23%;
   right: auto;
   bottom: auto;
-  left: 14%;
-  width: 62%;
-  height: 3px;
-  background: linear-gradient(90deg, #4aa3ff, #90b4ff 54%, #e04863);
-  box-shadow: 0 0 16px rgba(74, 163, 255, .88), 0 0 24px rgba(224, 72, 99, .46);
-  filter: blur(.2px);
-  transform-origin: left center;
-  transform: translateX(0) rotate(-12deg) scaleX(0);
+  left: 13%;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4aa3ff;
+  box-shadow: 0 0 12px rgba(74, 163, 255, .95), 0 0 24px rgba(224, 72, 99, .38);
+  filter: none;
+  transform: translate(0, 0) scale(.5);
 }
 .project-3:hover { box-shadow: 0 0 0 1px rgba(224, 72, 99, .48), 0 24px 65px rgba(74, 163, 255, .16); }
-.project-3:hover::before { opacity: .92; animation: project-network-form 1.25s cubic-bezier(.22, 1, .36, 1) both; }
-.project-3:hover::after { opacity: .98; animation: project-network-connect .92s cubic-bezier(.22, 1, .36, 1) both; }
+.project-3:hover::before { opacity: .72; animation: project-network-form 1.25s cubic-bezier(.22, 1, .36, 1) both; }
+.project-3:hover::after { opacity: .98; animation: project-network-pulse .95s cubic-bezier(.22, 1, .36, 1) both; }
 .project-3:hover h3 { animation: project-web-connect-heading .72s ease-out both; }
 .project-3:hover .project-evidence strong { animation: project-connection-pulse .68s cubic-bezier(.22, 1, .36, 1) both; }
+.project-network {
+  position: absolute;
+  z-index: 1;
+  inset: 8% 7% 9%;
+  width: 86%;
+  height: 83%;
+  overflow: visible;
+  opacity: 0;
+  pointer-events: none;
+}
+.project-network .network-line {
+  fill: none;
+  stroke: rgba(74, 163, 255, .72);
+  stroke-width: .42;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+.project-network .line-b,
+.project-network .line-e { stroke: rgba(224, 72, 99, .65); }
+.project-network .network-node {
+  fill: #4aa3ff;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+}
+.project-network .node-d,
+.project-network .node-e { fill: #e04863; }
+.project-network .network-hub {
+  fill: #f4f7ff;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(0);
+}
+.project-network .network-hub-pulse {
+  fill: none;
+  stroke: rgba(144, 180, 255, .75);
+  stroke-width: .45;
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  transform: scale(.4);
+}
+.project-3:hover .project-network { opacity: 1; }
+.project-3:hover .network-line { animation: project-network-line .55s ease-out forwards; }
+.project-3:hover .line-b { animation-delay: .1s; }
+.project-3:hover .line-c { animation-delay: .2s; }
+.project-3:hover .line-d { animation-delay: .3s; }
+.project-3:hover .line-e { animation-delay: .4s; }
+.project-3:hover .network-node { animation: project-network-node .38s ease-out forwards; }
+.project-3:hover .node-b { animation-delay: .1s; }
+.project-3:hover .node-c { animation-delay: .2s; }
+.project-3:hover .node-d { animation-delay: .3s; }
+.project-3:hover .node-e { animation-delay: .4s; }
+.project-3:hover .network-hub { animation: project-network-hub .45s .5s ease-out forwards; }
+.project-3:hover .network-hub-pulse { animation: project-network-hub-pulse 1s .52s ease-out forwards; }
 .project-1 { grid-column: span 2; min-height: 700px; background: #000; color: #f5f5f7; }
 .project-2 { background: #fbfbfd; }
 .project-3 { background: #03050a; color: #fff; }
@@ -1248,6 +1332,35 @@ nav a:hover, nav a:focus-visible { color: #000; }
   to { transform: rotate(360deg); }
 }
 
+@keyframes project-log-detect {
+  0% { opacity: 0; clip-path: inset(0 0 100% 0); transform: scale(.96); background-position: 0 58px; }
+  30% { opacity: .84; clip-path: inset(0 0 54% 0); }
+  62% { opacity: .68; clip-path: inset(0 0 18% 0); transform: scale(1); background-position: 0 -8px; }
+  82% { opacity: .96; clip-path: inset(0); }
+  100% { opacity: .3; transform: scale(1.01); background-position: 0 -22px; }
+}
+
+@keyframes project-log-sweep {
+  0% { opacity: 0; transform: translateY(-110px); }
+  56% { opacity: 1; transform: translateY(160px); }
+  72% { opacity: .98; transform: translateY(188px); }
+  100% { opacity: .12; transform: translateY(232px); }
+}
+
+@keyframes project-log-heading {
+  0% { transform: translateY(0); text-shadow: none; }
+  44% { transform: translateY(-3px); text-shadow: 0 0 22px rgba(41, 151, 255, .46); }
+  72% { transform: translateY(0); text-shadow: 0 0 14px rgba(255, 59, 48, .42); }
+  100% { text-shadow: none; }
+}
+
+@keyframes project-log-lock-on {
+  0% { transform: scale(1); color: inherit; filter: none; }
+  48% { transform: scale(1.12); color: #ff3b30; filter: drop-shadow(0 0 14px rgba(255, 59, 48, .48)); }
+  72% { transform: scale(1.04); color: #2997ff; filter: drop-shadow(0 0 7px rgba(41, 151, 255, .42)); }
+  100% { transform: scale(1); color: inherit; filter: none; }
+}
+
 @keyframes project-ai-predict {
   0% { opacity: 0; clip-path: inset(0 100% 0 0); transform: translate3d(-6%, 0, 0) scale(1.05); background-position: -26px 0; }
   24% { opacity: .9; clip-path: inset(0 64% 0 0); }
@@ -1282,6 +1395,37 @@ nav a:hover, nav a:focus-visible { color: #000; }
   58% { opacity: .78; clip-path: inset(0 25% 0 0); transform: translate3d(0, 1%, 0) scale(1); background-position: 10px 5px; }
   84% { opacity: .54; clip-path: inset(0); }
   100% { opacity: .24; transform: translate3d(2%, 0, 0) scale(1.02); background-position: 20px 10px; }
+}
+
+@keyframes project-network-line {
+  0% { stroke-dashoffset: 100; opacity: 0; }
+  34% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: .78; }
+}
+
+@keyframes project-network-node {
+  0% { opacity: 0; transform: scale(0); }
+  70% { opacity: 1; transform: scale(1.3); }
+  100% { opacity: .82; transform: scale(1); }
+}
+
+@keyframes project-network-hub {
+  0% { opacity: 0; transform: scale(0); }
+  65% { opacity: 1; transform: scale(1.35); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes project-network-hub-pulse {
+  0% { opacity: 0; transform: scale(.4); }
+  45% { opacity: .95; transform: scale(1.5); }
+  100% { opacity: 0; transform: scale(2.3); }
+}
+
+@keyframes project-network-pulse {
+  0% { opacity: 0; transform: translate(0, 0) scale(.5); }
+  45% { opacity: 1; transform: translate(122px, 76px) scale(1); }
+  70% { opacity: .95; transform: translate(198px, 36px) scale(.85); }
+  100% { opacity: .08; transform: translate(270px, 118px) scale(.35); }
 }
 
 @keyframes project-network-connect {
