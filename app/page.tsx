@@ -166,148 +166,195 @@ const archiveDetails = [
     role: "19기 국장 겸 엔지니어",
     period: "2019.04",
     result: "방송 운영·행사 협업 경험",
-    summary: "부원 모집과 홍보 자료 제작부터 방송 송출과 타종 시스템 운영까지 맡았습니다.",
+    summary: "부원 모집과 홍보 자료 제작부터 방송 송출과 타종 시스템 운영까지, 방송부의 기획과 현장 운영을 맡았습니다.",
     points: [
       "부원 모집 및 홍보 자료 제작",
       "페이스북 관리",
-      "전교 부회장 홍보 영상 편집: 오디오 노이즈 제거, 화면 안정화, 더빙 싱크 조정",
-      "학생회·동아리·행정실 등과 각종 행사 협업",
+      "전교 부회장 홍보 영상 제작: 기획 변경과 촬영 일정 지연에 대응하고, 오디오 노이즈 제거·화면 안정화·더빙 싱크 조정",
+      "학생회·동아리·행정실 등 다양한 주체와 행사 일정 및 방송 운영 협업",
       "아침·점심 방송 송출과 교내 타종 시스템 운영",
     ],
-    sourceUrl: "https://app.notion.com/p/a788068656124c7692dc8b42658f7e48",
   },
   {
     role: "개인 프로젝트",
     period: "2020.07 — 08",
-    summary: "자가검진 애플리케이션의 UI/UX를 개인 프로젝트로 설계했습니다.",
-    points: ["자가검진 애플리케이션 UI/UX 디자인"],
-    sourceUrl: "https://app.notion.com/p/259647d7900a80e9aebfe550d2d13b27",
+    result: "UI/UX 설계 결과물",
+    summary: "자가검진 애플리케이션을 가정해 사용자가 질문에 답하고 결과를 확인하는 흐름을 UI/UX로 설계했습니다.",
+    points: [
+      "자가검진 애플리케이션의 사용자 흐름과 화면 구조 설계",
+      "검진 입력부터 결과 확인까지의 화면 구성",
+      "개인 프로젝트로 UI/UX 시안 제작",
+    ],
   },
   {
     role: "기획 및 디자인",
     period: "2024.05.17",
     result: "398명 참가 · 우수상 수상",
-    summary: "정보를 소개하고 쉽게 이해할 수 있도록 내용을 구상해 카드뉴스로 제작했습니다.",
-    points: ["디지털 지식 대중화를 위한 카드뉴스 공모전", "카드뉴스 기획 및 디자인"],
-    sourceUrl: "https://app.notion.com/p/64bc09e7fe8747b1a0f4e0ebdc42e847",
+    summary: "디지털 지식을 누구나 쉽게 이해할 수 있도록 내용을 정리하고, 정보 구조를 카드뉴스로 기획해 제작했습니다.",
+    points: [
+      "디지털 지식 대중화를 주제로 전달할 정보 선정",
+      "복잡한 내용을 카드 단위로 나누어 읽기 흐름 구성",
+      "카드뉴스 기획·시각 디자인·최종 제출",
+    ],
   },
   {
     role: "개인 진행",
     period: "2024.05",
     result: "A+",
-    summary: "사용하지 않는 교내 공간을 개선하는 프로젝트를 진행했습니다.",
-    points: ["사용하지 않는 공간의 문제를 파악하고 개선안 제안"],
-    sourceUrl: "https://app.notion.com/p/479563bc71434eb692b5c9d59a67757d",
+    summary: "사용되지 않는 교내 공간을 관찰하고, 공간이 다시 활용될 수 있도록 문제를 정의해 개선안을 제안했습니다.",
+    points: [
+      "사용하지 않는 공간의 현황과 불편 요소 파악",
+      "공간 활용을 막는 문제를 정의하고 개선 방향 구상",
+      "PBL 결과물로 공간 개선안 정리",
+    ],
   },
   {
     role: "팀원",
     period: "2024.03 — 06",
-    summary: "동일한 주제와 관심 분야를 학습하고자 하는 학생들과 학습공동체를 형성했습니다.",
-    points: ["공동체 기반 전공 학습 활동"],
-    sourceUrl: "https://app.notion.com/p/170647d7900a8038a316f0695804f37e",
+    result: "학습공동체 활동",
+    summary: "같은 주제와 관심 분야를 공부하려는 학생들과 학습공동체를 만들고, 함께 전공 내용을 공부했습니다.",
+    points: [
+      "학습 목표와 주제를 정하고 팀원들과 역할 분담",
+      "학습 자료를 공유하고 서로 질문하며 내용 점검",
+      "공동체 기반 전공 학습 활동 기록",
+    ],
   },
   {
     role: "개인 진행 · 기획 및 디자인",
     period: "2024.06.04",
     result: "최우수상",
-    summary: "‘나는 지금 무엇에 빠져 있는가?’를 주제로, 빛나는 미래를 위해 몰입하고 있는 것과 진로 탐색을 위한 다양한 경험을 글로 정리했습니다.",
-    points: ["청운 글쓰기 공모전 출품", "진로 탐색을 위한 다양한 경험을 글로 표현"],
-    sourceUrl: "https://app.notion.com/p/35dbba84da424343b623a76b687373e9",
+    summary: "‘나는 지금 무엇에 빠져 있는가?’를 주제로, 미래를 위해 몰입하고 있는 것과 진로 탐색 과정의 다양한 경험을 글로 정리했습니다.",
+    points: [
+      "현재의 관심과 몰입을 돌아보며 글의 주제 설정",
+      "진로 탐색을 위해 경험한 활동과 생각을 서술",
+      "글 구성과 제출물을 직접 기획·디자인해 공모전 출품",
+    ],
   },
   {
     role: "팀원",
     period: "2024.09 — 12",
-    summary: "동일한 주제와 관심 분야를 학습하고자 하는 학생들과 학습공동체를 형성했습니다.",
-    points: ["공동체 기반 전공 학습 활동"],
-    sourceUrl: "https://app.notion.com/p/1c5647d7900a8005bdfaf34a2826e6b2",
+    result: "학습공동체 활동",
+    summary: "1학기에 이어 같은 주제와 관심 분야를 공부하는 학생들과 학습공동체를 이어가며 전공 학습을 지속했습니다.",
+    points: [
+      "2학기 학습 주제와 목표를 정하고 팀원들과 진행 계획 수립",
+      "학습 자료 공유와 질의·응답을 통한 내용 보완",
+      "공동체 기반 전공 학습 활동 및 회고",
+    ],
   },
   {
+    role: "감상·에세이 작성",
     period: "2024.11",
     result: "A+",
-    summary: "호치민 관련 영상을 시청한 후 1페이지 분량의 감평문을 작성했습니다.",
-    points: ["호치민의 독립전쟁과 리더십에 관한 영상 감상 및 감평문 작성"],
-    sourceUrl: "https://app.notion.com/p/1c5647d7900a80b98133e073c3b43d2e",
+    summary: "호치민 관련 영상을 시청한 뒤 독립전쟁과 리더십에 대한 생각을 1페이지 분량의 감평문으로 작성했습니다.",
+    points: [
+      "호치민의 독립전쟁과 리더십에 관한 영상 시청",
+      "영상의 핵심 주장과 인상 깊은 장면 정리",
+      "개인 관점과 느낀 점을 포함한 감평문 작성·제출",
+    ],
   },
   {
+    role: "개인 작성",
     period: "2024.09 — 12",
     result: "A+",
-    summary: "개인의 관심사를 바탕으로 자유 주제의 글을 5페이지 이상 작성했습니다.",
-    points: ["자유 주제 글쓰기"],
-    sourceUrl: "https://app.notion.com/p/1edb5379897c4f80acebf439e189920f",
+    summary: "개인의 관심사에서 자유 주제를 정하고, 생각을 5페이지 이상의 글로 구성해 표현했습니다.",
+    points: [
+      "개인의 관심사를 바탕으로 자유 주제 선정",
+      "주장과 경험을 연결해 5페이지 이상의 글 구성",
+      "글쓰기와 표현 수업 결과물 작성 및 제출",
+    ],
   },
   {
     role: "PPT·UI/UX·최종 제안서",
     period: "2024.03 — 06 / 2025.05",
     result: "장려상",
-    summary: "청운대학교 애플리케이션의 불편함을 개선하기 위한 UI/UX를 제안했습니다.",
-    points: ["PPT 자료 제작", "UI/UX 개선안 설계", "최종 제안서 작성"],
-    sourceUrl: "https://app.notion.com/p/f36f32cc114143ce8fede10a250b7995",
+    summary: "청운대학교 애플리케이션을 사용하며 느낀 불편을 정리하고, 사용자 흐름을 개선하는 UI/UX와 발표 자료를 제안했습니다.",
+    points: [
+      "앱 사용 흐름에서 불편한 지점과 개선 필요성 분석",
+      "화면 구조와 사용자 흐름을 중심으로 UI/UX 개선안 설계",
+      "PPT 발표 자료와 최종 제안서 작성",
+    ],
   },
   {
+    role: "개인 학습 정리",
     period: "2025.05",
     result: "장려상",
-    summary: "서버 구축 및 관리에 대한 학습 내용을 포트폴리오로 정리했습니다.",
-    points: ["서버 구축·관리 학습 기록 작성"],
-    sourceUrl: "https://app.notion.com/p/231647d7900a80f7a904da46f67542ad",
+    summary: "서버 구축과 관리에 대한 학습 내용을 네트워크 중심의 포트폴리오로 정리하고, 학습 과정과 결과를 기록했습니다.",
+    points: [
+      "Ubuntu Linux 서버와 네트워크 중심 학습 내용 정리",
+      "서버 구축·관리 과정에서 확인한 설정과 개념 기록",
+      "학습 내용을 포트폴리오 형식으로 편집·제출",
+    ],
   },
   {
     role: "개인 프로젝트",
     period: "2025.06",
     result: "웹클라이언트 프로그래밍 최종 과제",
-    summary: "웹 클라이언트 프로그래밍에서 배운 내용을 바탕으로 개인 페이지를 제작하고 GitHub에 게시했습니다.",
-    points: ["자유 주제 개인 홈페이지 제작", "GitHub를 통한 웹사이트 게시"],
-    sourceUrl: "https://app.notion.com/p/231647d7900a80b48b6ed55405d699a1",
+    summary: "웹 클라이언트 프로그래밍에서 배운 내용을 활용해 자유 주제의 개인 페이지를 만들고 GitHub에 게시했습니다.",
+    points: [
+      "HTML·CSS 기반 개인 홈페이지 화면 구성",
+      "자유 주제에 맞춰 콘텐츠와 페이지 구조 설계",
+      "완성한 웹사이트를 GitHub를 통해 게시",
+    ],
   },
   {
     role: "개인 프로젝트",
     period: "2025.12",
     result: "A+",
-    summary: "홍성 또는 인천에 위치한 지역 기업·제품을 선정해 로컬 콘텐츠 카드뉴스를 기획하고 제작했습니다.",
-    points: ["지역 기반 기업 또는 제품 선정", "카드뉴스 기획 및 제작"],
-    sourceUrl: "https://app.notion.com/p/2f4647d7900a8027a31bd8beb451c274",
+    summary: "홍성 또는 인천의 지역 기업·제품을 선정해 정보를 조사하고, 로컬 콘텐츠 카드뉴스로 기획·제작했습니다.",
+    points: [
+      "홍성·인천 소재 기업 또는 제품 선정",
+      "지역 정보와 제품 특징을 조사해 핵심 내용 요약",
+      "SNS용 카드뉴스 구성·디자인·최종 과제 제출",
+    ],
   },
   {
     role: "개인 프로젝트",
     period: "2025.12",
     result: "A+",
-    summary: "윈도우 프로그래밍 최종 과제를 제출했습니다.",
-    points: ["윈도우 프로그래밍 최종 과제 수행"],
-    sourceUrl: "https://app.notion.com/p/2f4647d7900a80c8a329e526bda04a85",
+    summary: "C# 기반 윈도우 프로그래밍 수업에서 배운 내용을 적용해 최종 과제를 수행하고 결과물을 제출했습니다.",
+    points: [
+      "C# 프로그래밍 입문 및 윈도우 프로그래밍 개념 학습",
+      "수업에서 배운 내용을 개인 과제 형태로 구현",
+      "윈도우 프로그래밍 최종 결과물 제출",
+    ],
   },
   {
+    role: "지식iN 답변 활동",
     period: "2025.12.31 활동 중단",
     result: "컴퓨터 본체 9위 · 컴퓨터 부품·조립 40위",
-    summary: "컴퓨터 본체와 컴퓨터 부품·조립 분야의 질문에 답하며 지식을 공유했습니다.",
-    points: ["지식iN 바람신 활동", "컴퓨터 본체 분야 9위", "컴퓨터 부품·조립 분야 40위"],
-    sourceUrl: "https://app.notion.com/p/be9bb75de1eb410fbd9c602b4cda89f5",
+    summary: "컴퓨터 본체와 부품·조립 분야의 질문을 읽고 해결 방향을 정리해 답변하며 지식을 공유했습니다.",
+    points: [
+      "질문 상황과 사용자의 요구사항을 파악해 답변 작성",
+      "컴퓨터 본체 분야 활동 순위 9위",
+      "컴퓨터 부품·조립 분야 활동 순위 40위",
+    ],
   },
   {
     role: "서비스 개발·서버 운영·보안 점검",
     period: "1차 2026.04.01 — 06.14 / 2차 여름방학 예정",
     result: "서비스 운영",
-    summary: "일정 조율 및 기록 기반 웹서비스를 개발하며 구현부터 서버 운영·배포·보안까지 직접 경험했습니다.",
+    summary: "사람과 일정을 조율하고 기록을 남기는 웹서비스를 개발하며, 기능 구현부터 서버 운영·배포·보안 점검까지 직접 경험했습니다.",
     points: [
-      "기술 스택: Spring MVC, JSP, Tomcat, Nginx, Ubuntu, Supabase",
+      "서비스 구조 설계와 기술 스택 구성: Spring MVC, JSP, Tomcat, Nginx, Ubuntu, Supabase",
+      "일정 조율·기록·관리자 기능 구현과 운영 흐름 점검",
       "CSRF 방어와 보안 헤더 적용",
       "BCrypt 비밀번호 해시, 세션 타임아웃, 로그인·요청 감사 로그 구현",
       "관리자 권한과 접근 제어 점검",
       "SQL Injection, XSS, 파일 업로드, 경로 조작 대응",
     ],
-    sourceUrl: "https://app.notion.com/p/364647d7900a8029a4d6ca160212532d",
   },
   {
     role: "2인 1조",
     period: "2026.06.18",
     result: "Random Forest 기본 F1 0.84",
-    summary: "서울시 카페 상권 데이터를 활용해 폐업 위험 요인을 분석하는 3주 팀 프로젝트를 진행했습니다.",
+    summary: "서울시 카페 상권 데이터를 활용해 최근 폐업률 증가폭이 큰 상권을 정의하고, 폐업 위험 요인을 분석하는 3주 팀 프로젝트를 진행했습니다.",
     points: [
       "점포·매출·유동인구·상주인구·직장인구·상권변화지표 데이터 활용",
       "최근 2년 폐업률 증가폭 상위 30% 상권을 위험 상권으로 정의",
       "프랜차이즈 비율, 객단가, 점포당 매출·유동인구, 경쟁강도 파생변수 생성",
       "Random Forest 기본 성능: Accuracy 0.80 · Precision 0.91 · Recall 0.78 · F1 0.84",
-      "같은 상권의 분기 데이터가 학습·테스트에 함께 들어가는 데이터 누수 문제 확인",
+      "하이퍼파라미터 튜닝 결과가 과대평가될 수 있음을 확인하고, 같은 상권의 분기 데이터가 학습·테스트에 함께 들어가는 누수 문제 기록",
     ],
-    sourceUrl: "https://app.notion.com/p/384647d7900a80258671fcc9629722a9",
   },
 ];
 
@@ -354,9 +401,7 @@ export default function Home() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
+          entry.target.classList.toggle("is-visible", entry.isIntersecting);
         });
       },
       { threshold: 0.14, rootMargin: "0px 0px -8% 0px" },
@@ -552,6 +597,7 @@ export default function Home() {
               <article
                 className="reveal-on-scroll"
                 key={`${date}-${title}`}
+                data-record={`ARCHIVE-${String(index + 1).padStart(2, "0")}`}
                 onPointerEnter={(event) => {
                   setHoveredArchive(index);
                   updateArchivePreviewPosition(event);
@@ -710,21 +756,21 @@ export default function Home() {
       <section className="journey-section section-space" id="journey">
         <div className="page-width">
           <div className="background-grid">
-            <section className="reveal-on-scroll">
+            <section className="background-grid-section education-list reveal-on-scroll">
               <p className="background-label">Education</p>
               <h2 className="background-title">배운 것을 쌓아온 시간.</h2>
               {education.map(([school, major, date]) => (
-                <article key={school}>
+                <article className="background-entry reveal-on-scroll" key={school}>
                   <div><h3>{school}</h3><p>{major}</p></div>
                   <time>{date}</time>
                 </article>
               ))}
             </section>
-            <section className="reveal-on-scroll">
+            <section className="background-grid-section experience-list reveal-on-scroll">
               <p className="background-label">Experience</p>
               <h2 className="background-title">현장에서 익힌 기준.</h2>
               {experiences.map(([place, role, date]) => (
-                <article key={`${place}-${date}`}>
+                <article className="background-entry reveal-on-scroll" key={`${place}-${date}`}>
                   <div><h3>{place}</h3><p>{role}</p></div>
                   <time>{date}</time>
                 </article>
@@ -764,7 +810,7 @@ export default function Home() {
         <div className="contact-glow" aria-hidden="true" />
         <div className="page-width contact-inner reveal-on-scroll">
           <p>다음 문제를 함께.</p>
-          <h2>AI 보안에 대해<br />이야기를 나눠볼까요?</h2>
+          <h2>AI 보안을 향해<br />계속 성장하겠습니다.</h2>
           <div className="contact-links">
             <a href="mailto:boo2525@naver.com?subject=AI%20%EB%B3%B4%EC%95%88%20%EC%97%B0%EA%B5%AC%20%EC%9D%B4%EC%95%BC%EA%B8%B0">이메일 보내기</a>
             <a href="https://www.instagram.com/junheekim__" target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">↗</span></a>
