@@ -353,7 +353,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .archive-list article {
   position: relative;
   display: grid;
-  grid-template-columns: 46px 92px minmax(210px, .8fr) 1.2fr;
+  grid-template-columns: 46px 92px minmax(210px, .8fr) 1.2fr auto;
   align-items: center;
   gap: 22px;
   padding: 24px 4px;
@@ -366,6 +366,29 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .archive-list h4 { margin: 0; font-size: 19px; letter-spacing: -.025em; transition: color .42s cubic-bezier(.22, 1, .36, 1); }
 .archive-list p { margin: 0; color: var(--gray); font-size: 14px; line-height: 1.45; }
 .archive-list article:hover h4 { color: var(--blue); }
+.archive-open {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border: 1px solid #d2d2d7;
+  border-radius: 999px;
+  background: #fff;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.archive-open span { font-size: 15px; line-height: 1; }
+.archive-open:hover,
+.archive-open:focus-visible {
+  border-color: #b8d8ff;
+  background: #f3f8ff;
+  transform: translateY(-1px);
+}
 
 .about-section { background: #fff; }
 .about-section > .page-width > h2 { max-width: 920px; }
@@ -595,6 +618,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
   .archive-header h3 { font-size: 42px; }
   .archive-list article { grid-template-columns: 34px 70px 1fr; gap: 12px; }
   .archive-list p { grid-column: 3; }
+  .archive-open { grid-column: 3; justify-self: end; }
   .background-grid { grid-template-columns: 1fr; margin-top: 80px; }
   .background-grid > section { padding: 28px; border-radius: 26px; }
   .background-grid article { align-items: flex-start; flex-direction: column; gap: 9px; }

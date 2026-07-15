@@ -162,11 +162,13 @@ const archivePreviewImages = [
 export default function Home() {
   const [openProject, setOpenProject] = useState<number | null>(null);
   const [openSkill, setOpenSkill] = useState<number | null>(null);
+  const [openArchive, setOpenArchive] = useState<number | null>(null);
   const [hoveredArchive, setHoveredArchive] = useState<number | null>(null);
   const [archivePreviewPosition, setArchivePreviewPosition] = useState({ x: 24, y: 24 });
   const [isNavTransitioning, setIsNavTransitioning] = useState(false);
   const selectedProject = openProject === null ? null : projects[openProject];
   const selectedSkill = openSkill === null ? null : skillGroups[openSkill];
+  const selectedArchive = openArchive === null ? null : archiveProjects[openArchive];
 
   const updateArchivePreviewPosition = (event: ReactPointerEvent<HTMLElement>) => {
     const previewWidth = 236;
@@ -194,13 +196,14 @@ export default function Home() {
   };
 
   useEffect(() => {
-    if (openProject === null && openSkill === null) return;
+    if (openProject === null && openSkill === null && openArchive === null) return;
     const previousOverflow = document.body.style.overflow;
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setOpenProject(null);
-        setOpenSkill(null);
-      }
+        if (event.key === "Escape") {
+          setOpenProject(null);
+          setOpenSkill(null);
+          setOpenArchive(null);
+        }
     };
     document.body.style.overflow = "hidden";
     document.addEventListener("keydown", handleKeyDown);
@@ -208,7 +211,7 @@ export default function Home() {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [openProject, openSkill]);
+  }, [openProject, openSkill, openArchive]);
 
   return (
     <main id="top">
@@ -344,9 +347,49 @@ export default function Home() {
                 <time>{date}</time>
                 <h4>{title}</h4>
                 <p>{description}</p>
+                <button
+                  type="button"
+                  className="archive-open"
+                  aria-haspopup="dialog"
+                  aria-controls={`archive-modal-${index}`}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    setOpenArchive(index);
+                  }}
+                >
+                  자세히 보기 <span aria-hidden="true">↗</span>
+                </button>
               </article>
             ))}
           </div>
+
+          {selectedArchive && openArchive !== null && (
+            <div className="project-modal-backdrop" role="presentation" onMouseDown={() => setOpenArchive(null)}>
+              <section
+                className="project-modal archive-modal"
+                id={`archive-modal-${openArchive}`}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby={`archive-modal-title-${openArchive}`}
+                onMouseDown={(event) => event.stopPropagation()}
+              >
+                <div className="project-modal-topline">
+                  <p>ARCHIVE DETAIL</p>
+                  <button
+                    type="button"
+                    className="project-modal-close"
+                    aria-label="활동 상세 닫기"
+                    onClick={() => setOpenArchive(null)}
+                  >
+                    ×
+                  </button>
+                </div>
+                <p className="project-modal-eyebrow">{selectedArchive[0]}</p>
+                <h3 id={`archive-modal-title-${openArchive}`}>{selectedArchive[1]}</h3>
+                <p className="project-modal-summary">{selectedArchive[2]}</p>
+              </section>
+            </div>
+          )}
         </div>
       </section>
 
