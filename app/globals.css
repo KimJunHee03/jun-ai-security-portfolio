@@ -252,7 +252,8 @@ nav a:hover, nav a:focus-visible { color: #000; }
   z-index: 150;
   width: 220px;
   pointer-events: none;
-  animation: archive-preview-in .38s cubic-bezier(.22, 1, .36, 1) both;
+  animation: archive-preview-in .16s cubic-bezier(.22, 1, .36, 1) both;
+  will-change: transform, opacity;
   filter: drop-shadow(0 18px 34px rgba(0,0,0,.2));
 }
 .archive-preview-frame {
@@ -260,23 +261,26 @@ nav a:hover, nav a:focus-visible { color: #000; }
   overflow: hidden;
   border: 1px solid rgba(255,255,255,.82);
   border-radius: 18px;
-  background: #101014;
+  background: #fff;
   box-shadow: 0 0 0 1px rgba(0,0,0,.06);
 }
 .archive-preview img {
   display: block;
   width: 100%;
   aspect-ratio: 1.28;
-  object-fit: cover;
-  transform: scale(1.02);
+  object-fit: contain;
+  background: #fff;
 }
 .archive-preview span {
   position: absolute;
-  right: 10px;
-  bottom: 9px;
-  left: 10px;
+  right: 8px;
+  bottom: 8px;
+  left: 8px;
   overflow: hidden;
-  color: rgba(255,255,255,.86);
+  padding: 5px 7px;
+  border-radius: 6px;
+  background: rgba(16,16,20,.82);
+  color: rgba(255,255,255,.92);
   font-size: 10px;
   font-weight: 700;
   letter-spacing: .1em;
@@ -284,7 +288,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
   text-overflow: ellipsis;
   text-transform: uppercase;
   white-space: nowrap;
-  text-shadow: 0 1px 12px rgba(0,0,0,.8);
+  text-shadow: none;
 }
 
 .project-modal-backdrop {
