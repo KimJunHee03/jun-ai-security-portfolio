@@ -1,10 +1,51 @@
 "use client";
 
-import { useEffect, useState, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { useEffect, useState, useSyncExternalStore, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import Image from "next/image";
 import { notionArchiveDetails } from "./notion-archive-data";
 
 type ThemeMode = "light" | "system" | "dark";
+
+const themeStorageKey = "jun-theme";
+const themeChangeEvent = "jun-theme-change";
+let themeMemory: ThemeMode = "system";
+
+function readThemeMode(): ThemeMode {
+  if (typeof window === "undefined") return "system";
+  try {
+    const saved = window.localStorage.getItem(themeStorageKey);
+    if (saved === "light" || saved === "system" || saved === "dark") {
+      themeMemory = saved;
+    }
+  } catch {
+    // The in-memory fallback still applies when storage is unavailable.
+  }
+  return themeMemory;
+}
+
+function subscribeToThemeMode(onChange: () => void) {
+  if (typeof window === "undefined") return () => undefined;
+  window.addEventListener("storage", onChange);
+  window.addEventListener(themeChangeEvent, onChange);
+  return () => {
+    window.removeEventListener("storage", onChange);
+    window.removeEventListener(themeChangeEvent, onChange);
+  };
+}
+
+function getServerThemeMode(): ThemeMode {
+  return "system";
+}
+
+function writeThemeMode(next: ThemeMode) {
+  themeMemory = next;
+  try {
+    window.localStorage.setItem(themeStorageKey, next);
+  } catch {
+    // The selected mode still applies for this session when storage is unavailable.
+  }
+  window.dispatchEvent(new Event(themeChangeEvent));
+}
 
 const themeOptions: Array<{ value: ThemeMode; label: string; icon: string }> = [
   { value: "light", label: "밝게", icon: "☼" },
@@ -474,7 +515,15 @@ function renderNotionContent(content: string, pageNo: string) {
             rel="noreferrer"
             aria-label="이미지를 원본 크기로 크게 보기"
           >
-            <img src={image[2]} alt={image[1] || ("Notion 원문 이미지 " + (index + 1))} loading="lazy" />
+            <Image
+              src={image[2]}
+              alt={image[1] || ("Notion 원문 이미지 " + (index + 1))}
+              width={1200}
+              height={800}
+              sizes="(max-width: 720px) calc(100vw - 48px), 632px"
+              loading="lazy"
+              style={{ width: "100%", height: "auto" }}
+            />
           </a>
           {image[1] && <figcaption>{image[1]}</figcaption>}
         </figure>
@@ -510,7 +559,7 @@ export default function Home() {
   const [archivePreviewPosition, setArchivePreviewPosition] = useState({ x: 24, y: 24 });
   const [isNavTransitioning, setIsNavTransitioning] = useState(false);
   const [navTransitionDirection, setNavTransitionDirection] = useState<"down" | "up">("down");
-  const [themeMode, setThemeMode] = useState<ThemeMode>("system");
+  const themeMode = useSyncExternalStore(subscribeToThemeMode, readThemeMode, getServerThemeMode);
   const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
   const selectedProject = openProject === null ? null : projects[openProject];
   const selectedSkill = openSkill === null ? null : skillGroups[openSkill];
@@ -520,23 +569,7 @@ export default function Home() {
   const selectedArchiveNotion = openArchive === null ? null : notionArchiveDetails[openArchive];
 
   useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem("jun-theme");
-      if (saved === "light" || saved === "system" || saved === "dark") {
-        setThemeMode(saved);
-      }
-    } catch {
-      // Private browsing and restricted storage should not prevent the site from rendering.
-    }
-  }, []);
-
-  useEffect(() => {
     document.documentElement.dataset.theme = themeMode;
-    try {
-      window.localStorage.setItem("jun-theme", themeMode);
-    } catch {
-      // The selected mode still applies for this session when storage is unavailable.
-    }
   }, [themeMode]);
 
   useEffect(() => {
@@ -1052,7 +1085,7 @@ export default function Home() {
                 className={`theme-option ${themeMode === option.value ? "is-selected" : ""}`}
                 key={option.value}
                 onClick={() => {
-                  setThemeMode(option.value);
+                  writeThemeMode(option.value);
                   setIsThemeMenuOpen(false);
                 }}
               >
