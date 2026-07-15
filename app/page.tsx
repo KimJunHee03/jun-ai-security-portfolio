@@ -437,8 +437,8 @@ export default function Home() {
         <div className="page-width">
           <div className="journey-grid">
             <header>
-              <p className="section-kicker">Journey</p>
-              <h2>경험이 만든<br />지금의 방향.</h2>
+              <p className="section-kicker">From Operations to Research</p>
+              <h2>운영을 경험하고,<br />AI 보안을 연구합니다.</h2>
             </header>
             <div className="timeline">
               {timeline.map((item) => (
