@@ -166,6 +166,7 @@ export default function Home() {
   const [hoveredArchive, setHoveredArchive] = useState<number | null>(null);
   const [archivePreviewPosition, setArchivePreviewPosition] = useState({ x: 24, y: 24 });
   const [isNavTransitioning, setIsNavTransitioning] = useState(false);
+  const [navTransitionDirection, setNavTransitionDirection] = useState<"down" | "up">("down");
   const selectedProject = openProject === null ? null : projects[openProject];
   const selectedSkill = openSkill === null ? null : skillGroups[openSkill];
   const selectedArchive = openArchive === null ? null : archiveProjects[openArchive];
@@ -187,6 +188,8 @@ export default function Home() {
     if (!target) return;
 
     event.preventDefault();
+    const targetTop = target.getBoundingClientRect().top + window.scrollY;
+    setNavTransitionDirection(targetTop > window.scrollY ? "down" : "up");
     setIsNavTransitioning(true);
     window.setTimeout(() => {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -215,7 +218,10 @@ export default function Home() {
 
   return (
     <main id="top">
-      <div className={`nav-page-transition ${isNavTransitioning ? "is-active" : ""}`} aria-hidden="true" />
+      <div
+        className={`nav-page-transition ${isNavTransitioning ? "is-active" : ""} is-${navTransitionDirection}`}
+        aria-hidden="true"
+      />
       <header className="global-nav">
         <div className="nav-inner">
           <a className="wordmark" href="#top" aria-label="포트폴리오 첫 화면으로 이동">

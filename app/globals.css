@@ -70,9 +70,10 @@ nav a:hover, nav a:focus-visible { color: #000; }
   pointer-events: none;
   background: linear-gradient(105deg, #0071e3, #5e5ce6 54%, #af52de);
   opacity: 0;
-  transform: translateX(100%);
+  transform: translateY(-100%);
 }
-.nav-page-transition.is-active { animation: nav-wipe-horizontal .72s cubic-bezier(.22, 1, .36, 1) both; }
+.nav-page-transition.is-active.is-down { animation: nav-wipe-down .72s cubic-bezier(.22, 1, .36, 1) both; }
+.nav-page-transition.is-active.is-up { animation: nav-wipe-up .72s cubic-bezier(.22, 1, .36, 1) both; }
 
 .hero {
   position: relative;
@@ -551,10 +552,16 @@ nav a:hover, nav a:focus-visible { color: #000; }
   to { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
 }
 
-@keyframes nav-wipe-horizontal {
-  0% { opacity: 1; transform: translateX(100%); }
-  32%, 62% { opacity: 1; transform: translateX(0); }
-  100% { opacity: 0; transform: translateX(-100%); }
+@keyframes nav-wipe-down {
+  0% { opacity: 1; transform: translateY(-100%); }
+  32%, 62% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(100%); }
+}
+
+@keyframes nav-wipe-up {
+  0% { opacity: 1; transform: translateY(100%); }
+  32%, 62% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-100%); }
 }
 
 @media (prefers-reduced-motion: reduce) {
