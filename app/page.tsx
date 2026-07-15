@@ -3,6 +3,14 @@
 import { useEffect, useState, type MouseEvent, type PointerEvent as ReactPointerEvent } from "react";
 import Image from "next/image";
 
+type ThemeMode = "light" | "system" | "dark";
+
+const themeOptions: Array<{ value: ThemeMode; label: string; icon: string }> = [
+  { value: "light", label: "밝게", icon: "☼" },
+  { value: "system", label: "시스템", icon: "▣" },
+  { value: "dark", label: "어둡게", icon: "☾" },
+];
+
 const projects = [
   {
     eyebrow: "AI for Security",
@@ -386,10 +394,49 @@ export default function Home() {
   const [archivePreviewPosition, setArchivePreviewPosition] = useState({ x: 24, y: 24 });
   const [isNavTransitioning, setIsNavTransitioning] = useState(false);
   const [navTransitionDirection, setNavTransitionDirection] = useState<"down" | "up">("down");
+  const [themeMode, setThemeMode] = useState<ThemeMode>("system");
+  const [isThemeMenuOpen, setIsThemeMenuOpen] = useState(false);
   const selectedProject = openProject === null ? null : projects[openProject];
   const selectedSkill = openSkill === null ? null : skillGroups[openSkill];
   const selectedArchive = openArchive === null ? null : archiveProjects[openArchive];
   const selectedArchiveDetail = openArchive === null ? null : archiveDetails[openArchive];
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem("jun-theme");
+      if (saved === "light" || saved === "system" || saved === "dark") {
+        setThemeMode(saved);
+      }
+    } catch {
+      // Private browsing and restricted storage should not prevent the site from rendering.
+    }
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = themeMode;
+    try {
+      window.localStorage.setItem("jun-theme", themeMode);
+    } catch {
+      // The selected mode still applies for this session when storage is unavailable.
+    }
+  }, [themeMode]);
+
+  useEffect(() => {
+    if (!isThemeMenuOpen) return;
+    const handlePointerDown = (event: PointerEvent) => {
+      const target = event.target as HTMLElement | null;
+      if (!target?.closest("[data-theme-menu]")) setIsThemeMenuOpen(false);
+    };
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsThemeMenuOpen(false);
+    };
+    document.addEventListener("pointerdown", handlePointerDown);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDown);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isThemeMenuOpen]);
 
   useEffect(() => {
     const revealTargets = document.querySelectorAll<HTMLElement>(".reveal-on-scroll");
@@ -438,6 +485,8 @@ export default function Home() {
     window.setTimeout(() => setIsNavTransitioning(false), 720);
   };
 
+  const activeTheme = themeOptions.find((option) => option.value === themeMode) ?? themeOptions[1];
+
   useEffect(() => {
     if (openProject === null && openSkill === null && openArchive === null) return;
     const previousOverflow = document.body.style.overflow;
@@ -473,6 +522,39 @@ export default function Home() {
             <a href="#journey" onClick={handleNavLink}>경험</a>
             <a href="#contact" onClick={handleNavLink}>연락</a>
           </nav>
+          <div className="theme-menu" data-theme-menu>
+            <button
+              type="button"
+              className="theme-trigger"
+              aria-label={`현재 테마: ${activeTheme.label}. 테마 선택`}
+              aria-haspopup="menu"
+              aria-expanded={isThemeMenuOpen}
+              onClick={() => setIsThemeMenuOpen((open) => !open)}
+            >
+              <span aria-hidden="true">{activeTheme.icon}</span>
+            </button>
+            {isThemeMenuOpen && (
+              <div className="theme-popover" role="menu" aria-label="테마 선택">
+                {themeOptions.map((option) => (
+                  <button
+                    type="button"
+                    role="menuitemradio"
+                    aria-checked={themeMode === option.value}
+                    className={`theme-option ${themeMode === option.value ? "is-selected" : ""}`}
+                    key={option.value}
+                    onClick={() => {
+                      setThemeMode(option.value);
+                      setIsThemeMenuOpen(false);
+                    }}
+                  >
+                    <span className="theme-option-icon" aria-hidden="true">{option.icon}</span>
+                    <span>{option.label}</span>
+                    {themeMode === option.value && <span className="theme-check" aria-hidden="true">✓</span>}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </header>
 

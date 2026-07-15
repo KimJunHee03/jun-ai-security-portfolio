@@ -30,10 +30,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(() => {
+              try {
+                const saved = localStorage.getItem("jun-theme");
+                const theme = saved === "light" || saved === "dark" || saved === "system" ? saved : "system";
+                document.documentElement.dataset.theme = theme;
+              } catch {
+                document.documentElement.dataset.theme = "system";
+              }
+            })();`,
+          }}
+        />
         {children}
       </body>
     </html>
