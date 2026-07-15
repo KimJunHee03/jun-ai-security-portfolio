@@ -86,12 +86,12 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .hero-signal {
   position: absolute;
   z-index: 0;
-  top: 42px;
+  top: 30px;
   right: max(4vw, 24px);
-  width: min(370px, 31vw);
-  padding: 13px;
+  width: min(520px, 40vw);
+  padding: 18px;
   border: 1px solid rgba(0, 113, 227, .12);
-  border-radius: 20px;
+  border-radius: 26px;
   background: rgba(245, 248, 255, .66);
   box-shadow: 0 18px 60px rgba(0, 113, 227, .08);
   opacity: .72;
@@ -102,19 +102,19 @@ nav a:hover, nav a:focus-visible { color: #000; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 3px 10px;
+  padding: 0 4px 14px;
   color: rgba(0, 80, 170, .62);
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: .13em;
 }
 .hero-signal-head b { color: rgba(94, 92, 230, .68); font-weight: 700; }
 .hero-signal-chart {
   position: relative;
-  height: 172px;
+  height: 235px;
   overflow: hidden;
   border: 1px solid rgba(0, 113, 227, .13);
-  border-radius: 12px;
+  border-radius: 16px;
   background: linear-gradient(145deg, rgba(255,255,255,.86), rgba(232, 240, 255, .66));
 }
 .hero-signal-grid {
@@ -132,30 +132,30 @@ nav a:hover, nav a:focus-visible { color: #000; }
   width: max-content;
   color: rgba(0, 76, 154, .62);
   font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   letter-spacing: .02em;
   white-space: nowrap;
   animation: hero-log-flow 8s linear infinite;
 }
-.signal-row-one { top: 29px; animation-delay: -.8s; }
-.signal-row-two { top: 68px; animation-delay: -3.1s; opacity: .72; }
-.signal-row-three { top: 107px; animation-delay: -5.4s; opacity: .58; }
+.signal-row-one { top: 46px; animation-delay: -.8s; }
+.signal-row-two { top: 98px; animation-delay: -3.1s; opacity: .72; }
+.signal-row-three { top: 150px; animation-delay: -5.4s; opacity: .58; }
 .hero-signal-anomaly {
-  top: 137px;
+  top: 194px;
   color: rgba(222, 48, 80, .88);
   animation: hero-anomaly-flow 8s ease-in-out infinite;
 }
 .hero-signal-marker {
   position: absolute;
   z-index: 2;
-  top: 121px;
+  top: 170px;
   left: 51%;
   display: inline-flex;
   align-items: center;
   gap: 5px;
   color: rgba(207, 40, 72, .82);
   font-family: "SF Mono", "Cascadia Code", Consolas, monospace;
-  font-size: 8px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: .05em;
   text-transform: uppercase;
@@ -752,7 +752,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
 @media (max-width: 900px) {
   .page-width { width: min(680px, calc(100% - 40px)); }
   .hero { padding-top: 90px; }
-  .hero-signal { right: 16px; width: min(310px, 38vw); opacity: .42; }
+  .hero-signal { right: 16px; width: min(360px, 40vw); opacity: .42; }
   .section-space { padding-block: 110px; }
   .project-bento { grid-template-columns: 1fr; }
   .project-1 { grid-column: auto; }

@@ -113,8 +113,8 @@ const skillGroups = [
 const education = [
   ["사우고등학교", "제20회 졸업", "2019.03 — 2022.01"],
   ["인하공업전문대학교", "정보통신공학과", "2022.02 — 2022.12"],
-  ["청운대학교", "컴퓨터공학과", "2023.02 — 2026.02"],
-  ["한경국립대학교", "정보보안전공", "2026.02 — 현재"],
+  ["청운대학교 (인천)", "컴퓨터공학과", "2023.02 — 2026.02"],
+  ["한경국립대학교 (안성)", "정보보안전공", "2026.02 — 현재"],
 ];
 
 const experiences = [
@@ -745,7 +745,7 @@ export default function Home() {
         <div className="contact-glow" aria-hidden="true" />
         <div className="page-width contact-inner">
           <p>다음 문제를 함께.</p>
-          <h2>같이 풀어볼<br />보안 문제가 있나요?</h2>
+          <h2>AI 보안에 대해<br />이야기를 나눠볼까요?</h2>
           <div className="contact-links">
             <a href="mailto:boo2525@naver.com?subject=AI%20%EB%B3%B4%EC%95%88%20%EC%97%B0%EA%B5%AC%20%EC%9D%B4%EC%95%BC%EA%B8%B0">이메일 보내기</a>
             <a href="https://www.instagram.com/junheekim__" target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">↗</span></a>
