@@ -192,6 +192,7 @@ const archiveDetails = [
       "자가검진 애플리케이션의 사용자 흐름과 화면 구조 설계",
       "검진 입력부터 결과 확인까지의 화면 구성",
       "개인 프로젝트로 UI/UX 시안 제작",
+      "프로젝트 기간: 2020년 7월 — 8월",
     ],
   },
   {
@@ -225,6 +226,7 @@ const archiveDetails = [
       "학습 목표와 주제를 정하고 팀원들과 역할 분담",
       "학습 자료를 공유하고 서로 질문하며 내용 점검",
       "공동체 기반 전공 학습 활동 기록",
+      "자율전공 학습공동체 활동으로 수료증 발급",
     ],
   },
   {
@@ -247,6 +249,7 @@ const archiveDetails = [
       "2학기 학습 주제와 목표를 정하고 팀원들과 진행 계획 수립",
       "학습 자료 공유와 질의·응답을 통한 내용 보완",
       "공동체 기반 전공 학습 활동 및 회고",
+      "자율전공 학습공동체 활동으로 수료증 발급",
     ],
   },
   {
@@ -286,22 +289,31 @@ const archiveDetails = [
     role: "개인 학습 정리",
     period: "2025.05",
     result: "장려상",
-    summary: "서버 구축과 관리에 대한 학습 내용을 네트워크 중심의 포트폴리오로 정리하고, 학습 과정과 결과를 기록했습니다.",
+    summary: "서버 구축과 관리에 대한 학습 내용을 네트워크 중심의 포트폴리오로 정리하고, 실제 배포 과정에서 마주친 문제와 해결 과정까지 기록했습니다.",
     points: [
       "Ubuntu Linux 서버와 네트워크 중심 학습 내용 정리",
-      "서버 구축·관리 과정에서 확인한 설정과 개념 기록",
-      "학습 내용을 포트폴리오 형식으로 편집·제출",
+      "Oracle Cloud 인스턴스에 SSH로 접속해 apt 업데이트와 JDK 11 설치",
+      "8080 포트 개방, Tomcat 설치·설정, Windows에서 Ubuntu 서버로 파일 전송",
+      "도메인(Gabia) 연결과 Nginx 설정, HTTPS 인증서 적용",
+      "SCP로 WAR 파일을 전송하고 기존 ROOT 애플리케이션을 백업한 뒤 재배포",
+      "UFW에서 22·80·443 포트를 관리하고 Tomcat 기본 docs·examples·manager 페이지 제거",
+      "Nginx의 server_tokens를 끄고 서버 정보 노출을 줄이는 설정 적용",
+      "www 도메인 인증서 누락 문제를 확인하고 한글 도메인·www 포워딩 설정을 수정",
+      "이미지 업로드 용량과 413 커스텀 오류 페이지를 테스트하고 약 17MB 파일 업로드 확인",
+      "4차 재배포까지 진행한 과정을 학습 포트폴리오로 편집·제출",
     ],
   },
   {
     role: "개인 프로젝트",
     period: "2025.06",
     result: "웹클라이언트 프로그래밍 최종 과제",
-    summary: "웹 클라이언트 프로그래밍에서 배운 내용을 활용해 자유 주제의 개인 페이지를 만들고 GitHub에 게시했습니다.",
+    summary: "웹 클라이언트 프로그래밍에서 배운 내용을 활용해 자유 주제의 개인 페이지를 만들고 GitHub에 게시했습니다. 결과물은 kimjunhee03.github.io/portfolio/에서 확인할 수 있습니다.",
     points: [
+      "웹 클라이언트 프로그래밍 학습 내용을 기반으로 개인 페이지 제작",
       "HTML·CSS 기반 개인 홈페이지 화면 구성",
       "자유 주제에 맞춰 콘텐츠와 페이지 구조 설계",
       "완성한 웹사이트를 GitHub를 통해 게시",
+      "최종 과제 결과물: kimjunhee03.github.io/portfolio/",
     ],
   },
   {
@@ -341,27 +353,49 @@ const archiveDetails = [
     role: "서비스 개발·서버 운영·보안 점검",
     period: "1차 2026.04.01 — 06.14 / 2차 여름방학 예정",
     result: "서비스 운영",
-    summary: "사람과 일정을 조율하고 기록을 남기는 웹서비스를 개발하며, 기능 구현부터 서버 운영·배포·보안 점검까지 직접 경험했습니다.",
+    summary: "일정 조율과 기록을 하나의 별로 연결하는 웹서비스를 개발했습니다. 기능 구현에 그치지 않고 Oracle Cloud 서버 구축, 도메인·HTTPS 연결, 재배포, 보안 점검과 개선 기록까지 직접 남겼습니다.",
     points: [
       "서비스 구조 설계와 기술 스택 구성: Spring MVC, JSP, Tomcat, Nginx, Ubuntu, Supabase",
-      "일정 조율·기록·관리자 기능 구현과 운영 흐름 점검",
+      "일정 조율·기록·관리자 기능과 방 만들기 흐름 구현",
+      "Oracle Cloud 인스턴스에 SSH로 접속하고 JDK 11·Tomcat을 설치해 서비스 배포",
+      "Gabia 도메인, Nginx 리버스 프록시, HTTPS 인증서와 www·한글 도메인 포워딩 구성",
+      "SCP로 WAR를 전송하고 기존 ROOT를 백업한 뒤 Tomcat을 재시작하는 재배포 흐름 정리",
+      "UFW에서 SSH·HTTP·HTTPS 포트를 관리하고 Tomcat 기본 관리 페이지 제거",
+      "이미지 업로드 용량을 점검하고 413 커스텀 에러 페이지와 약 17MB 파일 업로드를 테스트",
       "CSRF 방어와 보안 헤더 적용",
+      "CSRF 토큰을 세션에 저장하고 변경 요청의 파라미터·헤더를 검증하며 정적 리소스는 제외",
+      "X-Content-Type-Options, X-Frame-Options, Referrer-Policy, Permissions-Policy와 캐시 정책 적용",
       "BCrypt 비밀번호 해시, 세션 타임아웃, 로그인·요청 감사 로그 구현",
-      "관리자 권한과 접근 제어 점검",
-      "SQL Injection, XSS, 파일 업로드, 경로 조작 대응",
+      "로그인 성공·실패, 실패 사유, IP, User-Agent와 요청 메서드·경로·상태 코드·처리 시간 기록",
+      "관리자 권한과 접근 제어 점검: 회원 차단·정지, 운영자 권한 변경, 별 상태 변경·삭제와 관리자 행동 로그",
+      "SQL Injection 대응: JdbcTemplate 바인딩과 상태값 화이트리스트 적용",
+      "XSS 대응: JSP 출력 escape, URL 생성과 외부 링크 rel 속성 적용",
+      "파일 업로드 대응: 이미지 MIME 확인, 허용 확장자 제한, UUID 파일명, canonical path 비교",
+      "비로그인 접근·다른 사용자의 roomId/starId 접근·직접 POST 호출·스크립트 입력·에러 노출을 점검",
+      "초기 보안 점검에서 rate limit, 약한 비밀번호 정책, HSTS·Secure 쿠키·CSP 등 추가 개선 항목을 기록",
+      "2차 개선안으로 비밀번호 8자 이상·쉬운 비밀번호 차단, 닉네임·아이디·방 제목 입력 제한을 정리",
     ],
   },
   {
     role: "2인 1조",
     period: "2026.06.18",
     result: "Random Forest 기본 F1 0.84",
-    summary: "서울시 카페 상권 데이터를 활용해 최근 폐업률 증가폭이 큰 상권을 정의하고, 폐업 위험 요인을 분석하는 3주 팀 프로젝트를 진행했습니다.",
+    summary: "서울시 카페 상권 데이터를 2021년부터 2025년까지 분석해 최근 2년 폐업률 증가폭이 큰 상권을 위험 상권으로 정의했습니다. 여러 타깃과 모델을 비교한 뒤, 데이터 누수로 과대평가된 결과를 구분해 신뢰할 수 있는 검증의 필요성을 확인했습니다.",
     points: [
+      "기계학습 강의를 통한 3주 프로젝트로 2인 1조 진행",
       "점포·매출·유동인구·상주인구·직장인구·상권변화지표 데이터 활용",
+      "2021 — 2025년 데이터를 상권코드·년분기코드 기준으로 병합하고 결측치 처리",
+      "프랜차이즈 비율, 객단가, 점포당 매출, 점포당 유동인구, 경쟁강도 파생변수 생성",
       "최근 2년 폐업률 증가폭 상위 30% 상권을 위험 상권으로 정의",
-      "프랜차이즈 비율, 객단가, 점포당 매출·유동인구, 경쟁강도 파생변수 생성",
+      "폐업률 상위 10%·20%·30%, 폐업점포 기준, 점포 수와 폐업률 기준, 상권변화지표 기준 등 여러 타깃 비교",
+      "최종 타깃은 최근 2년 폐업률 증가폭에 상권 규모를 함께 반영하는 방식으로 선정",
+      "Logistic: Accuracy 0.64 · Precision 0.75 · Recall 0.70 · F1 0.72",
+      "Decision Tree: Accuracy 0.64 · Precision 0.82 · Recall 0.60 · F1 0.69",
       "Random Forest 기본 성능: Accuracy 0.80 · Precision 0.91 · Recall 0.78 · F1 0.84",
-      "하이퍼파라미터 튜닝 결과가 과대평가될 수 있음을 확인하고, 같은 상권의 분기 데이터가 학습·테스트에 함께 들어가는 누수 문제 기록",
+      "하이퍼파라미터 튜닝에서 F1 0.95 — 0.99가 나왔지만 실제보다 과대평가될 수 있음을 확인",
+      "같은 상권의 여러 분기 데이터가 학습·테스트에 함께 들어가 이미 본 상권의 다른 분기를 예측하는 누수 문제 기록",
+      "상권 단위 GroupKFold와 타깃·검증 구조를 다시 설계해 결과를 신뢰할 수 있는지 점검",
+      "방학 중 선이수 학습 후 동일한 내용으로 다시 실행해 학습 전후의 성장을 비교할 계획",
     ],
   },
 ];
@@ -522,39 +556,6 @@ export default function Home() {
             <a href="#journey" onClick={handleNavLink}>경험</a>
             <a href="#contact" onClick={handleNavLink}>연락</a>
           </nav>
-          <div className="theme-menu" data-theme-menu>
-            <button
-              type="button"
-              className="theme-trigger"
-              aria-label={`현재 테마: ${activeTheme.label}. 테마 선택`}
-              aria-haspopup="menu"
-              aria-expanded={isThemeMenuOpen}
-              onClick={() => setIsThemeMenuOpen((open) => !open)}
-            >
-              <span aria-hidden="true">{activeTheme.icon}</span>
-            </button>
-            {isThemeMenuOpen && (
-              <div className="theme-popover" role="menu" aria-label="테마 선택">
-                {themeOptions.map((option) => (
-                  <button
-                    type="button"
-                    role="menuitemradio"
-                    aria-checked={themeMode === option.value}
-                    className={`theme-option ${themeMode === option.value ? "is-selected" : ""}`}
-                    key={option.value}
-                    onClick={() => {
-                      setThemeMode(option.value);
-                      setIsThemeMenuOpen(false);
-                    }}
-                  >
-                    <span className="theme-option-icon" aria-hidden="true">{option.icon}</span>
-                    <span>{option.label}</span>
-                    {themeMode === option.value && <span className="theme-check" aria-hidden="true">✓</span>}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
         </div>
       </header>
 
@@ -906,6 +907,40 @@ export default function Home() {
           <a href="#top">맨 위로 ↑</a>
         </div>
       </footer>
+
+      <div className="theme-menu" data-theme-menu>
+        <button
+          type="button"
+          className="theme-trigger"
+          aria-label={`현재 테마: ${activeTheme.label}. 테마 선택`}
+          aria-haspopup="menu"
+          aria-expanded={isThemeMenuOpen}
+          onClick={() => setIsThemeMenuOpen((open) => !open)}
+        >
+          <span aria-hidden="true">{activeTheme.icon}</span>
+        </button>
+        {isThemeMenuOpen && (
+          <div className="theme-popover" role="menu" aria-label="테마 선택">
+            {themeOptions.map((option) => (
+              <button
+                type="button"
+                role="menuitemradio"
+                aria-checked={themeMode === option.value}
+                className={`theme-option ${themeMode === option.value ? "is-selected" : ""}`}
+                key={option.value}
+                onClick={() => {
+                  setThemeMode(option.value);
+                  setIsThemeMenuOpen(false);
+                }}
+              >
+                <span className="theme-option-icon" aria-hidden="true">{option.icon}</span>
+                <span>{option.label}</span>
+                {themeMode === option.value && <span className="theme-check" aria-hidden="true">✓</span>}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
 
       {hoveredArchive !== null && (
         <div
