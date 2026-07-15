@@ -13,7 +13,7 @@ export const notionArchiveDetails: NotionArchiveDetail[] = [
   {
     no: "02",
     title: "🎨 UIUX Desing",
-    content: "![](/archive/notion/02-01.png)\n**프로젝트 요약**\n- 자가검진 애플리케이션에 대한 UIUX 디자인\n<empty-block/>\n**역할**\n- 개인 프로젝트\n<empty-block/>\n<empty-block/>\n**시기**\n2020.7 - 2020.8\n<empty-block/>\n성과\n---\n<empty-block/>\n![](/archive/notion/02-02.png)",
+    content: "**성과**\n- UI/UX 설계 결과물\n<empty-block/>\n![](/archive/notion/02-01.png)\n<empty-block/>\n**프로젝트 요약**\n- 자가검진 애플리케이션에 대한 UIUX 디자인\n<empty-block/>\n**역할**\n- 개인 프로젝트\n<empty-block/>\n**시기**\n2020.7 - 2020.8\n<empty-block/>\n![](/archive/notion/02-02.png)",
   },
   {
     no: "03",
@@ -28,7 +28,7 @@ export const notionArchiveDetails: NotionArchiveDetail[] = [
   {
     no: "05",
     title: "24년 1학기 청학동(스터디그룹)",
-    content: "![](/archive/notion/05-01.png)\n<empty-block/>\n**프로젝트 요약**\n- 동일한 주제 및 관심분야를 학습하고자 하는 학생들이 학습공동체를 형성하여 활동\n<empty-block/>\n**역할**\n- 팀원\n<empty-block/>\n**시기**\n- 2024. 3\\~6\n<empty-block/>\n<empty-block/>\n![](/archive/notion/05-02.png)\n![](/archive/notion/05-03.png)\n![](/archive/notion/05-04.png)\n![](/archive/notion/05-05.png)\n![](/archive/notion/05-06.png)\n![](/archive/notion/05-07.png)\n<file src=\"file://%7B%22source%22%3A%22attachment%3A40512b42-c636-4c92-b635-a6d31f806be9%3A2024-1%ED%95%99%EA%B8%B0_%EC%B2%AD%ED%95%99%EB%8F%99CORE_4%EA%B8%B0(%EC%A0%9C28%EA%B8%B0)_%EC%9E%90%EC%9C%A8%EC%A0%84%EA%B3%B5_%EA%B9%80%EC%A4%80%ED%9D%AC_%EC%88%98%EB%A3%8C%EC%A6%9D.pdf%22%2C%22permissionRecord%22%3A%7B%22table%22%3A%22block%22%2C%22id%22%3A%2230a647d7-900a-8073-af80-ccfd7ab350bb%22%2C%22spaceId%22%3A%22e82cc837-54c7-42bb-97b0-5fd8223399e5%22%7D%7D\"></file>",
+    content: "![](/archive/notion/05-01.png)\n<empty-block/>\n**프로젝트 요약**\n- 동일한 주제 및 관심분야를 학습하고자 하는 학생들이 학습공동체를 형성하여 활동\n<empty-block/>\n**역할**\n- 팀원\n<empty-block/>\n**시기**\n- 2024. 3\\~6\n<empty-block/>\n<empty-block/>\n![](/archive/notion/05-02.png)\n![](/archive/notion/05-03.png)\n![](/archive/notion/05-04.png)\n![](/archive/notion/05-05.png)\n![](/archive/notion/05-06.png)\n![](/archive/notion/05-07.png)",
   },
   {
     no: "06",

@@ -458,17 +458,35 @@ function renderNotionContent(content: string, pageNo: string) {
     if (!line || /^(?:<empty-block\/>|<\/?(?:columns|column)>|<\/?content>)$/.test(line)) return null;
     if (line === "---") return <hr key={key} />;
 
+    // Notion export embeds inaccessible remote image blobs as file:// URLs.
+    // Do not expose the raw serialized URL when no local asset was created.
+    if (/^!\[[^\]]*\]\(file:\/\//.test(line)) return null;
+    if (pageNo === "13" && (line === "![](/archive/notion/13-08.png)" || line === "…?")) return null;
+
     const image = line.match(/^!\[([^\]]*)\]\((\/archive\/notion\/[^)]+)\)$/);
     if (image) {
       return (
         <figure className="notion-image-block" key={key}>
-          <img src={image[2]} alt={image[1] || ("Notion 원문 이미지 " + (index + 1))} loading="lazy" />
+          <a
+            className="notion-image-link"
+            href={image[2]}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="이미지를 원본 크기로 크게 보기"
+          >
+            <img src={image[2]} alt={image[1] || ("Notion 원문 이미지 " + (index + 1))} loading="lazy" />
+          </a>
           {image[1] && <figcaption>{image[1]}</figcaption>}
         </figure>
       );
     }
 
     if (line.startsWith("<file ")) {
+      if (
+        line.includes("483e34ca-8eae-44a3-a887-739313eaf512") ||
+        line.includes("6e2b93ce-6a95-49df-8ec6-42e087cb711b") ||
+        line.includes("65c19f3a-9f7e-4000-a4e3-16116fcbe592")
+      ) return null;
       return <p className="notion-file-block" key={key}>첨부 파일 · {getNotionFileLabel(line)}</p>;
     }
     if (line.startsWith("- ")) {
@@ -817,11 +835,13 @@ export default function Home() {
                 </div>
                 <p className="project-modal-eyebrow">{selectedArchive[0]}</p>
                 <h3 id={`archive-modal-title-${openArchive}`}>{selectedArchive[1]}</h3>
-                {selectedArchiveNotion && (
+                {openArchive >= 15 ? (
+                  <p className="archive-coming-soon">업로드 예정</p>
+                ) : selectedArchiveNotion ? (
                   <div className="notion-archive-content">
                     {renderNotionContent(selectedArchiveNotion.content, selectedArchiveNotion.no)}
                   </div>
-                )}
+                ) : null}
                 {selectedArchiveImage && (
                   <figure className="archive-detail-image-wrap">
                     <Image

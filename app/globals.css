@@ -933,8 +933,23 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .notion-image-block img {
   display: block;
   width: 100%;
-  max-height: 620px;
-  object-fit: contain;
+  height: auto;
+  max-height: none;
+  object-fit: initial;
+}
+.notion-image-link {
+  display: block;
+  cursor: zoom-in;
+}
+.archive-coming-soon {
+  margin: 34px 0 0;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: var(--blue);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -.02em;
 }
 .notion-image-block figcaption {
   padding: 8px 12px 10px;
@@ -1231,6 +1246,12 @@ nav a:hover, nav a:focus-visible { color: #000; }
 
 .credentials-section { margin-top: 145px; }
 .credentials-section header { max-width: 750px; }
+.credentials-section header.reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+  filter: none;
+  transition: none;
+}
 .credentials-section h2,
 .values-section h2 { margin: 0; font-size: clamp(45px, 5vw, 68px); letter-spacing: -.06em; line-height: 1.03; }
 .credential-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; margin-top: 55px; }
@@ -1259,6 +1280,10 @@ nav a:hover, nav a:focus-visible { color: #000; }
   filter: none;
   clip-path: none;
   transition: none;
+}
+.credential-grid article.reveal-on-scroll.is-visible,
+.credential-grid article.reveal-on-scroll:not(.is-visible) {
+  filter: none;
 }
 .credential-grid article.reveal-on-scroll.is-visible {
   animation: credential-card-in .72s cubic-bezier(.22, 1, .36, 1) both;
