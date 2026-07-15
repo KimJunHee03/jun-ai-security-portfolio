@@ -464,6 +464,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .timeline article p { margin: 0 0 12px; color: var(--blue); font-size: 13px; font-weight: 600; }
 .timeline article h3 { margin: 0 0 12px; font-size: 26px; letter-spacing: -.035em; }
 .timeline article span { display: block; max-width: 600px; color: var(--gray); font-size: 16px; line-height: 1.6; word-break: keep-all; }
+.timeline article small { display: block; max-width: 600px; margin-top: 18px; color: var(--black); font-size: 13px; font-weight: 600; line-height: 1.5; word-break: keep-all; }
 
 .background-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 110px; }
 .background-grid > section { padding: 40px; border-radius: 32px; background: #fff; }
