@@ -388,6 +388,20 @@ export default function Home() {
       </header>
 
       <section className="hero">
+        <div className="hero-signal" aria-hidden="true">
+          <div className="hero-signal-head">
+            <span>LIVE / SECURITY LOG</span>
+            <b>MONITORING</b>
+          </div>
+          <div className="hero-signal-chart">
+            <div className="hero-signal-grid" />
+            <span className="hero-signal-row signal-row-one">08:42:11 GET /login 200 · NORMAL · 08:42:12 POST /session 200 · NORMAL</span>
+            <span className="hero-signal-row signal-row-two">08:42:13 GET /dashboard 200 · NORMAL · 08:42:14 GET /api/user 200 · NORMAL</span>
+            <span className="hero-signal-row signal-row-three">08:42:15 POST /upload 201 · NORMAL · 08:42:16 GET /admin 403 · BLOCKED</span>
+            <span className="hero-signal-row hero-signal-anomaly">08:42:17 GET /admin 403 · ANOMALY DETECTED</span>
+            <span className="hero-signal-marker"><i /> anomaly</span>
+          </div>
+        </div>
         <div className="hero-copy page-width">
           <p className="hero-kicker">Information Security × Artificial Intelligence</p>
           <h1>
