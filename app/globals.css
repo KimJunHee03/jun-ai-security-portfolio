@@ -505,66 +505,79 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .project-card:hover::before { opacity: 1; animation: project-border-scan 1.1s linear both; }
 .project-card:hover::after { opacity: .7; animation: project-scanline .9s ease-out both; }
 
-/* The second project fractures like a data anomaly under inspection. */
+/* The second project turns its evidence into a live prediction field. */
 .project-2::before {
-  inset: -8%;
+  inset: 5%;
   padding: 0;
   border-radius: inherit;
   background:
-    repeating-linear-gradient(0deg, transparent 0 18px, rgba(0, 113, 227, .18) 19px 20px),
-    repeating-linear-gradient(90deg, transparent 0 31px, rgba(175, 82, 222, .2) 32px 33px),
-    linear-gradient(112deg, transparent 0 40%, rgba(0, 113, 227, .62) 41% 42%, transparent 43% 61%, rgba(175, 82, 222, .58) 62% 64%, transparent 65%);
+    radial-gradient(circle at 13% 70%, rgba(0, 113, 227, .95) 0 3px, transparent 4px),
+    radial-gradient(circle at 29% 53%, rgba(0, 113, 227, .82) 0 3px, transparent 4px),
+    radial-gradient(circle at 46% 60%, rgba(175, 82, 222, .86) 0 3px, transparent 4px),
+    radial-gradient(circle at 63% 38%, rgba(175, 82, 222, .92) 0 3px, transparent 4px),
+    radial-gradient(circle at 82% 25%, rgba(255, 59, 48, .8) 0 3px, transparent 4px),
+    linear-gradient(24deg, transparent 0 27%, rgba(0, 113, 227, .42) 27.2% 27.5%, transparent 27.8%),
+    linear-gradient(-18deg, transparent 0 48%, rgba(175, 82, 222, .4) 48.2% 48.5%, transparent 48.8%),
+    linear-gradient(13deg, transparent 0 67%, rgba(255, 59, 48, .32) 67.2% 67.5%, transparent 67.8%);
   -webkit-mask: none;
   mask: none;
-  transform: translate3d(-12%, 0, 0) skewX(-10deg) scale(1.12);
+  transform: translate3d(-4%, 0, 0) scale(1.05);
 }
 .project-2::after {
-  top: 28%;
-  right: -16%;
-  bottom: auto;
-  left: -16%;
-  width: auto;
-  height: 4px;
-  background: linear-gradient(90deg, transparent, #0071e3 20%, #af52de 52%, #ff3b30 76%, transparent);
-  box-shadow: 0 0 18px rgba(0, 113, 227, .68), 0 0 30px rgba(175, 82, 222, .34);
-  filter: blur(.2px);
-  transform: translateX(-130%) rotate(-3deg) scaleX(.4);
-}
-.project-2:hover { box-shadow: 0 0 0 1px rgba(0, 113, 227, .42), 0 24px 65px rgba(0, 113, 227, .18); }
-.project-2:hover::before { opacity: .72; animation: project-ai-fracture .9s steps(6, end) both; }
-.project-2:hover::after { opacity: .98; animation: project-ai-surge .85s cubic-bezier(.22, 1, .36, 1) both; }
-.project-2:hover h3 { animation: project-ai-heading .52s steps(2, end) both; }
-.project-2:hover .project-evidence strong { animation: project-evidence-shock .58s cubic-bezier(.22, 1, .36, 1) both; }
-
-/* The third project reacts like a perimeter breach and live warning system. */
-.project-3::before {
-  inset: 12px;
-  padding: 2px;
-  border: 0;
-  border-radius: 22px;
-  background: conic-gradient(from 35deg, transparent 0 22%, #4aa3ff 29%, #e04863 37%, transparent 45% 72%, #4aa3ff 80%, transparent 88%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  transform: scale(.94);
-}
-.project-3::after {
-  top: 44%;
+  top: 49%;
   right: auto;
   bottom: auto;
-  left: -15%;
-  width: 130%;
-  height: 4px;
-  background: linear-gradient(90deg, transparent, #4aa3ff 34%, #e04863 54%, transparent);
+  left: 8%;
+  width: 68%;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #0071e3 24%, #af52de 72%, #ff3b30);
+  box-shadow: 0 0 16px rgba(0, 113, 227, .62), 0 0 26px rgba(175, 82, 222, .34);
+  filter: blur(.2px);
+  transform-origin: left center;
+  transform: translateX(-18%) rotate(-7deg) scaleX(.08);
+}
+.project-2:hover { box-shadow: 0 0 0 1px rgba(0, 113, 227, .42), 0 24px 65px rgba(0, 113, 227, .18); }
+.project-2:hover::before { opacity: .88; animation: project-ai-predict 1.2s cubic-bezier(.22, 1, .36, 1) both; }
+.project-2:hover::after { opacity: .98; animation: project-ai-converge .95s cubic-bezier(.22, 1, .36, 1) both; }
+.project-2:hover h3 { animation: project-ai-prediction-heading .65s ease-out both; }
+.project-2:hover .project-evidence strong { animation: project-prediction-pulse .72s cubic-bezier(.22, 1, .36, 1) both; }
+
+/* The third project draws a network that connects its nodes into one service. */
+.project-3::before {
+  inset: 8%;
+  padding: 0;
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 15% 27%, #4aa3ff 0 3px, transparent 4px),
+    radial-gradient(circle at 33% 48%, #4aa3ff 0 3px, transparent 4px),
+    radial-gradient(circle at 54% 31%, #90b4ff 0 3px, transparent 4px),
+    radial-gradient(circle at 72% 55%, #4aa3ff 0 3px, transparent 4px),
+    radial-gradient(circle at 86% 28%, #e04863 0 3px, transparent 4px),
+    linear-gradient(31deg, transparent 0 27%, rgba(74, 163, 255, .56) 27.2% 27.7%, transparent 28%),
+    linear-gradient(-23deg, transparent 0 48%, rgba(144, 180, 255, .5) 48.2% 48.7%, transparent 49%),
+    linear-gradient(19deg, transparent 0 68%, rgba(224, 72, 99, .46) 68.2% 68.7%, transparent 69%);
+  -webkit-mask: none;
+  mask: none;
+  transform: scale(.98);
+}
+.project-3::after {
+  top: 43%;
+  right: auto;
+  bottom: auto;
+  left: 14%;
+  width: 62%;
+  height: 3px;
+  background: linear-gradient(90deg, #4aa3ff, #90b4ff 54%, #e04863);
   box-shadow: 0 0 16px rgba(74, 163, 255, .88), 0 0 24px rgba(224, 72, 99, .46);
   filter: blur(.2px);
-  transform: translateX(-120%);
+  transform-origin: left center;
+  transform: translateX(0) rotate(-12deg) scaleX(0);
 }
 .project-3:hover { box-shadow: 0 0 0 1px rgba(224, 72, 99, .48), 0 24px 65px rgba(74, 163, 255, .16); }
-.project-3:hover::before { opacity: .96; animation: project-security-breach .95s steps(5, end) both; }
-.project-3:hover::after { opacity: .98; animation: project-security-warning .86s cubic-bezier(.22, 1, .36, 1) both; }
-.project-3:hover h3 { animation: project-security-heading .7s ease-out both; }
-.project-3:hover .project-evidence strong { animation: project-live-flash .64s steps(3, end) both; }
+.project-3:hover::before { opacity: .92; animation: project-network-form 1.25s cubic-bezier(.22, 1, .36, 1) both; }
+.project-3:hover::after { opacity: .98; animation: project-network-connect .92s cubic-bezier(.22, 1, .36, 1) both; }
+.project-3:hover h3 { animation: project-web-connect-heading .72s ease-out both; }
+.project-3:hover .project-evidence strong { animation: project-connection-pulse .68s cubic-bezier(.22, 1, .36, 1) both; }
 .project-1 { grid-column: span 2; min-height: 700px; background: #000; color: #f5f5f7; }
 .project-2 { background: #fbfbfd; }
 .project-3 { background: #03050a; color: #fff; }
