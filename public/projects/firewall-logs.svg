@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Firewall log analysis preview</title>
+  <desc id="desc">A dark security dashboard with log streams, a shield, and a model score.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b101c" />
+      <stop offset="1" stop-color="#1b0810" />
+    </linearGradient>
+    <linearGradient id="shield" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ff7a18" />
+      <stop offset="1" stop-color="#ff3d81" />
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="18" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+  </defs>
+  <rect width="1200" height="800" rx="44" fill="url(#bg)" />
+  <circle cx="1040" cy="118" r="150" fill="#ff4d4d" opacity=".13" filter="url(#glow)" />
+  <g opacity=".22" stroke="#9aa7c1" stroke-width="1">
+    <path d="M70 134h1060M70 196h1060M70 258h1060M70 320h1060M70 382h1060M70 444h1060M70 506h1060M70 568h1060M70 630h1060" />
+    <path d="M122 84v640M226 84v640M330 84v640M434 84v640M538 84v640M642 84v640M746 84v640M850 84v640M954 84v640" />
+  </g>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#a9b4c7">
+    <text x="84" y="118" fill="#ff9b62">LIVE / FIREWALL LOGS</text>
+    <text x="84" y="180">GET /login      200</text>
+    <text x="84" y="242">POST /query      403</text>
+    <text x="84" y="304">GET /admin       401</text>
+    <text x="84" y="366">POST /upload     500</text>
+    <text x="84" y="428">GET /search      200</text>
+    <text x="84" y="490">POST /auth       403</text>
+    <text x="84" y="552">GET /catalog     200</text>
+    <text x="84" y="614">POST /checkout   200</text>
+  </g>
+  <g transform="translate(820 206)">
+    <path d="M94 0 188 35v94c0 76-48 126-94 146-46-20-94-70-94-146V35L94 0Z" fill="url(#shield)" opacity=".2" stroke="#ff8a4c" stroke-width="5" />
+    <path d="m54 99 28 28 53-61" fill="none" stroke="#ffd4b6" stroke-width="12" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+  <path d="M750 625c90-78 168-99 326-82" fill="none" stroke="#ff733d" stroke-width="5" stroke-linecap="round" />
+  <path d="M750 625c90-78 168-99 326-82" fill="none" stroke="#ff733d" stroke-width="24" opacity=".14" filter="url(#glow)" />
+  <text x="850" y="720" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="28" fill="#ffb28a">MODEL ACCURACY 0.893</text>
+</svg>

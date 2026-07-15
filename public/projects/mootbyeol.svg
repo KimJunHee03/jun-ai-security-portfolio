@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Mootbyeol service preview</title>
+  <desc id="desc">A dark space-inspired interface with stars, orbit lines, and a live deployment label.</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="35%" r="75%">
+      <stop offset="0" stop-color="#203c74" />
+      <stop offset=".5" stop-color="#0b1631" />
+      <stop offset="1" stop-color="#03050a" />
+    </radialGradient>
+    <linearGradient id="orbit" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6ab2ff" />
+      <stop offset="1" stop-color="#d17aff" />
+    </linearGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="14" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+  </defs>
+  <rect width="1200" height="800" rx="44" fill="url(#bg)" />
+  <g fill="#fff">
+    <circle cx="124" cy="136" r="3" opacity=".85" /><circle cx="214" cy="274" r="2" opacity=".7" /><circle cx="340" cy="126" r="2" opacity=".9" /><circle cx="452" cy="208" r="3" opacity=".62" /><circle cx="1022" cy="170" r="2" opacity=".85" /><circle cx="1080" cy="354" r="3" opacity=".7" /><circle cx="160" cy="624" r="2" opacity=".75" /><circle cx="952" cy="646" r="2" opacity=".75" />
+  </g>
+  <g fill="none" stroke="url(#orbit)" opacity=".58">
+    <ellipse cx="674" cy="390" rx="350" ry="126" transform="rotate(-18 674 390)" stroke-width="3" />
+    <ellipse cx="674" cy="390" rx="286" ry="88" transform="rotate(26 674 390)" stroke-width="2" />
+    <ellipse cx="674" cy="390" rx="182" ry="52" transform="rotate(-44 674 390)" stroke-width="2" />
+  </g>
+  <circle cx="674" cy="390" r="64" fill="#73b7ff" opacity=".22" filter="url(#glow)" />
+  <circle cx="674" cy="390" r="38" fill="#b8ddff" />
+  <circle cx="674" cy="390" r="20" fill="#fff" />
+  <circle cx="986" cy="244" r="14" fill="#ff9e73" /><circle cx="986" cy="244" r="30" fill="#ff9e73" opacity=".16" filter="url(#glow)" />
+  <text x="84" y="116" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" fill="#9bc9ff">MOOTBYEOL / SOCIAL ORBIT</text>
+  <text x="84" y="690" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30" fill="#d8e9ff">DEPLOYMENT // LIVE</text>
+  <text x="880" y="690" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="22" fill="#85b9ef">HTTPS · NGINX</text>
+</svg>

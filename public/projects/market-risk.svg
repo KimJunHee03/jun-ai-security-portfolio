@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-labelledby="title desc">
+  <title id="title">Business risk prediction preview</title>
+  <desc id="desc">A bright analytical graphic with clustered data points, a grid, and a rising line.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#edf5ff" />
+      <stop offset="1" stop-color="#f5edff" />
+    </linearGradient>
+    <linearGradient id="line" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#0071e3" />
+      <stop offset="1" stop-color="#af52de" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" rx="44" fill="url(#bg)" />
+  <g stroke="#90a8c9" stroke-width="1" opacity=".28">
+    <path d="M84 122h1032M84 218h1032M84 314h1032M84 410h1032M84 506h1032M84 602h1032M84 698h1032" />
+    <path d="M84 76v646M224 76v646M364 76v646M504 76v646M644 76v646M784 76v646M924 76v646M1064 76v646" />
+  </g>
+  <text x="84" y="116" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="24" fill="#496584">GROUP-AWARE MODEL / 2026</text>
+  <g opacity=".78">
+    <circle cx="218" cy="520" r="18" fill="#0071e3" /><circle cx="268" cy="476" r="12" fill="#0071e3" /><circle cx="326" cy="564" r="17" fill="#0071e3" /><circle cx="374" cy="502" r="9" fill="#0071e3" />
+    <circle cx="712" cy="284" r="18" fill="#af52de" /><circle cx="768" cy="348" r="10" fill="#af52de" /><circle cx="842" cy="246" r="14" fill="#af52de" /><circle cx="900" cy="302" r="17" fill="#af52de" />
+    <circle cx="478" cy="420" r="11" fill="#5e5ce6" /><circle cx="556" cy="390" r="16" fill="#5e5ce6" /><circle cx="612" cy="454" r="9" fill="#5e5ce6" />
+  </g>
+  <path d="M126 628C250 604 282 598 370 562S512 472 592 448 720 380 808 330 932 248 1072 184" fill="none" stroke="url(#line)" stroke-width="8" stroke-linecap="round" />
+  <path d="M126 628C250 604 282 598 370 562S512 472 592 448 720 380 808 330 932 248 1072 184" fill="none" stroke="#5e5ce6" stroke-width="28" opacity=".1" />
+  <rect x="82" y="686" width="260" height="46" rx="23" fill="#fff" opacity=".8" />
+  <circle cx="112" cy="709" r="7" fill="#0071e3" /><text x="132" y="717" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#496584">TRAIN / TEST SPLIT</text>
+  <text x="852" y="706" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="30" fill="#284b78">TEST F1 0.616</text>
+</svg>
