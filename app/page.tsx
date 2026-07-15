@@ -56,7 +56,7 @@ const themeOptions: Array<{ value: ThemeMode; label: string; icon: string }> = [
 const projects = [
   {
     eyebrow: "AI for Security",
-    title: "보안 로그에서\n공격 신호를 찾아내다.",
+    title: "보안 로그에서\n공격 신호를 찾아냈습니다.",
     description:
       "KISA 방화벽 로그를 운영 관점의 3개 클래스로 재구성하고 Random Forest로 공격 유형을 분류했습니다.",
     evidenceLabel: "Model Accuracy",
@@ -73,7 +73,7 @@ const projects = [
   },
   {
     eyebrow: "Artificial Intelligence",
-    title: "데이터 누수를 막고\n폐업 위험을 예측하다.",
+    title: "데이터 누수를 막고\n폐업 위험을 예측했습니다.",
     description:
       "서울시 상권 데이터를 상권 단위로 재구성하고, 데이터 누수를 차단한 검증 구조로 폐업 위험을 예측했습니다.",
     evidenceLabel: "Test F1",
@@ -90,7 +90,7 @@ const projects = [
   },
   {
     eyebrow: "Web · Security",
-    title: "사람과 일정을\n하나의 별에 담아내다.",
+    title: "사람과 일정을\n하나의 별에 담아냈습니다.",
     description:
       "그룹 일정 조율과 관계 기록을 우주 콘셉트로 연결한 Spring MVC 기반 웹 서비스를 설계하고 배포했습니다.",
     evidenceLabel: "Deployment",
@@ -808,7 +808,7 @@ export default function Home() {
           <div className="archive-header reveal-on-scroll">
             <div>
               <p className="section-kicker">Full Archive</p>
-              <h3>프로젝트와 활동.<br /><span>처음부터 지금까지.</span></h3>
+              <h3>프로젝트와 활동,<br /><span>쌓아온 모든 기록.</span></h3>
             </div>
             <p>Notion에 정리된 프로젝트, 발표, 수상과 학습 활동을 오래된 기록부터 최근 활동까지 담았습니다.</p>
           </div>
