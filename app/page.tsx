@@ -544,7 +544,7 @@ export default function Home() {
           aria-hidden="true"
         >
           <div className="archive-preview-frame">
-            <Image src={archivePreviewImages[hoveredArchive % archivePreviewImages.length]} width={220} height={172} alt="" />
+            <Image src={archivePreviewImages[hoveredArchive % archivePreviewImages.length]} width={220} height={172} alt="" unoptimized />
             <span>{archiveProjects[hoveredArchive][1]}</span>
           </div>
         </div>
