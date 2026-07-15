@@ -985,13 +985,13 @@ export default function Home() {
           </div>
 
           <div className="credentials-section">
-            <header className="reveal-on-scroll">
+            <header>
               <p className="section-kicker">Credentials</p>
               <h2>배움을 증명한 기록.</h2>
             </header>
             <div className="credential-grid">
               {credentials.map(([title, issuer]) => (
-                <article className="reveal-on-scroll" key={title}>
+                <article key={title}>
                   <span aria-hidden="true">✓</span>
                   <h3>{title}</h3>
                   <p>{issuer}</p>

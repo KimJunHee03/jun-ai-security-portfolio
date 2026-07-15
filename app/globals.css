@@ -1246,7 +1246,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
 
 .credentials-section { margin-top: 145px; }
 .credentials-section header { max-width: 750px; }
-.credentials-section header.reveal-on-scroll {
+.credentials-section header {
   opacity: 1;
   transform: none;
   filter: none;
@@ -1274,21 +1274,6 @@ nav a:hover, nav a:focus-visible { color: #000; }
   pointer-events: none;
 }
 .credential-grid article.reveal-on-scroll.is-visible::before { animation: credential-unlock .8s ease-out both; }
-.credential-grid article.reveal-on-scroll {
-  opacity: 1;
-  transform: none;
-  filter: none;
-  clip-path: none;
-  transition: none;
-}
-.credential-grid article.reveal-on-scroll.is-visible,
-.credential-grid article.reveal-on-scroll:not(.is-visible) {
-  filter: none;
-}
-.credential-grid article.reveal-on-scroll.is-visible {
-  animation: credential-card-in .72s cubic-bezier(.22, 1, .36, 1) both;
-  animation-delay: var(--reveal-delay, 0ms);
-}
 .credential-grid article > span { width: 31px; height: 31px; display: grid; place-items: center; border-radius: 50%; background: #e8f2ff; color: var(--blue); font-size: 15px; font-weight: 700; }
 .credential-grid h3 { margin: auto 0 7px; font-size: 19px; letter-spacing: -.03em; }
 .credential-grid p { margin: 0; color: var(--gray); font-size: 12px; }
