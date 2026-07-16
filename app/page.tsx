@@ -248,13 +248,6 @@ const credentials = [
   ["Agents and Workflows", "OpenAI · 2026.07"],
 ];
 
-const values = [
-  "예의를 기본으로 생각합니다.",
-  "결과만큼 과정도 중요하게 봅니다.",
-  "쉴 때는 쉬고, 할 때는 확실하게 합니다.",
-  "문제가 생겨도 진행할 수 있는 방법을 찾습니다.",
-];
-
 const archiveProjects = [
   ["2019.04", "방송부", "19기 국장 겸 엔지니어"],
   ["2020.08", "자가검진 앱 UI/UX", "자가검진 애플리케이션 개인 디자인 프로젝트"],
@@ -1098,15 +1091,6 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="values-section">
-            <p className="section-kicker reveal-on-scroll">How I Work</p>
-            <h2 className="reveal-on-scroll">일을 대하는 기준.</h2>
-            <div>
-              {values.map((value, index) => (
-                <article className="reveal-on-scroll" key={value}><span>0{index + 1}</span><p>{value}</p></article>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
