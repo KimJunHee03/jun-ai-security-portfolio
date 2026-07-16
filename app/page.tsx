@@ -125,9 +125,7 @@ function ProjectEffects({ index, pointer }: { index: number; pointer: ProjectPoi
         style={{ "--pointer-x": `${pointer.x}%`, "--pointer-y": `${pointer.y}%` } as CSSProperties}
         aria-hidden="true"
       >
-        <span className="log-pointer-grid" />
         <span className="log-pointer-line" />
-        <span className="log-pointer-ring" />
         <span className="log-pointer-dot" />
       </div>
     );
@@ -169,8 +167,9 @@ function ProjectEffects({ index, pointer }: { index: number; pointer: ProjectPoi
         {securityNetworkNodes.map((node) => (
           <circle key={node.key} className={`network-node ${node.key}`} cx={node.x} cy={node.y} r="1.6" />
         ))}
-        <circle className="network-hub-pulse" cx={pointer.x} cy={pointer.y} r="5" />
-        <circle className="network-hub" cx={pointer.x} cy={pointer.y} r="2.8" />
+        <circle className="network-hub-pulse" cx={pointer.x} cy={pointer.y} r="7" />
+        <circle className="network-hub" cx={pointer.x} cy={pointer.y} r="3.8" />
+        <circle className="network-hub-core" cx={pointer.x} cy={pointer.y} r="1.45" />
       </g>
     </svg>
   );
