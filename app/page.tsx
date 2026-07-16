@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
+import { useEffect, useState, useSyncExternalStore, type CSSProperties, type MouseEvent, type PointerEvent as ReactPointerEvent, type ReactNode } from "react";
 import Image from "next/image";
 import { notionArchiveDetails } from "./notion-archive-data";
 
@@ -106,6 +106,70 @@ const projects = [
     ],
   },
 ];
+
+type ProjectPointer = { x: number; y: number; active: boolean };
+
+const securityNetworkNodes = [
+  { key: "node-a", line: "line-a", x: 14, y: 20 },
+  { key: "node-b", line: "line-b", x: 28, y: 76 },
+  { key: "node-c", line: "line-c", x: 50, y: 16 },
+  { key: "node-d", line: "line-d", x: 83, y: 28 },
+  { key: "node-e", line: "line-e", x: 87, y: 78 },
+];
+
+function ProjectEffects({ index, pointer }: { index: number; pointer: ProjectPointer }) {
+  if (index === 0) {
+    return (
+      <div
+        className="project-pointer-effect project-log-effect"
+        style={{ "--pointer-x": `${pointer.x}%`, "--pointer-y": `${pointer.y}%` } as CSSProperties}
+        aria-hidden="true"
+      >
+        <span className="log-pointer-grid" />
+        <span className="log-pointer-line" />
+        <span className="log-pointer-ring" />
+        <span className="log-pointer-dot" />
+      </div>
+    );
+  }
+
+  if (index === 1) {
+    const cursorX = Math.max(8, Math.min(92, pointer.x));
+    const graphY = Math.max(18, Math.min(84, 84 - pointer.y * 0.56));
+    const graphPath = `M 7 84 C 22 80 34 ${Math.max(30, graphY + 18)} ${cursorX} ${graphY} S 76 ${Math.max(18, graphY - 4)} 94 ${Math.max(14, graphY - 18)}`;
+
+    return (
+      <svg className="project-pointer-effect prediction-graph-effect" viewBox="0 0 100 100" aria-hidden="true">
+        <g className="prediction-graph-grid">
+          <path d="M 8 22 H 92 M 8 42 H 92 M 8 62 H 92 M 8 82 H 92" />
+          <path d="M 18 12 V 88 M 38 12 V 88 M 58 12 V 88 M 78 12 V 88" />
+        </g>
+        <path className="prediction-graph-line" d={graphPath} />
+        <line className="prediction-graph-crosshair" x1={cursorX} y1="12" x2={cursorX} y2="88" />
+        <line className="prediction-graph-crosshair" x1="8" y1={graphY} x2="92" y2={graphY} />
+        <circle className="prediction-graph-pulse" cx={cursorX} cy={graphY} r="5" />
+        <circle className="prediction-graph-point" cx={cursorX} cy={graphY} r="2.2" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg className="project-pointer-effect project-network" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <g className="network-links">
+        {securityNetworkNodes.map((node) => (
+          <line key={node.key} className={`network-line ${node.line}`} x1={node.x} y1={node.y} x2={pointer.x} y2={pointer.y} />
+        ))}
+      </g>
+      <g className="network-nodes">
+        {securityNetworkNodes.map((node) => (
+          <circle key={node.key} className={`network-node ${node.key}`} cx={node.x} cy={node.y} r="1.6" />
+        ))}
+        <circle className="network-hub-pulse" cx={pointer.x} cy={pointer.y} r="5" />
+        <circle className="network-hub" cx={pointer.x} cy={pointer.y} r="2.8" />
+      </g>
+    </svg>
+  );
+}
 
 const skillGroups = [
   {
@@ -553,6 +617,8 @@ function renderNotionContent(content: string, pageNo: string) {
 
 export default function Home() {
   const [openProject, setOpenProject] = useState<number | null>(null);
+  const [activeProjectPointer, setActiveProjectPointer] = useState<number | null>(null);
+  const [projectPointer, setProjectPointer] = useState<ProjectPointer>({ x: 50, y: 50, active: false });
   const [openSkill, setOpenSkill] = useState<number | null>(null);
   const [openArchive, setOpenArchive] = useState<number | null>(null);
   const [hoveredArchive, setHoveredArchive] = useState<number | null>(null);
@@ -567,6 +633,18 @@ export default function Home() {
   const selectedArchiveDetail = openArchive === null ? null : archiveDetails[openArchive];
   const selectedArchiveImage = openArchive === null ? null : archivePreviewImages[openArchive];
   const selectedArchiveNotion = openArchive === null ? null : notionArchiveDetails[openArchive];
+
+  const updateProjectPointer = (event: ReactPointerEvent<HTMLElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = Math.max(0, Math.min(100, ((event.clientX - rect.left) / rect.width) * 100));
+    const y = Math.max(0, Math.min(100, ((event.clientY - rect.top) / rect.height) * 100));
+    setProjectPointer({ x, y, active: true });
+  };
+
+  const clearProjectPointer = () => {
+    setActiveProjectPointer(null);
+    setProjectPointer((previous) => ({ ...previous, active: false }));
+  };
 
   useEffect(() => {
     document.documentElement.dataset.theme = themeMode;
@@ -722,27 +800,14 @@ export default function Home() {
 
           <div className="project-bento">
             {projects.map((project, index) => (
-              <article className={`project-card project-${index + 1} reveal-on-scroll`} key={project.title}>
-                {index === 2 && (
-                  <svg className="project-network" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-                    <g className="network-links">
-                      <line className="network-line line-a" x1="13" y1="23" x2="52" y2="48" />
-                      <line className="network-line line-b" x1="30" y1="73" x2="52" y2="48" />
-                      <line className="network-line line-c" x1="51" y1="18" x2="52" y2="48" />
-                      <line className="network-line line-d" x1="82" y1="28" x2="52" y2="48" />
-                      <line className="network-line line-e" x1="86" y1="76" x2="52" y2="48" />
-                    </g>
-                    <g className="network-nodes">
-                      <circle className="network-node node-a" cx="13" cy="23" r="1.6" />
-                      <circle className="network-node node-b" cx="30" cy="73" r="1.6" />
-                      <circle className="network-node node-c" cx="51" cy="18" r="1.6" />
-                      <circle className="network-node node-d" cx="82" cy="28" r="1.6" />
-                      <circle className="network-node node-e" cx="86" cy="76" r="1.6" />
-                      <circle className="network-hub-pulse" cx="52" cy="48" r="5" />
-                      <circle className="network-hub" cx="52" cy="48" r="2.8" />
-                    </g>
-                  </svg>
-                )}
+              <article
+                className={`project-card project-${index + 1} reveal-on-scroll ${activeProjectPointer === index ? "is-pointer-active" : ""}`}
+                key={project.title}
+                onPointerEnter={() => setActiveProjectPointer(index)}
+                onPointerMove={updateProjectPointer}
+                onPointerLeave={clearProjectPointer}
+              >
+                <ProjectEffects index={index} pointer={projectPointer} />
                 <div className="project-copy">
                   <p className="card-eyebrow">{project.eyebrow}</p>
                   <h3>{project.title.split("\n").map((line) => <span key={line}>{line}</span>)}</h3>
