@@ -983,7 +983,7 @@ export default function Home() {
             </section>
             <section className="background-grid-section experience-list reveal-on-scroll">
               <p className="background-label">Experience</p>
-              <h2 className="background-title">경력 및</h2>
+              <h2 className="background-title">경력 및 경험</h2>
               {experiences.map(([place, role, date]) => (
                 <article className="background-entry reveal-on-scroll" key={`${place}-${date}`}>
                   <div><h3>{place}</h3><p>{role}</p></div>
