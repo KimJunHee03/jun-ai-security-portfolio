@@ -418,6 +418,12 @@ nav a:hover, nav a:focus-visible { color: #000; }
   transform: translate3d(0, 0, 0);
   filter: blur(0);
 }
+.projects-section .section-header.reveal-on-scroll,
+.projects-section .project-card.reveal-on-scroll {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
 
 .hero-kicker {
   margin: 0 0 19px;
@@ -1827,7 +1833,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
   .contact-inner.is-visible::before, .contact-inner.is-visible::after,
   .credential-grid article.reveal-on-scroll.is-visible,
   .credential-grid article.reveal-on-scroll.is-visible::before { animation: none; }
-  .project-card:hover::before, .project-card:hover::after,
+  .project-card:hover::before, .project-card:hover::after { opacity: .55; }
   .archive-list article:hover::before,
   .contact-inner.is-visible::before, .contact-inner.is-visible::after,
   .credential-grid article.reveal-on-scroll.is-visible::before { opacity: 0; }
