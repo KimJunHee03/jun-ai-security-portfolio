@@ -49,6 +49,8 @@
   --project-card-muted: #6e6e73;
   --project-card-tag-bg: rgba(0, 0, 0, .06);
   --project-card-tag-ink: #6e6e73;
+  --project-card-border: rgba(0, 0, 0, .06);
+  --project-flow-opacity: .44;
   --contact-bg: #f3f7fc;
   --contact-ink: #1d1d1f;
   --contact-secondary-border: rgba(29, 29, 31, .24);
@@ -99,16 +101,18 @@ html[data-theme="dark"] {
   --skill-infra-muted: #a1a1a6;
   --skill-infra-accent: #7fb4ff;
   --surface-inverse-text: #1d1d1f;
-  --project-security-bg: #050608;
+  --project-security-bg: #111419;
   --project-security-ink: #f5f5f7;
-  --project-ai-bg: #1d1f24;
+  --project-ai-bg: #15171d;
   --project-ai-ink: #f5f5f7;
-  --project-web-bg: #03050a;
+  --project-web-bg: #10171f;
   --project-web-ink: #f5f5f7;
   --project-card-description: #a1a1a6;
   --project-card-muted: #8b8c93;
   --project-card-tag-bg: rgba(255, 255, 255, .1);
   --project-card-tag-ink: #a1a1a6;
+  --project-card-border: rgba(255, 255, 255, .12);
+  --project-flow-opacity: .68;
   --contact-bg: #050608;
   --contact-ink: #f5f5f7;
   --contact-secondary-border: rgba(255, 255, 255, .28);
@@ -156,16 +160,18 @@ html[data-theme="dark"] {
     --skill-infra-muted: #a1a1a6;
     --skill-infra-accent: #7fb4ff;
     --surface-inverse-text: #1d1d1f;
-    --project-security-bg: #050608;
+    --project-security-bg: #111419;
     --project-security-ink: #f5f5f7;
-    --project-ai-bg: #1d1f24;
+    --project-ai-bg: #15171d;
     --project-ai-ink: #f5f5f7;
-    --project-web-bg: #03050a;
+    --project-web-bg: #10171f;
     --project-web-ink: #f5f5f7;
     --project-card-description: #a1a1a6;
     --project-card-muted: #8b8c93;
     --project-card-tag-bg: rgba(255, 255, 255, .1);
     --project-card-tag-ink: #a1a1a6;
+    --project-card-border: rgba(255, 255, 255, .12);
+    --project-flow-opacity: .68;
     --contact-bg: #050608;
     --contact-ink: #f5f5f7;
     --contact-secondary-border: rgba(255, 255, 255, .28);
@@ -513,6 +519,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
   display: flex;
   flex-direction: column;
   border-radius: 34px;
+  border: 1px solid var(--project-card-border);
   overflow: hidden;
   isolation: isolate;
   opacity: 1 !important;
@@ -527,17 +534,18 @@ nav a:hover, nav a:focus-visible { color: #000; }
   inset: -28%;
   pointer-events: none;
   background:
-    radial-gradient(ellipse at 22% 35%, color-mix(in srgb, var(--project-flow) 26%, transparent) 0, transparent 44%),
-    linear-gradient(115deg, transparent 20%, color-mix(in srgb, var(--project-flow) 12%, transparent) 48%, transparent 76%);
-  filter: blur(18px);
-  opacity: .28;
-  transform: translate3d(-7%, -2%, 0) scale(1.05) rotate(-2deg);
-  animation: project-background-flow 15s ease-in-out infinite;
+    radial-gradient(ellipse 60% 50% at 15% 24%, color-mix(in srgb, var(--project-flow) 48%, transparent) 0, transparent 70%),
+    radial-gradient(ellipse 54% 42% at 84% 72%, color-mix(in srgb, var(--project-flow-secondary) 34%, transparent) 0, transparent 72%),
+    linear-gradient(115deg, transparent 20%, color-mix(in srgb, var(--project-flow) 14%, transparent) 48%, transparent 78%);
+  filter: blur(28px) saturate(1.12);
+  opacity: var(--project-flow-opacity);
+  transform: translate3d(-8%, -4%, 0) scale(1.06) rotate(-3deg);
+  animation: project-background-flow 18s ease-in-out infinite;
   will-change: transform;
 }
-.project-1 { --project-flow: #2997ff; grid-column: span 2; min-height: 700px; background: var(--project-security-bg); color: var(--project-security-ink); }
-.project-2 { --project-flow: #af52de; background: var(--project-ai-bg); color: var(--project-ai-ink); }
-.project-3 { --project-flow: #4aa3ff; background: var(--project-web-bg); color: var(--project-web-ink); }
+.project-1 { --project-flow: #2997ff; --project-flow-secondary: #5e5ce6; grid-column: span 2; min-height: 700px; background: var(--project-security-bg); color: var(--project-security-ink); }
+.project-2 { --project-flow: #af52de; --project-flow-secondary: #5e5ce6; background: var(--project-ai-bg); color: var(--project-ai-ink); }
+.project-3 { --project-flow: #4aa3ff; --project-flow-secondary: #64d2ff; background: var(--project-web-bg); color: var(--project-web-ink); }
 .project-2::before { animation-delay: -5s; }
 .project-3::before { animation-delay: -10s; }
 
@@ -1291,8 +1299,8 @@ nav a:hover, nav a:focus-visible { color: #000; }
 }
 
 @keyframes project-background-flow {
-  0%, 100% { opacity: .2; transform: translate3d(-7%, -2%, 0) scale(1.05) rotate(-2deg); }
-  50% { opacity: .38; transform: translate3d(7%, 4%, 0) scale(1.14) rotate(2deg); }
+  0%, 100% { transform: translate3d(-8%, -4%, 0) scale(1.06) rotate(-3deg); }
+  50% { transform: translate3d(8%, 6%, 0) scale(1.16) rotate(3deg); }
 }
 
 @keyframes hero-log-flow {
