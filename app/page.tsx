@@ -73,7 +73,7 @@ const projects = [
   },
   {
     eyebrow: "Artificial Intelligence",
-    title: "GroupKFold를 이용한 데이터 누수 차단 및\n상권 폐업 예측",
+    title: "GroupKFold를 이용한 데이터\n누수 차단 및 상권 폐업 예측",
     description:
       "서울시 상권 데이터를 상권 단위로 재구성하고, 데이터 누수를 차단한 검증 구조로 폐업 위험을 예측했습니다.",
     evidenceLabel: "Test F1",
