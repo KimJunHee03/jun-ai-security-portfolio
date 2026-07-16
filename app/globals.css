@@ -418,13 +418,6 @@ nav a:hover, nav a:focus-visible { color: #000; }
   transform: translate3d(0, 0, 0);
   filter: blur(0);
 }
-.projects-section .section-header.reveal-on-scroll,
-.projects-section .project-card.reveal-on-scroll {
-  opacity: 1;
-  transform: none;
-  filter: none;
-}
-
 .hero-kicker {
   margin: 0 0 19px;
   color: var(--gray);
@@ -521,12 +514,16 @@ nav a:hover, nav a:focus-visible { color: #000; }
   flex-direction: column;
   border-radius: 34px;
   overflow: hidden;
+  isolation: isolate;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
   box-shadow: 0 1px 0 rgba(0,0,0,.035), 0 16px 45px rgba(0,0,0,.055);
 }
 .project-card::before {
   content: "";
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   inset: 0;
   padding: 1px;
   border-radius: inherit;
@@ -540,7 +537,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .project-card::after {
   content: "";
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   top: 0;
   bottom: 0;
   left: -26%;
@@ -553,18 +550,16 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .project-card:hover::before { opacity: 1; animation: project-border-scan 2.8s linear infinite; }
 .project-card:hover::after { opacity: .7; animation: project-scanline 2.2s ease-out infinite; }
 
-/* Pointer-driven layers stay alive while the card is active instead of ending after one reveal pass. */
+/* Pointer-driven layers are visual-only and never control card visibility or hit testing. */
 .project-pointer-effect {
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   inset: 0;
   opacity: 0;
   pointer-events: none;
   transition: opacity .18s ease;
 }
-.project-card.is-visible .project-pointer-effect,
 .project-card:hover .project-pointer-effect { opacity: .86; }
-.project-card.is-pointer-active .project-pointer-effect { opacity: 1; }
 .project-log-effect { overflow: hidden; }
 .log-pointer-grid {
   position: absolute;
@@ -751,7 +746,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .project-3:hover .project-evidence strong { animation: project-connection-pulse .68s cubic-bezier(.22, 1, .36, 1) both; }
 .project-network {
   position: absolute;
-  z-index: 1;
+  z-index: 0;
   inset: 0;
   width: 100%;
   height: 100%;
@@ -806,27 +801,6 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .project-3:hover .node-e { animation-delay: .4s; }
 .project-3:hover .network-hub { animation: project-network-hub .45s .5s ease-out forwards; }
 .project-3:hover .network-hub-pulse { animation: project-network-hub-pulse 1s .52s ease-out forwards; }
-.project-3.is-pointer-active .project-network { opacity: 1; }
-.project-3.is-pointer-active .network-line {
-  opacity: .82;
-  stroke-dashoffset: 0;
-  animation: none;
-}
-.project-3.is-pointer-active .network-node {
-  opacity: .86;
-  transform: scale(1);
-  animation: none;
-}
-.project-3.is-pointer-active .network-hub {
-  opacity: 1;
-  transform: scale(1);
-  animation: none;
-}
-.project-3.is-pointer-active .network-hub-pulse {
-  opacity: .86;
-  transform: scale(.7);
-  animation: pointer-hub-pulse 1.35s ease-out infinite;
-}
 .project-1 { grid-column: span 2; min-height: 700px; background: var(--project-security-bg); color: var(--project-security-ink); }
 .project-2 { background: var(--project-ai-bg); color: var(--project-ai-ink); }
 .project-3 { background: var(--project-web-bg); color: var(--project-web-ink); }
@@ -848,7 +822,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
 }
 .project-evidence {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   flex: 1;
   min-height: 245px;
   display: flex;

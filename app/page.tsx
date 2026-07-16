@@ -107,7 +107,7 @@ const projects = [
   },
 ];
 
-type ProjectPointer = { x: number; y: number; active: boolean };
+type ProjectPointer = { x: number; y: number };
 
 const securityNetworkNodes = [
   { key: "node-a", line: "line-a", x: 14, y: 20 },
@@ -610,8 +610,7 @@ function renderNotionContent(content: string, pageNo: string) {
 
 export default function Home() {
   const [openProject, setOpenProject] = useState<number | null>(null);
-  const [activeProjectPointer, setActiveProjectPointer] = useState<number | null>(null);
-  const [projectPointer, setProjectPointer] = useState<ProjectPointer>({ x: 50, y: 50, active: false });
+  const [projectPointer, setProjectPointer] = useState<ProjectPointer>({ x: 50, y: 50 });
   const [openSkill, setOpenSkill] = useState<number | null>(null);
   const [openArchive, setOpenArchive] = useState<number | null>(null);
   const [hoveredArchive, setHoveredArchive] = useState<number | null>(null);
@@ -631,12 +630,7 @@ export default function Home() {
     const rect = event.currentTarget.getBoundingClientRect();
     const x = Math.max(0, Math.min(100, ((event.clientX - rect.left) / rect.width) * 100));
     const y = Math.max(0, Math.min(100, ((event.clientY - rect.top) / rect.height) * 100));
-    setProjectPointer({ x, y, active: true });
-  };
-
-  const clearProjectPointer = () => {
-    setActiveProjectPointer(null);
-    setProjectPointer((previous) => ({ ...previous, active: false }));
+    setProjectPointer({ x, y });
   };
 
   useEffect(() => {
@@ -782,7 +776,7 @@ export default function Home() {
 
       <section className="projects-section section-space" id="projects">
         <div className="page-width">
-          <header className="section-header reveal-on-scroll">
+          <header className="section-header">
             <p>선택한 프로젝트</p>
             <h2>문제를 정의하고.<br /><span>끝까지 검증하고.</span></h2>
             <p className="section-description">
@@ -794,11 +788,10 @@ export default function Home() {
           <div className="project-bento">
             {projects.map((project, index) => (
               <article
-                className={`project-card project-${index + 1} reveal-on-scroll ${activeProjectPointer === index ? "is-pointer-active" : ""}`}
+                className={`project-card project-${index + 1}`}
                 key={project.title}
-                onPointerEnter={() => setActiveProjectPointer(index)}
+                onPointerEnter={updateProjectPointer}
                 onPointerMove={updateProjectPointer}
-                onPointerLeave={clearProjectPointer}
               >
                 <ProjectEffects index={index} pointer={projectPointer} />
                 <div className="project-copy">
