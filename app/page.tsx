@@ -90,7 +90,7 @@ const projects = [
   },
   {
     eyebrow: "Web · Security",
-    title: "Spring MVC 기반 그룹 일정 조율 및 기록\n웹 서비스 '뭇별' 배포",
+    title: "Spring MVC 기반\n그룹 일정 조율 및 기록\n웹 서비스 '뭇별' 배포",
     description:
       "그룹 일정 조율과 관계 기록을 우주 콘셉트로 연결한 Spring MVC 기반 웹 서비스를 설계하고 배포했습니다.",
     evidenceLabel: "Deployment",
@@ -705,7 +705,7 @@ export default function Home() {
       <section className="projects-section section-space" id="projects">
         <div className="page-width">
           <header className="section-header">
-            <p>선택한 프로젝트</p>
+            <p>Selected Projects</p>
             <h2>문제를 정의하고.<br /><span>끝까지 검증하고.</span></h2>
             <p className="section-description">
               점수만 보여주지 않습니다. 데이터의 구조를 다시 설계하고,
@@ -783,7 +783,7 @@ export default function Home() {
 
           <div className="archive-header reveal-on-scroll">
             <div>
-              <p className="section-kicker">전체 아카이브</p>
+              <p className="section-kicker">Full Archive</p>
               <h3>전체 기록</h3>
             </div>
             <p>Notion에 정리된 프로젝트, 발표, 수상과 학습 활동을 오래된 기록부터 최근 활동까지 담았습니다.</p>
