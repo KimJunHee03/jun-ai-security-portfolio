@@ -56,7 +56,7 @@ const themeOptions: Array<{ value: ThemeMode; label: string; icon: string }> = [
 const projects = [
   {
     eyebrow: "AI for Security",
-    title: "보안 로그에서\n공격 신호를 찾아냈습니다.",
+    title: "KISA 방화벽 로그 기반\n3-Class 공격 유형 분류 모델 구현",
     description:
       "KISA 방화벽 로그를 운영 관점의 3개 클래스로 재구성하고 Random Forest로 공격 유형을 분류했습니다.",
     evidenceLabel: "Model Accuracy",
@@ -73,7 +73,7 @@ const projects = [
   },
   {
     eyebrow: "Artificial Intelligence",
-    title: "데이터 누수를 막고\n폐업 위험을 예측했습니다.",
+    title: "GroupKFold를 이용한 데이터 누수(Data Leakage) 차단 및\n상권 폐업 예측",
     description:
       "서울시 상권 데이터를 상권 단위로 재구성하고, 데이터 누수를 차단한 검증 구조로 폐업 위험을 예측했습니다.",
     evidenceLabel: "Test F1",
@@ -90,7 +90,7 @@ const projects = [
   },
   {
     eyebrow: "Web · Security",
-    title: "사람과 일정을\n하나의 별에 담아냈습니다.",
+    title: "Spring MVC 기반 그룹 일정 조율 및 기록\n웹 서비스 '뭇별' 배포",
     description:
       "그룹 일정 조율과 관계 기록을 우주 콘셉트로 연결한 Spring MVC 기반 웹 서비스를 설계하고 배포했습니다.",
     evidenceLabel: "Deployment",
@@ -670,7 +670,7 @@ export default function Home() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          entry.target.classList.toggle("is-visible", entry.isIntersecting);
+          if (entry.isIntersecting) entry.target.classList.add("is-visible");
         });
       },
       { threshold: 0.14, rootMargin: "0px 0px -8% 0px" },
@@ -865,8 +865,8 @@ export default function Home() {
 
           <div className="archive-header reveal-on-scroll">
             <div>
-              <p className="section-kicker">Full Archive</p>
-              <h3>프로젝트와 활동,<br /><span>쌓아온 모든 기록.</span></h3>
+              <p className="section-kicker">전체 아카이브</p>
+              <h3>전체 기록</h3>
             </div>
             <p>Notion에 정리된 프로젝트, 발표, 수상과 학습 활동을 오래된 기록부터 최근 활동까지 담았습니다.</p>
           </div>
@@ -1055,7 +1055,7 @@ export default function Home() {
           <div className="background-grid">
             <section className="background-grid-section education-list reveal-on-scroll">
               <p className="background-label">Education</p>
-              <h2 className="background-title">배운 것을 쌓아온 시간.</h2>
+              <h2 className="background-title">학력</h2>
               {education.map(([school, major, date]) => (
                 <article className="background-entry reveal-on-scroll" key={school}>
                   <div><h3>{school}</h3><p>{major}</p></div>
@@ -1065,7 +1065,7 @@ export default function Home() {
             </section>
             <section className="background-grid-section experience-list reveal-on-scroll">
               <p className="background-label">Experience</p>
-              <h2 className="background-title">경험으로 넓힌 시야.</h2>
+              <h2 className="background-title">경력 및</h2>
               {experiences.map(([place, role, date]) => (
                 <article className="background-entry reveal-on-scroll" key={`${place}-${date}`}>
                   <div><h3>{place}</h3><p>{role}</p></div>
@@ -1078,7 +1078,7 @@ export default function Home() {
           <div className="credentials-section">
             <header>
               <p className="section-kicker">Credentials</p>
-              <h2>배움을 증명한 기록.</h2>
+              <h2>자격 사항</h2>
             </header>
             <div className="credential-grid">
               {credentials.map(([title, issuer]) => (
@@ -1098,7 +1098,7 @@ export default function Home() {
         <div className="contact-glow" aria-hidden="true" />
         <div className="page-width contact-inner reveal-on-scroll">
           <p>더 깊이, 더 정확하게.</p>
-          <h2>AI 보안을 향해<br />계속 성장하겠습니다.</h2>
+          <h2>AI 보안을 향해<br />계속 나아가겠습니다.</h2>
           <div className="contact-links">
             <a href="mailto:boo2525@naver.com?subject=AI%20%EB%B3%B4%EC%95%88%20%EC%97%B0%EA%B5%AC%20%EC%9D%B4%EC%95%BC%EA%B8%B0">이메일 보내기</a>
             <a href="https://www.instagram.com/junheekim__" target="_blank" rel="noreferrer">Instagram <span aria-hidden="true">↗</span></a>
