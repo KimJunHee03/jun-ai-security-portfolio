@@ -520,149 +520,26 @@ nav a:hover, nav a:focus-visible { color: #000; }
   filter: none !important;
   box-shadow: 0 1px 0 rgba(0,0,0,.035), 0 16px 45px rgba(0,0,0,.055);
 }
-/* Pointer-driven layers are visual-only and never control card visibility or hit testing. */
-.project-pointer-effect {
+.project-card::before {
+  content: "";
   position: absolute;
   z-index: 0;
-  inset: 0;
-  opacity: 0;
+  inset: -28%;
   pointer-events: none;
-  transition: opacity .18s ease;
+  background:
+    radial-gradient(ellipse at 22% 35%, color-mix(in srgb, var(--project-flow) 26%, transparent) 0, transparent 44%),
+    linear-gradient(115deg, transparent 20%, color-mix(in srgb, var(--project-flow) 12%, transparent) 48%, transparent 76%);
+  filter: blur(18px);
+  opacity: .28;
+  transform: translate3d(-7%, -2%, 0) scale(1.05) rotate(-2deg);
+  animation: project-background-flow 15s ease-in-out infinite;
+  will-change: transform;
 }
-.project-card:hover .project-pointer-effect { opacity: .86; }
-.project-log-effect { overflow: hidden; }
-.log-pointer-line {
-  position: absolute;
-  top: 7%;
-  bottom: 7%;
-  left: var(--pointer-x);
-  width: 1px;
-  background: linear-gradient(180deg, transparent, #ff3b30 18%, #ff3b30 82%, transparent);
-  box-shadow: 0 0 15px rgba(255, 59, 48, .72);
-  transform: translateX(-50%);
-  transition: left .08s linear;
-}
-.log-pointer-dot {
-  position: absolute;
-  top: var(--pointer-y);
-  left: var(--pointer-x);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #ff3b30;
-  box-shadow: 0 0 0 4px rgba(255, 59, 48, .2), 0 0 20px rgba(255, 59, 48, .95);
-  transform: translate(-50%, -50%);
-  transition: top .08s linear, left .08s linear;
-}
-.prediction-graph-effect {
-  inset: 6% 7% 13%;
-  overflow: visible;
-  background: radial-gradient(circle at var(--pointer-x) var(--pointer-y), color-mix(in srgb, var(--blue) 16%, transparent), transparent 24%);
-  border-radius: 18px;
-}
-.prediction-graph-grid {
-  fill: none;
-  stroke: color-mix(in srgb, var(--blue) 18%, transparent);
-  stroke-width: .35;
-  stroke-dasharray: 1.2 2.4;
-}
-.prediction-graph-line {
-  fill: none;
-  stroke: color-mix(in srgb, var(--blue) 88%, #af52de);
-  stroke-width: 1.05;
-  stroke-linecap: round;
-  filter: drop-shadow(0 0 4px color-mix(in srgb, var(--blue) 55%, transparent));
-  stroke-dasharray: none;
-  transition: opacity .12s ease;
-}
-.prediction-graph-crosshair {
-  stroke: color-mix(in srgb, #ff3b30 52%, var(--blue));
-  stroke-width: .38;
-  stroke-dasharray: 1.4 2.2;
-  transition: x1 .08s linear, x2 .08s linear, y1 .08s linear, y2 .08s linear;
-}
-.prediction-graph-point {
-  fill: #ff3b30;
-  filter: drop-shadow(0 0 5px rgba(255, 59, 48, .9));
-  transition: cx .08s linear, cy .08s linear;
-}
-.prediction-graph-pulse {
-  fill: none;
-  stroke: rgba(255, 59, 48, .6);
-  stroke-width: .55;
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: pointer-ring 1.1s ease-out infinite;
-}
-
-/* The third project connects every fixed node directly to the current pointer. */
-.project-network {
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-  opacity: 0;
-  pointer-events: none;
-}
-.project-network .network-line {
-  fill: none;
-  stroke: rgba(74, 163, 255, .72);
-  stroke-width: .42;
-  stroke-dasharray: 100;
-  stroke-dashoffset: 100;
-  transition: stroke-dashoffset .18s ease, opacity .18s ease;
-}
-.project-network .line-b,
-.project-network .line-e { stroke: rgba(224, 72, 99, .65); }
-.project-network .network-node {
-  fill: #4aa3ff;
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: scale(0);
-  transition: opacity .18s ease, transform .18s ease;
-}
-.project-network .node-d,
-.project-network .node-e { fill: #e04863; }
-.project-network .network-hub {
-  fill: var(--blue);
-  stroke: var(--surface-inverse-text);
-  stroke-width: .62;
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: scale(0);
-  transition: opacity .18s ease, transform .18s ease;
-}
-.project-network .network-hub-pulse {
-  fill: none;
-  stroke: var(--blue);
-  stroke-width: .62;
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: scale(.45);
-  transition: opacity .18s ease, transform .18s ease;
-}
-.project-network .network-hub-core {
-  fill: #ff3b30;
-  opacity: 0;
-  transform-box: fill-box;
-  transform-origin: center;
-  transform: scale(0);
-  transition: opacity .18s ease, transform .18s ease;
-}
-.project-3:hover .project-network { opacity: 1; }
-.project-3:hover .network-line { opacity: .82; stroke-dashoffset: 0; }
-.project-3:hover .network-node { opacity: .82; transform: scale(1); }
-.project-3:hover .network-hub { opacity: 1; transform: scale(1); }
-.project-3:hover .network-hub-pulse { opacity: .72; transform: scale(.82); }
-.project-3:hover .network-hub-core { opacity: 1; transform: scale(1); }
-.project-1 { grid-column: span 2; min-height: 700px; background: var(--project-security-bg); color: var(--project-security-ink); }
-.project-2 { background: var(--project-ai-bg); color: var(--project-ai-ink); }
-.project-3 { background: var(--project-web-bg); color: var(--project-web-ink); }
+.project-1 { --project-flow: #2997ff; grid-column: span 2; min-height: 700px; background: var(--project-security-bg); color: var(--project-security-ink); }
+.project-2 { --project-flow: #af52de; background: var(--project-ai-bg); color: var(--project-ai-ink); }
+.project-3 { --project-flow: #4aa3ff; background: var(--project-web-bg); color: var(--project-web-ink); }
+.project-2::before { animation-delay: -5s; }
+.project-3::before { animation-delay: -10s; }
 
 .project-copy { position: relative; z-index: 2; padding: 54px 48px 8px; text-align: center; }
 .project-1 .project-copy { max-width: 760px; margin-inline: auto; }
@@ -738,9 +615,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
   border-radius: 50%;
   background: rgba(0,113,227,.1);
   font-size: 17px;
-  transition: transform .25s ease, background .25s ease;
 }
-.project-open:hover span { transform: translate(2px, -2px); background: rgba(0,113,227,.16); }
 
 .archive-preview {
   position: fixed;
@@ -1415,6 +1290,11 @@ nav a:hover, nav a:focus-visible { color: #000; }
   to { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
 }
 
+@keyframes project-background-flow {
+  0%, 100% { opacity: .2; transform: translate3d(-7%, -2%, 0) scale(1.05) rotate(-2deg); }
+  50% { opacity: .38; transform: translate3d(7%, 4%, 0) scale(1.14) rotate(2deg); }
+}
+
 @keyframes hero-log-flow {
   0% { transform: translateX(100%); opacity: 0; }
   10% { opacity: .7; }
@@ -1467,6 +1347,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
   .archive-list article:hover::before,
   .contact-inner.is-visible::before, .contact-inner.is-visible::after,
   .credential-grid article.reveal-on-scroll.is-visible,
+  .project-card::before,
   .credential-grid article.reveal-on-scroll.is-visible::before { animation: none; }
   .archive-list article:hover::before,
   .contact-inner.is-visible::before, .contact-inner.is-visible::after,
@@ -1584,7 +1465,6 @@ nav a:hover, nav a:focus-visible { color: var(--ink); }
 .project-1 .project-footer li, .project-3 .project-footer li { background: var(--project-card-tag-bg); color: var(--project-card-tag-ink); }
 .project-open { border-color: var(--line-soft); color: var(--blue); }
 .project-open span { background: color-mix(in srgb, var(--blue) 12%, transparent); }
-.project-open:hover span { background: color-mix(in srgb, var(--blue) 20%, transparent); }
 .archive-preview-frame { border-color: var(--line); background: var(--surface); }
 .project-modal-backdrop { background: var(--modal-backdrop); }
 .project-modal { border-color: var(--line); background: var(--modal-bg); color: var(--ink); box-shadow: 0 30px 100px color-mix(in srgb, #000 38%, transparent); }
