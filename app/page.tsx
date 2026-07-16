@@ -73,7 +73,7 @@ const projects = [
   },
   {
     eyebrow: "Artificial Intelligence",
-    title: "GroupKFold를 이용한 데이터 누수(Data Leakage) 차단 및\n상권 폐업 예측",
+    title: "GroupKFold를 이용한 데이터 누수 차단 및\n상권 폐업 예측",
     description:
       "서울시 상권 데이터를 상권 단위로 재구성하고, 데이터 누수를 차단한 검증 구조로 폐업 위험을 예측했습니다.",
     evidenceLabel: "Test F1",
@@ -139,7 +139,12 @@ function ProjectEffects({ index, pointer }: { index: number; pointer: ProjectPoi
     const graphPath = `M 7 84 C 22 80 34 ${Math.max(30, graphY + 18)} ${cursorX} ${graphY} S 76 ${Math.max(18, graphY - 4)} 94 ${Math.max(14, graphY - 18)}`;
 
     return (
-      <svg className="project-pointer-effect prediction-graph-effect" viewBox="0 0 100 100" aria-hidden="true">
+      <svg
+        className="project-pointer-effect prediction-graph-effect"
+        viewBox="0 0 100 100"
+        style={{ "--pointer-x": `${cursorX}%`, "--pointer-y": `${graphY}%` } as CSSProperties}
+        aria-hidden="true"
+      >
         <g className="prediction-graph-grid">
           <path d="M 8 22 H 92 M 8 42 H 92 M 8 62 H 92 M 8 82 H 92" />
           <path d="M 18 12 V 88 M 38 12 V 88 M 58 12 V 88 M 78 12 V 88" />

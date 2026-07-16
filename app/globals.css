@@ -520,36 +520,6 @@ nav a:hover, nav a:focus-visible { color: #000; }
   filter: none !important;
   box-shadow: 0 1px 0 rgba(0,0,0,.035), 0 16px 45px rgba(0,0,0,.055);
 }
-.project-card::before {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  inset: 0;
-  padding: 1px;
-  border-radius: inherit;
-  background: conic-gradient(from 0deg, transparent 0 72%, rgba(41,151,255,.95) 80%, rgba(175,82,222,.9) 86%, transparent 94%);
-  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  pointer-events: none;
-}
-.project-card::after {
-  content: "";
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  bottom: 0;
-  left: -26%;
-  width: 18%;
-  background: linear-gradient(90deg, transparent, rgba(41,151,255,.48), rgba(255,255,255,.62), transparent);
-  opacity: 0;
-  pointer-events: none;
-  transform: skewX(-12deg) translateX(-180%);
-}
-.project-card:hover::before { opacity: 1; animation: project-border-scan 2.8s linear infinite; }
-.project-card:hover::after { opacity: .7; animation: project-scanline 2.2s ease-out infinite; }
-
 /* Pointer-driven layers are visual-only and never control card visibility or hit testing. */
 .project-pointer-effect {
   position: absolute;
@@ -569,7 +539,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
   background:
     repeating-linear-gradient(0deg, transparent 0 20px, color-mix(in srgb, var(--blue) 15%, transparent) 21px 22px),
     repeating-linear-gradient(90deg, transparent 0 28px, color-mix(in srgb, var(--blue) 12%, transparent) 29px 30px);
-  opacity: .75;
+  opacity: .42;
 }
 .log-pointer-line {
   position: absolute;
@@ -608,6 +578,8 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .prediction-graph-effect {
   inset: 6% 7% 13%;
   overflow: visible;
+  background: radial-gradient(circle at var(--pointer-x) var(--pointer-y), color-mix(in srgb, var(--blue) 16%, transparent), transparent 24%);
+  border-radius: 18px;
 }
 .prediction-graph-grid {
   fill: none;
@@ -621,8 +593,8 @@ nav a:hover, nav a:focus-visible { color: #000; }
   stroke-width: 1.05;
   stroke-linecap: round;
   filter: drop-shadow(0 0 4px color-mix(in srgb, var(--blue) 55%, transparent));
-  stroke-dasharray: 4 2;
-  animation: prediction-graph-flow 1.4s linear infinite;
+  stroke-dasharray: none;
+  transition: opacity .12s ease;
 }
 .prediction-graph-crosshair {
   stroke: color-mix(in srgb, #ff3b30 52%, var(--blue));
@@ -644,106 +616,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
   animation: pointer-ring 1.1s ease-out infinite;
 }
 
-/* The first project searches a log field and locks onto an attack signal. */
-.project-1::before {
-  inset: 7%;
-  padding: 0;
-  border: 0;
-  border-radius: 18px;
-  background:
-    radial-gradient(circle at 68% 39%, rgba(255, 59, 48, .95) 0 3px, rgba(255, 59, 48, .24) 4px 10px, transparent 11px),
-    radial-gradient(circle at 68% 39%, transparent 0 24px, rgba(255, 59, 48, .3) 25px 26px, transparent 27px),
-    repeating-linear-gradient(0deg, transparent 0 20px, rgba(41, 151, 255, .16) 21px 22px),
-    linear-gradient(90deg, transparent 0 67%, rgba(255, 59, 48, .32) 67.2% 67.6%, transparent 67.9%);
-  -webkit-mask: none;
-  mask: none;
-  opacity: 0;
-  transform: scale(.96);
-}
-.project-1::after {
-  top: 24%;
-  right: auto;
-  bottom: auto;
-  left: 7%;
-  width: 86%;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(41, 151, 255, .9) 38%, rgba(255, 59, 48, .98) 68%, transparent);
-  box-shadow: 0 0 14px rgba(41, 151, 255, .76), 0 0 25px rgba(255, 59, 48, .42);
-  transform: translateY(-110px);
-}
-.project-1:hover { box-shadow: 0 0 0 1px rgba(255, 59, 48, .38), 0 25px 75px rgba(41, 151, 255, .16); }
-.project-1:hover::before { opacity: .84; animation: project-log-detect 2.2s cubic-bezier(.22, 1, .36, 1) infinite; }
-.project-1:hover::after { opacity: .98; animation: project-log-sweep 1.9s cubic-bezier(.22, 1, .36, 1) infinite; }
-.project-1:hover h3 { animation: project-log-heading .72s ease-out both; }
-.project-1:hover .project-evidence strong { animation: project-log-lock-on .78s cubic-bezier(.22, 1, .36, 1) both; }
-
-/* The second project turns its evidence into a live prediction field. */
-.project-2::before {
-  inset: 5%;
-  padding: 0;
-  border-radius: inherit;
-  background:
-    radial-gradient(circle at 13% 70%, rgba(0, 113, 227, .95) 0 3px, transparent 4px),
-    radial-gradient(circle at 29% 53%, rgba(0, 113, 227, .82) 0 3px, transparent 4px),
-    radial-gradient(circle at 46% 60%, rgba(175, 82, 222, .86) 0 3px, transparent 4px),
-    radial-gradient(circle at 63% 38%, rgba(175, 82, 222, .92) 0 3px, transparent 4px),
-    radial-gradient(circle at 82% 25%, rgba(255, 59, 48, .8) 0 3px, transparent 4px),
-    linear-gradient(24deg, transparent 0 27%, rgba(0, 113, 227, .42) 27.2% 27.5%, transparent 27.8%),
-    linear-gradient(-18deg, transparent 0 48%, rgba(175, 82, 222, .4) 48.2% 48.5%, transparent 48.8%),
-    linear-gradient(13deg, transparent 0 67%, rgba(255, 59, 48, .32) 67.2% 67.5%, transparent 67.8%);
-  -webkit-mask: none;
-  mask: none;
-  transform: translate3d(-4%, 0, 0) scale(1.05);
-}
-.project-2::after {
-  top: 49%;
-  right: auto;
-  bottom: auto;
-  left: 8%;
-  width: 68%;
-  height: 3px;
-  background: linear-gradient(90deg, transparent, #0071e3 24%, #af52de 72%, #ff3b30);
-  box-shadow: 0 0 16px rgba(0, 113, 227, .62), 0 0 26px rgba(175, 82, 222, .34);
-  filter: blur(.2px);
-  transform-origin: left center;
-  transform: translateX(-18%) rotate(-7deg) scaleX(.08);
-}
-.project-2:hover { box-shadow: 0 0 0 1px rgba(0, 113, 227, .42), 0 24px 65px rgba(0, 113, 227, .18); }
-.project-2:hover::before { opacity: .88; animation: project-ai-predict 2.1s cubic-bezier(.22, 1, .36, 1) infinite; }
-.project-2:hover::after { opacity: .98; animation: project-ai-converge 1.7s cubic-bezier(.22, 1, .36, 1) infinite; }
-.project-2:hover h3 { animation: project-ai-prediction-heading .65s ease-out both; }
-.project-2:hover .project-evidence strong { animation: project-prediction-pulse .72s cubic-bezier(.22, 1, .36, 1) both; }
-
-/* The third project draws a network that connects its nodes into one service. */
-.project-3::before {
-  inset: 10%;
-  padding: 0;
-  border-radius: 20px;
-  background:
-    radial-gradient(circle at 52% 48%, rgba(74, 163, 255, .28), transparent 13%),
-    radial-gradient(circle at 52% 48%, transparent 0 18%, rgba(74, 163, 255, .1) 18.5% 19%, transparent 19.5%);
-  -webkit-mask: none;
-  mask: none;
-  transform: scale(.94);
-}
-.project-3::after {
-  top: 23%;
-  right: auto;
-  bottom: auto;
-  left: 13%;
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: #4aa3ff;
-  box-shadow: 0 0 12px rgba(74, 163, 255, .95), 0 0 24px rgba(224, 72, 99, .38);
-  filter: none;
-  transform: translate(0, 0) scale(.5);
-}
-.project-3:hover { box-shadow: 0 0 0 1px rgba(224, 72, 99, .48), 0 24px 65px rgba(74, 163, 255, .16); }
-.project-3:hover::before { opacity: .72; animation: project-network-form 2.3s cubic-bezier(.22, 1, .36, 1) infinite; }
-.project-3:hover::after { opacity: .98; animation: project-network-pulse 1.8s cubic-bezier(.22, 1, .36, 1) infinite; }
-.project-3:hover h3 { animation: project-web-connect-heading .72s ease-out both; }
-.project-3:hover .project-evidence strong { animation: project-connection-pulse .68s cubic-bezier(.22, 1, .36, 1) both; }
+/* The third project connects every fixed node directly to the current pointer. */
 .project-network {
   position: absolute;
   z-index: 0;
@@ -760,6 +633,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
   stroke-width: .42;
   stroke-dasharray: 100;
   stroke-dashoffset: 100;
+  transition: stroke-dashoffset .18s ease, opacity .18s ease;
 }
 .project-network .line-b,
 .project-network .line-e { stroke: rgba(224, 72, 99, .65); }
@@ -769,6 +643,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
   transform-box: fill-box;
   transform-origin: center;
   transform: scale(0);
+  transition: opacity .18s ease, transform .18s ease;
 }
 .project-network .node-d,
 .project-network .node-e { fill: #e04863; }
@@ -778,6 +653,7 @@ nav a:hover, nav a:focus-visible { color: #000; }
   transform-box: fill-box;
   transform-origin: center;
   transform: scale(0);
+  transition: opacity .18s ease, transform .18s ease;
 }
 .project-network .network-hub-pulse {
   fill: none;
@@ -787,20 +663,13 @@ nav a:hover, nav a:focus-visible { color: #000; }
   transform-box: fill-box;
   transform-origin: center;
   transform: scale(.4);
+  transition: opacity .18s ease, transform .18s ease;
 }
 .project-3:hover .project-network { opacity: 1; }
-.project-3:hover .network-line { animation: project-network-line .55s ease-out forwards; }
-.project-3:hover .line-b { animation-delay: .1s; }
-.project-3:hover .line-c { animation-delay: .2s; }
-.project-3:hover .line-d { animation-delay: .3s; }
-.project-3:hover .line-e { animation-delay: .4s; }
-.project-3:hover .network-node { animation: project-network-node .38s ease-out forwards; }
-.project-3:hover .node-b { animation-delay: .1s; }
-.project-3:hover .node-c { animation-delay: .2s; }
-.project-3:hover .node-d { animation-delay: .3s; }
-.project-3:hover .node-e { animation-delay: .4s; }
-.project-3:hover .network-hub { animation: project-network-hub .45s .5s ease-out forwards; }
-.project-3:hover .network-hub-pulse { animation: project-network-hub-pulse 1s .52s ease-out forwards; }
+.project-3:hover .network-line { opacity: .82; stroke-dashoffset: 0; }
+.project-3:hover .network-node { opacity: .82; transform: scale(1); }
+.project-3:hover .network-hub { opacity: 1; transform: scale(1); }
+.project-3:hover .network-hub-pulse { opacity: .68; transform: scale(.72); }
 .project-1 { grid-column: span 2; min-height: 700px; background: var(--project-security-bg); color: var(--project-security-ink); }
 .project-2 { background: var(--project-ai-bg); color: var(--project-ai-ink); }
 .project-3 { background: var(--project-web-bg); color: var(--project-web-ink); }
@@ -809,8 +678,8 @@ nav a:hover, nav a:focus-visible { color: #000; }
 .project-1 .project-copy { max-width: 760px; margin-inline: auto; }
 .card-eyebrow { margin: 0 0 13px; color: #f56300; font-size: 17px; font-weight: 600; }
 .project-3 .card-eyebrow { color: #90b4ff; }
-.project-card h3 { margin: 0; font-size: clamp(34px, 3.6vw, 50px); line-height: 1.06; letter-spacing: -.055em; }
-.project-1 h3 { font-size: clamp(42px, 5vw, 64px); }
+.project-card h3 { margin: 0; font-size: clamp(29px, 3vw, 43px); line-height: 1.06; letter-spacing: -.055em; }
+.project-1 h3 { font-size: clamp(36px, 4.2vw, 54px); }
 .project-card h3 span { display: block; }
 .project-description { max-width: 560px; margin: 20px auto 0; color: #86868b; font-size: 16px; line-height: 1.55; letter-spacing: -.015em; word-break: keep-all; }
 .project-1 .project-description, .project-3 .project-description { color: var(--project-card-description); }
@@ -1488,202 +1357,6 @@ nav a:hover, nav a:focus-visible { color: #000; }
   100% { opacity: 0; transform: translate(-50%, -50%) scale(1.45); }
 }
 
-@keyframes pointer-hub-pulse {
-  0% { opacity: .84; transform: scale(.55); }
-  70% { opacity: .18; transform: scale(1.55); }
-  100% { opacity: 0; transform: scale(2.1); }
-}
-
-@keyframes prediction-graph-flow {
-  to { stroke-dashoffset: -12; }
-}
-
-@keyframes project-border-scan {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-@keyframes project-log-detect {
-  0% { opacity: 0; clip-path: inset(0 0 100% 0); transform: scale(.96); background-position: 0 58px; }
-  30% { opacity: .84; clip-path: inset(0 0 54% 0); }
-  62% { opacity: .68; clip-path: inset(0 0 18% 0); transform: scale(1); background-position: 0 -8px; }
-  82% { opacity: .96; clip-path: inset(0); }
-  100% { opacity: .3; transform: scale(1.01); background-position: 0 -22px; }
-}
-
-@keyframes project-log-sweep {
-  0% { opacity: 0; transform: translateY(-110px); }
-  56% { opacity: 1; transform: translateY(160px); }
-  72% { opacity: .98; transform: translateY(188px); }
-  100% { opacity: .12; transform: translateY(232px); }
-}
-
-@keyframes project-log-heading {
-  0% { transform: translateY(0); text-shadow: none; }
-  44% { transform: translateY(-3px); text-shadow: 0 0 22px rgba(41, 151, 255, .46); }
-  72% { transform: translateY(0); text-shadow: 0 0 14px rgba(255, 59, 48, .42); }
-  100% { text-shadow: none; }
-}
-
-@keyframes project-log-lock-on {
-  0% { transform: scale(1); color: inherit; filter: none; }
-  48% { transform: scale(1.12); color: #ff3b30; filter: drop-shadow(0 0 14px rgba(255, 59, 48, .48)); }
-  72% { transform: scale(1.04); color: #2997ff; filter: drop-shadow(0 0 7px rgba(41, 151, 255, .42)); }
-  100% { transform: scale(1); color: inherit; filter: none; }
-}
-
-@keyframes project-ai-predict {
-  0% { opacity: 0; clip-path: inset(0 100% 0 0); transform: translate3d(-6%, 0, 0) scale(1.05); background-position: -26px 0; }
-  24% { opacity: .9; clip-path: inset(0 64% 0 0); }
-  56% { opacity: .72; clip-path: inset(0 24% 0 0); transform: translate3d(0, -1%, 0) scale(1); background-position: 12px 4px; }
-  82% { opacity: .48; clip-path: inset(0 0 0 0); }
-  100% { opacity: .22; transform: translate3d(2%, 0, 0) scale(1.01); background-position: 22px 8px; }
-}
-
-@keyframes project-ai-converge {
-  0% { opacity: 0; transform: translateX(-12%) rotate(-7deg) scaleX(.08); }
-  28% { opacity: 1; transform: translateX(0) rotate(-7deg) scaleX(.42); }
-  66% { opacity: .9; transform: translateX(12%) rotate(-7deg) scaleX(1); }
-  100% { opacity: .12; transform: translateX(112%) rotate(-7deg) scaleX(.32); }
-}
-
-@keyframes project-ai-prediction-heading {
-  0% { transform: translateY(0); text-shadow: none; }
-  42% { transform: translateY(-3px); text-shadow: 0 5px 20px rgba(0, 113, 227, .32); }
-  100% { transform: translateY(0); text-shadow: 0 0 0 rgba(0, 113, 227, 0); }
-}
-
-@keyframes project-prediction-pulse {
-  0% { transform: scale(1); filter: none; }
-  34% { transform: scale(1.12); filter: drop-shadow(0 0 12px rgba(0, 113, 227, .38)); }
-  70% { transform: scale(1.02); filter: drop-shadow(0 0 5px rgba(175, 82, 222, .26)); }
-  100% { transform: scale(1); filter: none; }
-}
-
-@keyframes project-network-form {
-  0% { opacity: 0; clip-path: inset(0 100% 0 0); transform: translate3d(-2%, 0, 0) scale(.96); background-position: -30px 0; }
-  28% { opacity: .92; clip-path: inset(0 62% 0 0); }
-  58% { opacity: .78; clip-path: inset(0 25% 0 0); transform: translate3d(0, 1%, 0) scale(1); background-position: 10px 5px; }
-  84% { opacity: .54; clip-path: inset(0); }
-  100% { opacity: .24; transform: translate3d(2%, 0, 0) scale(1.02); background-position: 20px 10px; }
-}
-
-@keyframes project-network-line {
-  0% { stroke-dashoffset: 100; opacity: 0; }
-  34% { opacity: 1; }
-  100% { stroke-dashoffset: 0; opacity: .78; }
-}
-
-@keyframes project-network-node {
-  0% { opacity: 0; transform: scale(0); }
-  70% { opacity: 1; transform: scale(1.3); }
-  100% { opacity: .82; transform: scale(1); }
-}
-
-@keyframes project-network-hub {
-  0% { opacity: 0; transform: scale(0); }
-  65% { opacity: 1; transform: scale(1.35); }
-  100% { opacity: 1; transform: scale(1); }
-}
-
-@keyframes project-network-hub-pulse {
-  0% { opacity: 0; transform: scale(.4); }
-  45% { opacity: .95; transform: scale(1.5); }
-  100% { opacity: 0; transform: scale(2.3); }
-}
-
-@keyframes project-network-pulse {
-  0% { opacity: 0; transform: translate(0, 0) scale(.5); }
-  45% { opacity: 1; transform: translate(122px, 76px) scale(1); }
-  70% { opacity: .95; transform: translate(198px, 36px) scale(.85); }
-  100% { opacity: .08; transform: translate(270px, 118px) scale(.35); }
-}
-
-@keyframes project-network-connect {
-  0% { opacity: 0; transform: translateX(0) rotate(-12deg) scaleX(0); }
-  36% { opacity: 1; transform: translateX(0) rotate(-12deg) scaleX(.5); }
-  72% { opacity: .9; transform: translateX(42%) rotate(-12deg) scaleX(1); }
-  100% { opacity: .1; transform: translateX(118%) rotate(-12deg) scaleX(.24); }
-}
-
-@keyframes project-web-connect-heading {
-  0% { transform: translateY(0); text-shadow: 0 0 0 rgba(74, 163, 255, 0); }
-  38% { transform: translateY(-3px); text-shadow: 0 0 22px rgba(74, 163, 255, .62); }
-  70% { transform: translateY(1px); text-shadow: 0 0 10px rgba(224, 72, 99, .42); }
-  100% { transform: translateY(0); text-shadow: 0 0 0 rgba(74, 163, 255, 0); }
-}
-
-@keyframes project-connection-pulse {
-  0% { transform: scale(1); color: inherit; }
-  32% { transform: scale(1.14); color: #4aa3ff; filter: drop-shadow(0 0 12px rgba(74, 163, 255, .5)); }
-  68% { transform: scale(1.03); color: #90b4ff; filter: drop-shadow(0 0 6px rgba(144, 180, 255, .32)); }
-  100% { transform: scale(1); color: inherit; filter: none; }
-}
-
-@keyframes project-scanline {
-  0% { transform: skewX(-12deg) translateX(-180%); }
-  100% { transform: skewX(-12deg) translateX(760%); }
-}
-
-@keyframes project-ai-fracture {
-  0% { opacity: 0; clip-path: inset(0 100% 62% 0); transform: translate3d(-18%, 0, 0) skewX(-12deg) scale(1.14); }
-  18% { opacity: .9; clip-path: inset(10% 0 54% 7%); }
-  38% { opacity: .72; clip-path: inset(63% 12% 8% 0); transform: translate3d(2%, -2%, 0) skewX(-8deg) scale(1.04); }
-  62% { opacity: .86; clip-path: inset(28% 0 36% 20%); transform: translate3d(-4%, 1%, 0) skewX(-13deg) scale(1.1); }
-  100% { opacity: 0; clip-path: inset(0); transform: translate3d(7%, 0, 0) skewX(-10deg) scale(1.06); }
-}
-
-@keyframes project-ai-surge {
-  0% { opacity: 0; transform: translateX(-130%) rotate(-3deg) scaleX(.4); }
-  18% { opacity: 1; }
-  58% { opacity: .96; transform: translateX(18%) rotate(-3deg) scaleX(1.08); }
-  100% { opacity: 0; transform: translateX(130%) rotate(-3deg) scaleX(.7); }
-}
-
-@keyframes project-ai-heading {
-  0%, 100% { transform: translateX(0); text-shadow: none; }
-  25% { transform: translateX(-3px); text-shadow: 4px 0 rgba(0, 113, 227, .62), -3px 0 rgba(175, 82, 222, .48); }
-  50% { transform: translateX(2px); text-shadow: -3px 0 rgba(0, 113, 227, .5), 4px 0 rgba(255, 59, 48, .34); }
-  75% { transform: translateX(-1px); text-shadow: 2px 0 rgba(175, 82, 222, .42); }
-}
-
-@keyframes project-evidence-shock {
-  0% { transform: scale(1); filter: none; }
-  26% { transform: scale(1.12) skewX(-4deg); filter: drop-shadow(4px 0 rgba(175, 82, 222, .46)); }
-  52% { transform: scale(.96) skewX(3deg); filter: drop-shadow(-4px 0 rgba(0, 113, 227, .46)); }
-  100% { transform: scale(1); filter: none; }
-}
-
-@keyframes project-security-breach {
-  0% { opacity: 0; transform: scale(.94) rotate(0deg); }
-  20% { opacity: .98; transform: scale(1.01) rotate(.35deg); }
-  38% { opacity: .42; transform: scale(.98) rotate(-.25deg); }
-  58% { opacity: 1; transform: scale(1) rotate(.18deg); }
-  100% { opacity: 0; transform: scale(1.02) rotate(0deg); }
-}
-
-@keyframes project-security-warning {
-  0% { opacity: 0; transform: translateX(-120%); }
-  20% { opacity: 1; }
-  56% { opacity: 1; transform: translateX(20%); }
-  72% { opacity: .7; transform: translateX(48%); }
-  100% { opacity: 0; transform: translateX(120%); }
-}
-
-@keyframes project-security-heading {
-  0% { transform: translateY(0); text-shadow: 0 0 0 rgba(74, 163, 255, 0); }
-  32% { transform: translateY(-3px); text-shadow: 0 0 22px rgba(74, 163, 255, .66); }
-  62% { transform: translateY(1px); text-shadow: 0 0 8px rgba(224, 72, 99, .58); }
-  100% { transform: translateY(0); text-shadow: 0 0 0 rgba(74, 163, 255, 0); }
-}
-
-@keyframes project-live-flash {
-  0%, 100% { transform: scale(1); color: inherit; }
-  28% { transform: scale(1.14); color: #e04863; }
-  52% { transform: scale(.97); color: #4aa3ff; }
-  75% { transform: scale(1.05); color: #e04863; }
-}
-
 @keyframes archive-terminal-scan {
   0% { transform: scaleX(0); opacity: 0; }
   22%, 78% { transform: scaleX(1); opacity: 1; }
@@ -1801,13 +1474,10 @@ nav a:hover, nav a:focus-visible { color: #000; }
   html { scroll-behavior: auto; }
   .skill-card:hover::before, .skill-card:hover::after, .archive-preview, .nav-page-transition.is-active,
   .hero-signal-row, .hero-signal-marker, .hero-signal-marker i, .hero h1 span,
-  .project-card:hover::before, .project-card:hover::after,
-  .project-card:hover h3, .project-card:hover .project-evidence strong,
   .archive-list article:hover::before,
   .contact-inner.is-visible::before, .contact-inner.is-visible::after,
   .credential-grid article.reveal-on-scroll.is-visible,
   .credential-grid article.reveal-on-scroll.is-visible::before { animation: none; }
-  .project-card:hover::before, .project-card:hover::after { opacity: .55; }
   .archive-list article:hover::before,
   .contact-inner.is-visible::before, .contact-inner.is-visible::after,
   .credential-grid article.reveal-on-scroll.is-visible::before { opacity: 0; }
